@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Videography — LensBros Photo & Video Agency</title>
+    <meta name="description" content="Cinematic brand films, commercials, music videos, and event coverage by LensBros. Hollywood-grade color grading with story-driven impact." />
+    <meta name="theme-color" content="#020203" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/shared.css" />
+
+    <style>
+        /* ───── PAGE HERO ───── */
+        .video-page-hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-page-hero .bg-video {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .video-page-hero .bg-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-page-hero .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2,2,3,0.5), rgba(2,2,3,0.8));
+            z-index: 1;
+        }
+
+        .video-page-hero .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-page-hero .hero-content .page-tag {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: vFadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .video-page-hero .hero-content h1 {
+            font-size: clamp(48px, 10vw, 100px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            line-height: 0.9;
+            color: #fff;
+            text-shadow: 0 0 40px var(--accent-glow);
+            opacity: 0;
+            animation: vFadeUp 1s ease 0.4s forwards;
+        }
+
+        .video-page-hero .hero-content p {
+            margin-top: 20px;
+            font-size: 17px;
+            color: rgba(255,255,255,0.8);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: vFadeUp 0.8s ease 0.7s forwards;
+        }
+
+        @keyframes vFadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ───── SERVICE CARDS ───── */
+        .vid-services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .vid-service-card {
+            padding: 40px 28px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vid-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform var(--transition);
+        }
+
+        .vid-service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .vid-service-card:hover {
+            border-color: rgba(255, 43, 0, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .vid-service-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vid-service-card p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .vid-service-card .card-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(255, 43, 0, 0.1);
+            position: absolute;
+            top: 16px;
+            right: 20px;
+        }
+
+        /* ───── SHOWCASE SECTION ───── */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .showcase-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 400px;
+            cursor: pointer;
+        }
+
+        .showcase-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            transition: transform 0.6s ease;
+        }
+
+        .showcase-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .showcase-card .card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            padding: 32px;
+            background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.75) 100%);
+        }
+
+        .showcase-card .loc {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .showcase-card h3 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .showcase-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* ───── VIDEO GRID ── */
+        .vid-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .vid-grid-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            position: relative;
+            background: #111;
+        }
+
+        .vid-grid-item video,
+        .vid-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vid-grid-item .play-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .vid-grid-item:hover .play-icon {
+            opacity: 1;
+        }
+
+        .play-icon .circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 43, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        /* ───── PROCESS ───── */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            counter-reset: step;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::before {
+            counter-increment: step;
+            content: counter(step, decimal-leading-zero);
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(255, 43, 0, 0.15);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .process-step h3 {
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ───── Responsive ───── */
+        @media (max-width: 900px) {
+            .vid-services {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-card { min-height: 300px; }
+
+            .vid-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- ═══════ NAVIGATION ═══════ -->
+    <nav class="site-nav" id="siteNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><img src="m.png" alt="LensBros Logo" /></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="videography.html" class="active">Videography</a>
+                <a href="reels.html">Reels</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <a href="contact.html" class="nav-cta" title="Contact Us">✉</a>
+            <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="videography.html">Videography</a>
+        <a href="reels.html">Reels</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-10 0h10"/></svg>
+            <span>Home</span><span class="indicator"></span>
+        </a>
+        <a href="videography.html" class="active">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span>Video</span><span class="indicator"></span>
+        </a>
+        <a href="reels.html">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Reels</span><span class="indicator"></span>
+        </a>
+        <a href="contact.html">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Contact</span><span class="indicator"></span>
+        </a>
+    </nav>
+
+
+    <!-- ═══════ HERO ═══════ -->
+    <header class="video-page-hero">
+        <div class="bg-video">
+            <video playsinline autoplay muted loop preload="metadata">
+                <source src="https://cdn.pixabay.com/video/2024/03/12/203878-922675732_large.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div class="overlay"></div>
+        <div class="blob blob-accent" style="width:600px;height:600px;top:-200px;left:-200px;"></div>
+
+        <div class="hero-content">
+            <div class="page-tag">Cinematic Production</div>
+            <h1>Videography</h1>
+            <p>Cinematic reels • Brand films • Music videos • Color graded deliverables</p>
+        </div>
+    </header>
+
+
+    <!-- ═══════ SERVICES ═══════ -->
+    <section class="section dark">
+        <div class="container">
+            <div class="section-subtitle reveal">What We Offer</div>
+            <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);margin-bottom:48px;">Video Services</h2>
+
+            <div class="vid-services">
+                <div class="vid-service-card reveal delay-1">
+                    <span class="card-num">01</span>
+                    <h3>Brand Films</h3>
+                    <p>Full-scale cinematic brand stories designed to captivate your audience. From concept to final cut — we make your brand unforgettable.</p>
+                </div>
+                <div class="vid-service-card reveal delay-2">
+                    <span class="card-num">02</span>
+                    <h3>Commercials</h3>
+                    <p>High-energy ad films for digital and broadcast. Bold visuals, punchy edits, and storytelling that drives conversions and brand recall.</p>
+                </div>
+                <div class="vid-service-card reveal delay-3">
+                    <span class="card-num">03</span>
+                    <h3>Music Videos</h3>
+                    <p>Narrative and performance-driven music videos. We bring your sound to life with stunning visuals and cinematic production value.</p>
+                </div>
+                <div class="vid-service-card reveal delay-4">
+                    <span class="card-num">04</span>
+                    <h3>Event Coverage</h3>
+                    <p>Multi-camera event documentation with same-day edits. Concerts, launches, corporate events — covered with documentary precision.</p>
+                </div>
+                <div class="vid-service-card reveal delay-5">
+                    <span class="card-num">05</span>
+                    <h3>Color Grading</h3>
+                    <p>Custom LUTs, mood boards, and cinematic grades that transform raw footage into a polished visual masterpiece.</p>
+                </div>
+                <div class="vid-service-card reveal delay-6">
+                    <span class="card-num">06</span>
+                    <h3>Social Content</h3>
+                    <p>Short-form Reels, YouTube content, and TikTok-optimized videos. Designed for engagement, built for virality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ FEATURED PROJECTS ═══════ -->
+    <section class="section dark" style="background:#0a0a0b;">
+        <div class="container">
+            <div class="section-subtitle reveal">Case Studies</div>
+            <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);margin-bottom:48px;">Featured Projects</h2>
+
+            <div class="showcase-grid">
+                <div class="showcase-card reveal">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1600258881099-e78a5e3b77ff?q=80&w=1364&auto=format&fit=crop" alt="India Gate">
+                    <div class="card-content">
+                        <span class="loc">New Delhi</span>
+                        <h3>India Gate</h3>
+                        <p>A timeless landmark captured through a modern cinematic lens — each frame honors its grandeur while telling a contemporary visual story.</p>
+                    </div>
+                </div>
+                <div class="showcase-card reveal delay-1">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=1170&auto=format&fit=crop" alt="Hauz Khas">
+                    <div class="card-content">
+                        <span class="loc">South Delhi • 2024</span>
+                        <h3>Hauz Khas</h3>
+                        <p>Where historic ruins meet vibrant urban energy. Bold, artistic frames that feel alive and culturally rooted.</p>
+                    </div>
+                </div>
+                <div class="showcase-card reveal delay-2">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1580870858053-8d0764624f4f?q=80&w=1268" alt="Behind the Camera">
+                    <div class="card-content">
+                        <span class="loc">Production</span>
+                        <h3>Behind The Lens</h3>
+                        <p>Our production process — from scouting locations to final color grading sessions, every step is intentional and creative.</p>
+                    </div>
+                </div>
+                <div class="showcase-card reveal delay-3">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1678542561901-5d75778930ef?q=80&w=1332&auto=format&fit=crop" alt="Cinema">
+                    <div class="card-content">
+                        <span class="loc">Mumbai</span>
+                        <h3>Neon Nights</h3>
+                        <p>Late-night urban cinematography capturing the pulse of the city — neon reflections, rain-soaked streets, raw energy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ VIDEO GALLERY ═══════ -->
+    <section class="section dark">
+        <div class="container">
+            <div class="section-subtitle reveal">Gallery</div>
+            <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);margin-bottom:48px;">Video Edit / Color Grading</h2>
+
+            <div class="vid-grid">
+                <div class="vid-grid-item reveal">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1678542561901-5d75778930ef?q=80&w=600" alt="Work 1">
+                    <div class="play-icon"><div class="circle">▶</div></div>
+                </div>
+                <div class="vid-grid-item reveal delay-1">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://cdn.pixabay.com/video/2022/10/04/133491-756991118_large.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="vid-grid-item reveal delay-2">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1633255647473-1f434bd63c70?q=80&w=600" alt="Work 2">
+                    <div class="play-icon"><div class="circle">▶</div></div>
+                </div>
+                <div class="vid-grid-item reveal delay-3">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://cdn.pixabay.com/video/2024/03/12/203878-922675732_large.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="vid-grid-item reveal delay-4">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1684235425049-614ede2f533e?q=80&w=600" alt="Work 3">
+                    <div class="play-icon"><div class="circle">▶</div></div>
+                </div>
+                <div class="vid-grid-item reveal delay-5">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://cdn.pixabay.com/video/2024/03/08/203449-921267347_tiny.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ OUR PROCESS ═══════ -->
+    <section class="section dark" style="background:#0a0a0b;">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:60px;">
+                <div class="section-subtitle reveal">How We Work</div>
+                <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);">Our Process</h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step reveal delay-1">
+                    <h3>Discovery</h3>
+                    <p>We deep-dive into your brand, audience, and vision. Understanding the story you want to tell is where every great project begins.</p>
+                </div>
+                <div class="process-step reveal delay-2">
+                    <h3>Pre-Production</h3>
+                    <p>Storyboarding, location scouting, shot lists, and mood boards. We plan every detail before the camera rolls.</p>
+                </div>
+                <div class="process-step reveal delay-3">
+                    <h3>Production</h3>
+                    <p>Lights, camera, action. Cinema-grade equipment, experienced crew, and a creative director on set ensuring every frame is perfect.</p>
+                </div>
+                <div class="process-step reveal delay-4">
+                    <h3>Post-Production</h3>
+                    <p>Expert editing, custom color grading, sound design, and motion graphics. We polish until it shines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CTA ═══════ -->
+    <section style="background:var(--accent);padding:80px 20px;text-align:center;overflow:hidden;position:relative;">
+        <h2 class="reveal" style="font-size:clamp(28px,5vw,48px);font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:3px;">Let's Film Something Epic</h2>
+        <p class="reveal delay-1" style="color:rgba(255,255,255,0.85);font-size:17px;margin:12px 0 28px;">From concept to screen — we're ready when you are.</p>
+        <a href="contact.html" class="btn reveal delay-2" style="background:#fff;color:var(--accent);">Start a Project</a>
+    </section>
+
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>LENSBROS</h3>
+                    <p>Two brothers. One vision. Creating bold visuals with story-driven impact.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Pages</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="videography.html">Videography</a>
+                    <a href="reels.html">Reels</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="videography.html">Commercials</a>
+                    <a href="videography.html">Events</a>
+                    <a href="videography.html">Portraits</a>
+                    <a href="videography.html">Color Grading</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@lensbros.example">hello@lensbros.example</a>
+                    <a href="tel:+911234567890">+91 12345 67890</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                    <a href="https://youtube.com" target="_blank">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> LensBros — All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/shared.js"></script>
+</body>
+
+</html>

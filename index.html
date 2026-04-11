@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LensBros — Photo & Video Agency</title>
+    <meta name="description"
+        content="LensBros — Photo & Video agency: Commercials, Events, Portraits, Cinematic Films. Two brothers creating bold visuals with story-driven impact." />
+    <meta name="theme-color" content="#020203" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css" />
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           LANDING PAGE — DRAMATIC STORY-DRIVEN DESIGN
+           ═══════════════════════════════════════════════ */
+
+        /* ---------- CUSTOM CURSOR ---------- */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, margin 0.3s;
+        }
+
+        /* ---------- PRELOADER ---------- */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .preloader-text {
+            font-size: clamp(48px, 12vw, 120px);
+            font-weight: 900;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-family: "Montserrat", sans-serif;
+            color: var(--accent);
+            overflow: hidden;
+        }
+
+        .preloader-text span {
+            display: inline-block;
+        }
+
+        .preloader-line {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .preloader-line-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 43, 0, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transition: width 0.3s, height 0.3s, border-color 0.3s, margin 0.3s;
+        }
+
+        .cursor-dot.hovering {
+            width: 60px;
+            height: 60px;
+            margin: -26px 0 0 -26px;
+            background: rgba(255, 43, 0, 0.15);
+            backdrop-filter: blur(4px);
+        }
+
+        .cursor-ring.hovering {
+            width: 80px;
+            height: 80px;
+            margin: -40px 0 0 -40px;
+            border-color: var(--accent);
+        }
+
+        /* ---------- HERO SECTION (Centered, Dramatic) ---------- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            /* Prevents edges showing during parallax */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2, 2, 3, 0.7) 0%, rgba(2, 2, 3, 0.5) 50%, rgba(2, 2, 3, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 43, 0, 0.15), transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 92%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+        }
+
+        .hero-tag .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 12px #22c55e;
+            animation: pulseDot 2s ease infinite;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(60px, 12vw, 130px);
+            font-weight: 900;
+            line-height: 0.9;
+            color: var(--offwhite);
+            font-family: "Montserrat", sans-serif;
+            letter-spacing: -3px;
+            margin-bottom: 32px;
+        }
+
+        .hero-title .line {
+            display: block;
+            overflow: hidden;
+            padding-bottom: 10px;
+            /* prevent font clipping */
+        }
+
+        .hero-title .line-inner {
+            display: block;
+            transform: translateY(110%);
+        }
+
+        .hero-title .accent {
+            color: var(--accent);
+            text-shadow: 0 0 80px var(--accent-glow);
+        }
+
+        .hero-title .serif-accent {
+            font-family: "Playfair Display", serif;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: clamp(18px, 3vw, 22px);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+
+        /* ---------- DRAMATIC STORY SECTION ---------- */
+        .story-section {
+            padding: 180px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--black);
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-subtitle {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px;
+        }
+
+        .story-text {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(24px, 4vw, 42px);
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        .story-text span {
+            color: rgba(255, 255, 255, 0.2);
+            transition: color 0.4s ease;
+        }
+
+        .story-text span.highlighted {
+            color: #fff;
+        }
+
+
+        /* ---------- MASSIVE SHOWCASE VIDEO ---------- */
+        .showcase-section {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .showcase-play {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #ff6b35);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 0 50px var(--accent-glow), inset 0 0 20px rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .showcase-play:hover {
+            transform: scale(1.15);
+            background: linear-gradient(135deg, #ff6b35, var(--accent));
+            box-shadow: 0 0 70px var(--accent-glow), inset 0 0 30px rgba(255,255,255,0.3);
+        }
+
+
+        /* ---------- SERVICES STRIP ---------- */
+        .services-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .service-item {
+            padding: 60px 40px;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .service-item:last-child {
+            border-right: none;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.5s ease;
+        }
+
+        .service-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-item h3 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+        /* ---------- EXPERTISE (Randy + Folioblox style) ---------- */
+        .expertise-section {
+            padding: 160px 0;
+            background: var(--black);
+        }
+
+        .icon-services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .icon-service {
+            text-align: left;
+            padding: 48px 32px;
+            border-radius: 16px;
+            background: #08080a;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .icon-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .icon-service:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 43, 0, 0.3);
+        }
+
+        .icon-service:hover::before {
+            transform: scaleX(1);
+        }
+
+        .icon-service .svc-icon {
+            font-size: 40px;
+            margin-bottom: 32px;
+            line-height: 1;
+        }
+
+        .icon-service .svc-num {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 100px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: "Montserrat", sans-serif;
+            pointer-events: none;
+        }
+
+        .icon-service h4 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .icon-service p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+
+        /* ---------- FEATURED WORK ---------- */
+        .work-section {
+            padding: 120px 0 160px;
+            background: var(--black);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .work-card {
+            background: transparent;
+            cursor: pointer;
+            group: work;
+        }
+
+        .work-card .work-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .work-card .work-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .work-card:hover .work-img img {
+            transform: scale(1.05);
+        }
+
+        .work-card .card-tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .work-card .card-title {
+            display: block;
+            font-size: 28px;
+            font-weight: 900;
+            margin-top: 8px;
+            font-family: "Playfair Display", serif;
+        }
+
+
+        /* ---------- THE PHILOSOPHY (Stats + Text) ---------- */
+        .philosophy-section {
+            padding: 160px 0;
+            background: #08080a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .philosophy-text h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .philosophy-text p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .stat-item {
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-big {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 12px;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+
+        /* ---------- BIG TESTIMONIAL ---------- */
+        .testimonial-section {
+            padding: 180px 0;
+            text-align: center;
+        }
+
+        .testimonial-block {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial-block .big-quote {
+            font-size: 160px;
+            font-family: "Playfair Display", serif;
+            color: rgba(255, 43, 0, 0.2);
+            line-height: 0.2;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-block .quote-text {
+            font-size: clamp(24px, 4vw, 42px);
+            line-height: 1.4;
+            font-style: italic;
+            font-family: "Playfair Display", serif;
+            margin-bottom: 40px;
+        }
+
+
+        /* ---------- CTA BAND ---------- */
+        .cta-band {
+            background: var(--accent);
+            padding: 140px 20px;
+            text-align: center;
+        }
+
+        .cta-band h2 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+        }
+
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .services-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            }
+
+            .icon-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 52px;
+            }
+
+            .icon-services {
+                grid-template-columns: 1fr;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════ CUSTOM CURSOR ═══════ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ═══════ PRELOADER ═══════ -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-text" id="preloaderText">
+            <span>L</span><span>E</span><span>N</span><span>S</span><span>B</span><span>R</span><span>O</span><span>S</span>
+        </div>
+        <div class="preloader-line">
+            <div class="preloader-line-fill" id="preloaderFill"></div>
+        </div>
+    </div>
+
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- ═══════ NAVIGATION ═══════ -->
+    <nav class="site-nav" id="siteNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><img src="m.png" alt="LensBros Logo" /></a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="videography.html">Videography</a>
+                <a href="reels.html">Reels</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <a href="contact.html" class="nav-cta" title="Contact Us">✉</a>
+            <button class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="videography.html">Videography</a>
+        <a href="reels.html">Reels</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+
+    <!-- ═══════ 1. DRAMATIC HERO ═══════ -->
+    <header class="hero" id="heroSection">
+        <div class="hero-bg">
+            <video playsinline autoplay muted loop preload="metadata">
+                <source src="https://cdn.pixabay.com/video/2024/03/08/203449-921267347_tiny.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-glow" id="heroGlow"></div>
+
+        <div class="hero-content">
+            <div class="hero-tag gsap-hero">
+                <span class="dot"></span>
+                <span>Available for Projects</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="line"><span class="line-inner gsap-hero-title">We Create</span></span>
+                <span class="line"><span class="line-inner gsap-hero-title"><span
+                            class="serif-accent">Cinematic</span></span></span>
+                <span class="line"><span class="line-inner gsap-hero-title"><span class="accent">Visual
+                            Stories</span></span></span>
+            </h1>
+            <p class="hero-desc gsap-hero">
+                Two brothers. One vision. Building bold, intentional visuals that cut through the noise.
+            </p>
+            <div class="hero-btns gsap-hero">
+                <a href="#workSection" class="btn btn-accent">See Our Work →</a>
+                <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ═══════ 2. THE STORY (Slow Reveal Text) ═══════ -->
+    <section class="story-section" id="storySection">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-subtitle gsap-fade-up">Our Story</div>
+                <div class="story-text" id="storyText">
+                    Great design should feel invisible.<br>
+                    Through the lens, we transform fleeting moments into timeless visuals. We don't just capture images,
+                    we build worlds that resonate.
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ 3. MASSIVE SHOWCASE VIDEO ═══════ -->
+    <section class="showcase-section" id="showcaseSection">
+        <video class="showcase-video" playsinline autoplay muted loop preload="metadata">
+            <source src="https://cdn.pixabay.com/video/2022/10/04/133491-756991118_large.mp4" type="video/mp4">
+        </video>
+        <div class="showcase-overlay">
+            <div class="showcase-play">▶</div>
+            <h2 style="font-size:24px; letter-spacing:4px; text-transform:uppercase; margin-top:24px; font-weight:800;">
+                Watch Showreel</h2>
+        </div>
+    </section>
+
+
+    <!-- ═══════ 4. SERVICES STRIP ═══════ -->
+    <div style="background:var(--black);">
+        <div class="services-strip">
+            <div class="service-item">
+                <h3 style="color:var(--muted); font-size:14px; margin-bottom:8px;">#01</h3>
+                <h3>Videography</h3>
+            </div>
+            <div class="service-item">
+                <h3 style="color:var(--muted); font-size:14px; margin-bottom:8px;">#02</h3>
+                <h3>Photography</h3>
+            </div>
+            <div class="service-item">
+                <h3 style="color:var(--muted); font-size:14px; margin-bottom:8px;">#03</h3>
+                <h3>Color Grading</h3>
+            </div>
+            <div class="service-item">
+                <h3 style="color:var(--muted); font-size:14px; margin-bottom:8px;">#04</h3>
+                <h3>Creative Direction</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════ 5. OUR EXPERTISE ═══════ -->
+    <section class="expertise-section" id="expertiseSection">
+        <div class="container">
+            <div class="story-subtitle gsap-fade-up" style="text-align:center;">Capabilities</div>
+            <h2 class="big-title gsap-fade-up"
+                style="font-size:clamp(32px,6vw,64px); text-align:center; margin-bottom:80px;">Our Expertise</h2>
+
+            <div class="icon-services">
+                <div class="icon-service gsap-service">
+                    <span class="svc-num">01</span>
+                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 48px; height: 48px; filter: drop-shadow(0 0 12px rgba(255,43,0,0.6));">
+                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                        </svg></div>
+                    <h4>Videography</h4>
+                    <p>Cinematic commercials, brand films, and music videos with Hollywood-grade production value and
+                        immersive storytelling.</p>
+                </div>
+                <div class="icon-service gsap-service">
+                    <span class="svc-num">02</span>
+                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 48px; height: 48px; filter: drop-shadow(0 0 12px rgba(255,43,0,0.6));">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                            </path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg></div>
+                    <h4>Photography</h4>
+                    <p>Editorial portraits, product shoots, and event photography focusing on bold, dramatic, and
+                        intentional composition.</p>
+                </div>
+                <div class="icon-service gsap-service">
+                    <span class="svc-num">03</span>
+                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 48px; height: 48px; filter: drop-shadow(0 0 12px rgba(255,43,0,0.6));">
+                            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+                            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+                            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+                            <path
+                                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z">
+                            </path>
+                        </svg></div>
+                    <h4>Color Grading</h4>
+                    <p>Custom LUTs and mood-driven grading that establishes a powerful, consistent visual identity
+                        across all your content.</p>
+                </div>
+                <div class="icon-service gsap-service">
+                    <span class="svc-num">04</span>
+                    <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 48px; height: 48px; filter: drop-shadow(0 0 12px rgba(255,43,0,0.6));">
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                            <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                            <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                        </svg></div>
+                    <h4>Post Production</h4>
+                    <p>Expert offline/online editing, sound design, and motion graphics that polish every single frame
+                        to absolute perfection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ SKILLS & TOOLS ═══════ -->
+    <section class="skills-section" id="skillsSection"
+        style="padding: 120px 0; background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="story-subtitle gsap-fade-up" style="text-align:center;">Our Toolkit</div>
+            <h2 class="big-title gsap-fade-up"
+                style="font-size:clamp(32px,6vw,64px); text-align:center; margin-bottom:80px;">Skills & Technologies
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px;">
+                <!-- Skills -->
+                <div class="gsap-fade-up">
+                    <h3
+                        style="font-size:24px; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px;">
+                        Core Skills</h3>
+                    <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px;">
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Video Editing</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Color Grading</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Motion Graphics</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Cinematic Transitions</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Videography</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Photography</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">Cinematography</li>
+                        <li style="background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; cursor: default;"
+                            onmouseover="this.style.background='rgba(255,43,0,0.2)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.05)'">YouTube Videos</li>
+                    </ul>
+                </div>
+
+                <!-- Tools -->
+                <div class="gsap-fade-up">
+                    <h3
+                        style="font-size:24px; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px;">
+                        Software & Tools</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <svg viewBox="0 0 24 24" fill="#9999FF" style="width: 24px; height: 24px; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path d="M8.54 10.73c-.1-.31-.19-.61-.29-.92s-.19-.6-.27-.89c-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.13.51-.29.98-.44 1.4h2.54c-.06-.21-.14-.46-.23-.72-.09-.27-.18-.56-.27-.86zm8.58-.29c-.55-.03-1.07.26-1.33.76-.12.23-.19.47-.22.72h2.109c.26 0 .45 0 .57-.01.08-.01.16-.03.23-.08v-.1c0-.13-.021-.25-.061-.37-.178-.56-.708-.94-1.298-.92zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.04 16.511h-2.09c-.07.01-.14-.041-.16-.11l-.82-2.4H5.92l-.76 2.36c-.02.09-.1.15-.19.14H3.09c-.11 0-.14-.06-.11-.18L6.2 7.39c.03-.1.06-.19.1-.31.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.07 0 .12.03.13.08l3.65 10.25c.03.11.001.161-.1.161zm7.851-3.991c-.021.189-.031.33-.041.42-.01.07-.069.13-.14.13-.06 0-.17.01-.33.021-.159.02-.35.029-.579.029-.23 0-.471-.04-.73-.04h-3.17c.039.31.14.62.31.89.181.271.431.48.729.601.4.17.841.26 1.281.25.35-.011.699-.04 1.039-.11.311-.039.61-.119.891-.23.05-.039.08-.02.08.08v1.531c0 .039-.01.08-.021.119-.021.03-.04.051-.069.07-.32.14-.65.24-1 .3-.471.09-.94.13-1.42.12-.761 0-1.4-.12-1.92-.35-.49-.211-.921-.541-1.261-.95-.319-.39-.55-.83-.69-1.31-.14-.471-.209-.961-.209-1.461 0-.539.08-1.07.25-1.59.16-.5.41-.96.75-1.37.33-.4.739-.72 1.209-.95.471-.23 1.03-.31 1.67-.31.531-.01 1.06.09 1.55.31.41.18.77.45 1.05.8.26.34.47.72.601 1.14.129.4.189.81.189 1.22 0 .24-.01.45-.019.64z"/></svg>
+                            <span style="font-size:15px; font-weight:600;">Adobe After Effects</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <svg viewBox="0 0 24 24" fill="#31A8FF" style="width: 24px; height: 24px; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path d="M19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-6.99 16.389c0 .051-.029.09-.06.121-.03.02-.06.029-.101.029H6.26c-.11 0-.16-.061-.16-.18V6.44c-.01-.07.04-.13.11-.14h2c.05-.01.11.03.11.08v8.43h4.62c.101 0 .131.049.11.14l-.29 1.739zm6.25-7.859v1.95c0 .08-.05.11-.16.11-.649-.04-1.3.08-1.89.34-.2.09-.39.21-.54.37v5.1c0 .1-.04.14-.13.14h-1.95c-.08.01-.15-.04-.16-.119V11.14c0-.24 0-.49-.01-.75s-.01-.52-.02-.78c-.01-.22-.03-.44-.061-.66-.01-.05.02-.1.07-.11.01-.01.02-.01.04 0h1.75c.1 0 .18.07.21.16.04.07.07.15.08.23.02.1.039.21.05.31.01.11.021.23.021.36.299-.35.66-.64 1.069-.86.46-.25.97-.37 1.49-.36.069-.01.13.04.14.11.001.01.001.02.001.04z"/></svg>
+                            <span style="font-size:15px; font-weight:600;">Adobe Lightroom</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <svg viewBox="0 0 24 24" fill="#EA77FF" style="width: 24px; height: 24px; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path d="M10.15 8.42a2.93 2.93 0 00-1.18-.2 13.9 13.9 0 00-1.09.02v3.36l.39.02h.53c.39 0 .78-.06 1.15-.18.32-.09.6-.28.82-.53.21-.25.31-.59.31-1.03a1.45 1.45 0 00-.93-1.46zM19.75.3H4.25A4.25 4.25 0 000 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zm-7.09 11.65c-.4.56-.96.98-1.61 1.22-.68.25-1.43.34-2.25.34l-.5-.01-.43-.01v3.21a.12.12 0 01-.11.14H5.82c-.08 0-.12-.04-.12-.13V6.42c0-.07.03-.11.1-.11l.56-.01.76-.02.87-.02.91-.01c.82 0 1.5.1 2.06.31.5.17.96.45 1.34.82.32.32.57.71.73 1.14.15.42.23.85.23 1.3 0 .86-.2 1.57-.6 2.13zm6.82-3.15v1.95c0 .08-.05.11-.16.11a4.35 4.35 0 00-1.92.37c-.19.09-.37.21-.51.37v5.1c0 .1-.04.14-.13.14h-1.97a.14.14 0 01-.16-.12v-5.58l-.01-.75-.02-.78c0-.23-.02-.45-.04-.68a.1.1 0 01.07-.11h1.78c.1 0 .18.07.2.16a3.03 3.03 0 01.13.92c.3-.35.67-.64 1.08-.86a3.1 3.1 0 011.52-.39c.07-.01.13.04.14.11v.04z"/></svg>
+                            <span style="font-size:15px; font-weight:600;">Premiere Pro</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <svg viewBox="0 0 24 24" fill="#ffffff" style="width: 24px; height: 24px; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path d="M17.621 0 5.977.004c-1.37 0-2.756.345-3.762 1.11a4.925 4.925 0 0 0-1.61 2.003C.233 3.93 0 5.02 0 5.951l.012 12.2c.002 1.604.479 3.057 1.461 4.112.984 1.056 2.462 1.683 4.331 1.691L16.856 24c1.26.005 3.095-.036 4.303-.714 1.075-.605 2.025-1.556 2.497-2.984.278-.84.345-2.084.344-3.147l-.021-11.13c-.002-.888-.15-2.023-.547-2.934-.425-.976-1.181-1.815-2.322-2.425C20.353.26 19.123 0 17.622 0zm0 .93c1.378 0 2.538.295 3.04.565.977.523 1.544 1.166 1.889 1.96.315.721.47 1.793.473 2.572l.018 11.13c.002 1.013-.097 2.257-.298 2.86-.396 1.202-1.146 1.946-2.063 2.462-.814.457-2.612.593-3.82.588l-11.05-.044c-1.657-.007-2.832-.534-3.626-1.386-.792-.851-1.212-2.06-1.212-3.485L.999 5.95c0-.829.196-1.827.474-2.437.345-.757.75-1.207 1.365-1.674C3.585 1.27 4.868.97 6.08.97zm-5.66 3.423c-1.976.089-3.204 1.658-3.214 3.29.019 1.443 1.635 3.481 2.884 4.53.12.099.154.109.33.18.062.025.198-.047.327-.135.36-.245.993-.947 1.648-1.738a7.67 7.67 0 0 0 1.031-1.683c.409-.89.261-1.599.235-1.888a3.983 3.983 0 0 0-.99-1.692 3.36 3.36 0 0 0-2.251-.864zm4.172 7.922a10.185 10.185 0 0 0-3.244.61c-.15.058-.26.1-.374.17-.057.036-.11.135-.105.292.017.433.29 1.278.624 2.27.384 1.135 1.066 2.27 1.844 2.74a3.23 3.23 0 0 0 2.53.342c.832-.243 1.595-.868 1.962-1.546.986-1.818.19-3.548-1.121-4.417-.447-.296-1.133-.445-1.89-.46-.074 0-.15-.002-.226-.001zm-8.432.038a6.201 6.201 0 0 0-.752.047c-.596.078-.932.273-1.29.51a3.177 3.177 0 0 0-1.365 1.979c-.075.552-.086 1.053.033 1.507.433 1.389 1.326 2.222 2.847 2.452.636.028 1.37-.063 1.99-.45 1.269-.782 2.08-3.17 2.412-4.742.053-.176.035-.357-.013-.42-.005-.067-.044-.113-.19-.183-.398-.192-1.32-.417-2.375-.6a7.68 7.68 0 0 0-1.297-.1z"/></svg>
+                            <span style="font-size:15px; font-weight:600;">DaVinci Resolve</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <svg viewBox="0 0 24 24" fill="#00C4CC" style="width: 24px; height: 24px; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM6.962 7.68c.754 0 1.337.549 1.405 1.2.069.583-.171 1.097-.822 1.406-.343.171-.48.172-.549.069-.034-.069 0-.137.069-.206.617-.514.617-.926.548-1.508-.034-.378-.308-.618-.583-.618-1.2 0-2.914 2.674-2.674 4.629.103.754.549 1.646 1.509 1.646.308 0 .65-.103.96-.24.5-.264.799-.47 1.097-.8-.073-.885.704-2.046 1.851-2.046.515 0 .926.205.96.583.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378-.035-.206-.24-.274-.446-.274-.72 0-1.131.994-1.029 1.611.035.275.172.549.447.549.205 0 .514-.31.617-.755.068-.308.343-.514.583-.514.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651 0 .069.034.171.17.171.092 0 .436-.18.777-.459.117-.59.253-1.298.253-1.357.034-.24.137-.48.617-.48.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994.172 0 .309.102.309.274 0 .103 0 .274-.069.446-.137.377-.309.96-.412 1.474 0 .137.035.274.207.274.171 0 .685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202 0-.411.035-.754.104-.994.068-.274.411-.514.617-.514.103 0 .205.069.205.171 0 .035 0 .103-.034.137-.137.446-.24.857-.24 1.269 0 .24.034.582.102.788 0 .034.035.069.07.069.068 0 .548-.445.89-1.028-.308-.206-.48-.549-.48-.96 0-.72.446-1.097.858-1.097.343 0 .617.24.617.72 0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24.293.293 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74.48 0 .924.205.959.582.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172 0-.137.309-.068.274-.376-.034-.206-.24-.275-.446-.275-.686 0-1.13.891-1.028 1.611.034.275.171.583.445.583.206 0 .515-.308.652-.754.068-.274.343-.514.583-.514.103 0 .17.034.205.171 0 .069 0 .206-.137.652-.17.308-.171.48-.137.617.034.274.171.48.309.583.034.034.068.102.068.102 0 .069-.034.138-.137.138-.034 0-.068 0-.103-.035-.514-.205-.72-.548-.789-.891-.205.24-.445.377-.72.377-.445 0-.89-.411-.96-.926a1.609 1.609 0 0 1 .075-.649c-.203.13-.422.203-.623.203h-.17c-.447.652-.927 1.098-1.27 1.303a.896.896 0 0 1-.377.104c-.068 0-.171-.035-.205-.104-.095-.152-.156-.392-.193-.667-.481.527-1.145.805-1.453.805-.343 0-.548-.206-.582-.55v-.376c.102-.754.377-1.2.377-1.337a.074.074 0 0 0-.069-.07c-.24 0-1.028.824-1.166 1.373l-.103.445c-.068.309-.377.515-.582.515-.103 0-.172-.035-.206-.172v-.137l.046-.233c-.435.31-.87.508-1.075.508-.308 0-.48-.172-.514-.412-.206.274-.445.412-.754.412-.352 0-.696-.24-.862-.593-.244.275-.523.553-.852.764-.48.309-1.028.549-1.68.549-.582 0-1.097-.309-1.371-.583-.412-.377-.651-.96-.686-1.509-.205-1.68.823-3.84 2.4-4.8.378-.205.755-.343 1.132-.343zm9.77 3.291c-.104 0-.172.172-.172.343 0 .274.137.583.309.755a1.74 1.74 0 0 0 .102-.583c0-.343-.137-.515-.24-.515z"/></svg>
+                            <span style="font-size:15px; font-weight:600;">Canva</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <svg viewBox="0 0 24 24" fill="#ffffff" style="width: 24px; height: 24px; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+                            <span style="font-size:15px; font-weight:600;">AI Tools</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
+                            onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <img src="image.png" alt="CapCut" style="width: 24px; height: 24px;">
+                            <span style="font-size:15px; font-weight:600;">CapCut</span>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ 6. FEATURED WORK ═══════ -->
+    <section class="work-section" id="workSection">
+        <div class="container">
+            <div class="story-subtitle gsap-fade-up">Selected Projects</div>
+            <h2 class="big-title gsap-fade-up">Featured Work</h2>
+
+            <div class="work-grid">
+                <div class="work-card gsap-work">
+                    <div class="work-img">
+                        <img loading="lazy" src="sadiesink.jpg" alt="Sadie Sink">
+                    </div>
+                    <span class="card-tag">Portrait</span>
+                    <span class="card-title">Sadie Sink</span>
+                </div>
+                <div class="work-card gsap-work">
+                    <div class="work-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1580870858053-8d0764624f4f?q=80&w=1268"
+                            alt="Videography">
+                    </div>
+                    <span class="card-tag">Film</span>
+                    <span class="card-title">Behind the Lens</span>
+                </div>
+                <div class="work-card gsap-work">
+                    <div class="work-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=600"
+                            alt="Editorial">
+                    </div>
+                    <span class="card-tag">Editorial</span>
+                    <span class="card-title">City Pulse</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ 7. THE PHILOSOPHY ═══════ -->
+    <section class="philosophy-section" id="philosophySection">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-text gsap-fade-up">
+                    <div class="story-subtitle">The Impact</div>
+                    <h2>Results that speak louder than words.</h2>
+                    <p>From startups launching their first product to established brands scaling globally, our visual
+                        systems are built to stop the scroll and leave a lasting impression.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item gsap-stat">
+                        <div class="stat-big"><span class="counter" data-target="250">0</span>+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat-item gsap-stat">
+                        <div class="stat-big"><span class="counter" data-target="85">0</span>+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item gsap-stat">
+                        <div class="stat-big"><span class="counter" data-target="99">0</span>%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                    <div class="stat-item gsap-stat">
+                        <div class="stat-big"><span class="counter" data-target="5">0</span></div>
+                        <div class="stat-label">Years Operating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ 8. TESTIMONIAL ═══════ -->
+    <section class="testimonial-section dark" id="testimonialSection">
+        <div class="container">
+            <div class="testimonial-block gsap-fade-up">
+                <div class="big-quote">"</div>
+                <div class="quote-text">
+                    LensBros completely transformed how we present our brand to the world. Their cinematic eye is
+                    unmatched.
+                </div>
+                <div class="story-subtitle">— Rohan Mehra, VoxMedia</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ 9. CTA BAND ═══════ -->
+    <section class="cta-band" id="ctaBand">
+        <div class="container">
+            <h2 class="gsap-fade-up">Ready to Create?</h2>
+            <p class="gsap-fade-up" style="font-size:20px; margin-bottom:40px; color:rgba(255,255,255,0.9);">Let's build
+                something extraordinary together.</p>
+            <a href="contact.html" class="btn btn-ghost gsap-fade-up"
+                style="background:#fff; color:var(--accent); border:none; padding:18px 40px; font-size:16px;">Start Your
+                Project</a>
+        </div>
+    </section>
+
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>LENSBROS</h3>
+                    <p>Two brothers. One vision. Creating bold visuals with story-driven impact for brands, creators,
+                        and dreamers.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Pages</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="videography.html">Videography</a>
+                    <a href="reels.html">Reels</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="videography.html">Commercials</a>
+                    <a href="videography.html">Events</a>
+                    <a href="videography.html">Portraits</a>
+                    <a href="videography.html">Color Grading</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@lensbros.example">hello@lensbros.example</a>
+                    <a href="tel:+911234567890">+91 12345 67890</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                    <a href="https://youtube.com" target="_blank">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> LensBros — All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/shared.js"></script>
+
+    <!-- ═══════ GSAP ANIMATIONS ═══════ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ───── CALL HERO ANIMATION ─────
+            function animateHero() {
+                const heroTl = gsap.timeline();
+                heroTl
+                    .to('.gsap-hero-title', {
+                        y: 0,
+                        duration: 0.9,
+                        stagger: 0.08,
+                        ease: 'power4.out'
+                    })
+                    .from('.gsap-hero', {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.9,
+                        stagger: 0.15,
+                        ease: 'power3.out'
+                    }, '-=0.6'); // Safely triggers just behind the title without jumping ahead
+                return heroTl;
+            }
+
+            // ───── PRELOADER WITH REFRESH ─────
+            const preloaderTl = gsap.timeline();
+            const preloaderChars = document.querySelectorAll('#preloaderText span');
+
+            if (preloaderChars.length > 0) {
+                preloaderTl
+                    .from(preloaderChars, {
+                        y: 80,
+                        opacity: 0,
+                        rotateX: -90,
+                        stagger: 0.05,
+                        duration: 0.8,
+                        ease: 'back.out(1.7)'
+                    })
+                    .to('#preloaderFill', {
+                        width: '100%',
+                        duration: 0.8,
+                        ease: 'power2.inOut'
+                    }, '-=0.2')
+                    .to(preloaderChars, {
+                        y: -50,
+                        opacity: 0,
+                        stagger: 0.02,
+                        duration: 0.3,
+                        ease: 'power2.in'
+                    }, '+=0.2')
+                    .to('#preloader', {
+                        yPercent: -100,
+                        duration: 0.8,
+                        ease: 'power4.inOut',
+                        onComplete: () => {
+                            const loader = document.getElementById('preloader');
+                            if (loader) loader.style.display = 'none';
+                            ScrollTrigger.refresh(); // Crucial to fix layout issues
+                        }
+                    }, '-=0.1')
+                    .add(animateHero(), '-=0.5'); // Start hero entry *while* preloader sliding out!
+            } else {
+                animateHero();
+            }
+
+            // Hero Parallax
+            gsap.to('.hero-bg', {
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                yPercent: 30,
+                opacity: 0.2
+            });
+
+            // Mouse glow
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 100;
+                    gsap.to('#heroGlow', { x: x, y: y, duration: 1.5, ease: 'power2.out' });
+                });
+            }
+
+            // ───── TEXT REVEAL STORY ─────
+            // We split the text by words to create a dramatic reading effect
+            const storyText = document.getElementById('storyText');
+            if (storyText) {
+                const words = storyText.innerText.split(' ');
+                storyText.innerHTML = '';
+                words.forEach(word => {
+                    const span = document.createElement('span');
+                    span.innerText = word + ' ';
+                    storyText.appendChild(span);
+                });
+
+                gsap.to('#storyText span', {
+                    scrollTrigger: {
+                        trigger: '#storySection',
+                        start: 'top 60%',
+                        end: 'bottom 80%',
+                        scrub: 1
+                    },
+                    color: '#ffffff',
+                    stagger: 0.1
+                });
+            }
+
+            // ───── SERVICES STRIP ─────
+            gsap.from('.services-strip .service-item', {
+                scrollTrigger: {
+                    trigger: '.services-strip',
+                    start: 'top 85%',
+                },
+                y: 40,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 1,
+                ease: 'power3.out'
+            });
+
+            // ───── EXPERTISE CARDS ─────
+            gsap.from('.gsap-service', {
+                scrollTrigger: {
+                    trigger: '#expertiseSection',
+                    start: 'top 75%'
+                },
+                y: 60,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 1,
+                ease: 'back.out(1.2)'
+            });
+
+            // ───── WORK CARDS (IMAGE PARALLAX) ─────
+            gsap.from('.gsap-work', {
+                scrollTrigger: {
+                    trigger: '#workSection',
+                    start: 'top 80%'
+                },
+                y: 80,
+                opacity: 0,
+                stagger: 0.2,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            document.querySelectorAll('.work-img img').forEach(img => {
+                gsap.to(img, {
+                    scrollTrigger: {
+                        trigger: img.closest('.work-card'),
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    },
+                    yPercent: 15, // Smooth parallax shift
+                    ease: 'none'
+                });
+            });
+
+            // ───── STATS COUNTER ─────
+            ScrollTrigger.create({
+                trigger: '#philosophySection',
+                start: 'top 70%',
+                once: true,
+                onEnter: () => {
+                    document.querySelectorAll('.counter').forEach(counter => {
+                        const target = parseInt(counter.dataset.target);
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 3,
+                            ease: 'power2.out',
+                            onUpdate: () => {
+                                counter.textContent = Math.floor(obj.val);
+                            }
+                        });
+                    });
+                }
+            });
+
+            gsap.from('.gsap-stat', {
+                scrollTrigger: { trigger: '.stats-grid', start: 'top 80%' },
+                y: 30, opacity: 0, stagger: 0.1, duration: 1, ease: 'power3.out'
+            });
+
+            // ───── GENERIC FADE UPS ─────
+            document.querySelectorAll('.gsap-fade-up').forEach(el => {
+                gsap.from(el, {
+                    scrollTrigger: { trigger: el, start: 'top 85%' },
+                    y: 40,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.out'
+                });
+            });
+
+            // ───── NAV SCROLL HIDE ─────
+            ScrollTrigger.create({
+                onUpdate: (self) => {
+                    if (self.direction === 1 && self.scroll() > 200) {
+                        gsap.to('#siteNav', { y: -100, duration: 0.4, ease: 'power2.in' });
+                    } else {
+                        gsap.to('#siteNav', { y: 0, duration: 0.4, ease: 'power2.out' });
+                    }
+                }
+            });
+
+            // ───── CURSOR ─────
+            const dot = document.getElementById('cursorDot');
+            const ring = document.getElementById('cursorRing');
+            let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                dotX += (mouseX - dotX) * 0.2; dotY += (mouseY - dotY) * 0.2;
+                ringX += (mouseX - ringX) * 0.08; ringY += (mouseY - ringY) * 0.08;
+                if (dot && ring) {
+                    dot.style.left = dotX - 4 + 'px'; dot.style.top = dotY - 4 + 'px';
+                    ring.style.left = ringX - 20 + 'px'; ring.style.top = ringY - 20 + 'px';
+                }
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            document.querySelectorAll('a, button, .work-card, .icon-service, .service-item, .showcase-play').forEach(el => {
+                el.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
+                el.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — LensBros Photo & Video Agency</title>
+    <meta name="description"
+        content="Meet the brothers behind LensBros. Learn about our story, our approach to cinematic photography & videography, and what drives our creative vision." />
+    <meta name="theme-color" content="#020203" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/shared.css" />
+
+    <style>
+        /* ───── PAGE HERO ───── */
+        .page-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding: 120px 0 60px;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .page-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35) saturate(0.8);
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero .page-tag {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.2s forwards;
+        }
+
+        .page-hero .page-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            line-height: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.4s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ───── STORY SECTION ───── */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 3/4;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-text h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .story-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 16px;
+        }
+
+        .story-text .highlight {
+            position: relative;
+            display: inline;
+            background: linear-gradient(transparent 60%, rgba(255, 216, 106, 0.4) 60%);
+        }
+
+        /* ───── VALUES ───── */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            padding: 40px 28px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .value-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(255, 43, 0, 0.08);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255, 43, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .value-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ───── TIMELINE ───── */
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), rgba(255, 43, 0, 0.1));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 48px 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--black);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .timeline-year {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .timeline-item h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ───── TEAM ───── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 3px solid rgba(255, 43, 0, 0.2);
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .team-card:hover .team-avatar {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .team-card .role {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .team-card p {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ───── Responsive ───── */
+        @media (max-width: 768px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- ═══════ NAVIGATION ═══════ -->
+    <nav class="site-nav" id="siteNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><img src="m.png" alt="LensBros Logo" /></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="videography.html">Videography</a>
+                <a href="reels.html">Reels</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <a href="contact.html" class="nav-cta" title="Contact Us">✉</a>
+            <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="videography.html">Videography</a>
+        <a href="reels.html">Reels</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html">
+            <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-10 0h10" />
+            </svg>
+            <span>Home</span><span class="indicator"></span>
+        </a>
+        <a href="videography.html">
+            <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span>Video</span><span class="indicator"></span>
+        </a>
+        <a href="reels.html">
+            <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Reels</span><span class="indicator"></span>
+        </a>
+        <a href="contact.html">
+            <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>Contact</span><span class="indicator"></span>
+        </a>
+    </nav>
+
+
+    <!-- ═══════ PAGE HERO ═══════ -->
+    <header class="page-hero">
+        <div class="page-hero-bg">
+            <img src="https://images.unsplash.com/photo-1773332585815-f106a5d6ed6c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="About LensBros">
+        </div>
+        <div class="blob blob-accent" style="width:500px;height:500px;bottom:-200px;right:-100px;"></div>
+        <div class="container">
+            <div class="page-tag">Our Story</div>
+            <h1 class="page-title">About <span style="color:var(--accent)">LensBros</span></h1>
+        </div>
+    </header>
+
+
+    <!-- ═══════ OUR STORY ═══════ -->
+    <section class="section dark" style="padding-top:120px;">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-img reveal-left">
+                    <img loading="lazy"
+                        src="https://plus.unsplash.com/premium_photo-1723741320347-bf8a65518f8e?q=80&w=687&auto=format&fit=crop"
+                        alt="LensBros Founders">
+                </div>
+                <div class="story-text reveal-right">
+                    <h2>Two Brothers,<br>One Vision</h2>
+                    <p>
+                        We are <span class="highlight">two brothers</span> — founders of LensBros. What started as a
+                        shared obsession with capturing light and motion has evolved into a full-scale visual production
+                        agency.
+                    </p>
+                    <p>
+                        We craft <span class="highlight">cinematic photography and editorial videography</span> for
+                        brands, creators, and events. Our work balances bold composition, strong color, and narrative
+                        emotion.
+                    </p>
+                    <p>
+                        Every project is a collaboration. We don't just capture moments — we create visual experiences
+                        that resonate, inspire, and leave lasting impressions.
+                    </p>
+                    <div style="margin-top:32px;">
+                        <a href="contact.html" class="btn btn-accent">Work With Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ VALUES ═══════ -->
+    <section class="section dark">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:60px;">
+                <div class="section-subtitle reveal">What Drives Us</div>
+                <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);">Our Core Values</h2>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card reveal delay-1">
+                    <div class="value-icon">🎯</div>
+                    <h3>Purpose</h3>
+                    <p>Every frame is crafted with intention. We shoot with purpose, not just to fill a gallery — but to
+                        tell a story that moves people.</p>
+                </div>
+                <div class="value-card reveal delay-2">
+                    <div class="value-icon">✨</div>
+                    <h3>Quality</h3>
+                    <p>We chase perfection in every detail — from lens selection to final color grade. No shortcuts, no
+                        compromises, ever.</p>
+                </div>
+                <div class="value-card reveal delay-3">
+                    <div class="value-icon">🤝</div>
+                    <h3>Collaboration</h3>
+                    <p>The best visuals come from deep partnership. We listen, we adapt, and we create together with our
+                        clients.</p>
+                </div>
+                <div class="value-card reveal delay-4">
+                    <div class="value-icon">🔥</div>
+                    <h3>Passion</h3>
+                    <p>This isn't just work — it's what we live for. The camera is an extension of who we are and how we
+                        see the world.</p>
+                </div>
+                <div class="value-card reveal delay-5">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>We push boundaries with new techniques, emerging tech, and bold creative choices that keep our
+                        work ahead of the curve.</p>
+                </div>
+                <div class="value-card reveal delay-6">
+                    <div class="value-icon">🎬</div>
+                    <h3>Storytelling</h3>
+                    <p>Visuals without narrative are forgettable. We weave emotion into every shot, every cut, every
+                        color.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ TIMELINE ═══════ -->
+    <section class="section dark">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:60px;">
+                <div class="section-subtitle reveal">The Journey</div>
+                <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);">Our Timeline</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2020</div>
+                    <h3>The Beginning</h3>
+                    <p>Started as two brothers with a camera, a laptop, and a dream. Shot first commercial for a local
+                        streetwear brand.</p>
+                </div>
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-year">2021</div>
+                    <h3>First Major Project</h3>
+                    <p>Landed our first big brand deal. Shot a nationwide campaign for an emerging beverage brand.
+                        Revenue doubled.</p>
+                </div>
+                <div class="timeline-item reveal delay-2">
+                    <div class="timeline-year">2022</div>
+                    <h3>Studio Launch</h3>
+                    <p>Opened our first studio space. Invested in cinema-grade equipment. Started offering full
+                        post-production services.</p>
+                </div>
+                <div class="timeline-item reveal delay-3">
+                    <div class="timeline-year">2023</div>
+                    <h3>Award Season</h3>
+                    <p>Won multiple industry awards for best cinematography and color grading. Featured in national
+                        media outlets.</p>
+                </div>
+                <div class="timeline-item reveal delay-4">
+                    <div class="timeline-year">2024 — Present</div>
+                    <h3>Scaling Up</h3>
+                    <p>Expanded to international projects. Building a team of 8+ creatives. Working with top-tier brands
+                        and artists.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ TEAM ═══════ -->
+    <section class="section dark">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:60px;">
+                <div class="section-subtitle reveal">The Crew</div>
+                <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);">Meet The Team</h2>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card reveal">
+                    <div class="team-avatar">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400"
+                            alt="Co-Founder 1">
+                    </div>
+                    <h3>Arjun</h3>
+                    <div class="role">Co-Founder • Director of Photography</div>
+                    <p>The eye behind the camera. Arjun specializes in cinematic framing, natural light mastery, and
+                        editorial portraiture.</p>
+                </div>
+                <div class="team-card reveal delay-2">
+                    <div class="team-avatar">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400"
+                            alt="Co-Founder 2">
+                    </div>
+                    <h3>Varun</h3>
+                    <div class="role">Co-Founder • Lead Editor & Colorist</div>
+                    <p>The storyteller in post. Varun transforms raw footage into polished cinematic experiences through
+                        expert editing and color grading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CTA ═══════ -->
+    <section style="background:var(--accent);padding:80px 20px;text-align:center;overflow:hidden;position:relative;">
+        <h2 class="reveal"
+            style="font-size:clamp(28px,5vw,48px);font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:3px;">
+            Ready to Tell Your Story?</h2>
+        <p class="reveal delay-1" style="color:rgba(255,255,255,0.85);font-size:17px;margin:12px 0 28px;">Let's create
+            something that your audience will never forget.</p>
+        <a href="contact.html" class="btn reveal delay-2" style="background:#fff;color:var(--accent);">Get in Touch</a>
+    </section>
+
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>LENSBROS</h3>
+                    <p>Two brothers. One vision. Creating bold visuals with story-driven impact.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Pages</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="videography.html">Videography</a>
+                    <a href="reels.html">Reels</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="videography.html">Commercials</a>
+                    <a href="videography.html">Events</a>
+                    <a href="videography.html">Portraits</a>
+                    <a href="videography.html">Color Grading</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@lensbros.example">hello@lensbros.example</a>
+                    <a href="tel:+911234567890">+91 12345 67890</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                    <a href="https://youtube.com" target="_blank">YouTube</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> LensBros — All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/shared.js"></script>
+</body>
+
+</html>
