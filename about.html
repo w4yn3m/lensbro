@@ -277,7 +277,6 @@
             line-height: 1.6;
         }
 
-        /* ───── Responsive ───── */
         @media (max-width: 768px) {
             .story-grid {
                 grid-template-columns: 1fr;
@@ -290,6 +289,42 @@
 
             .team-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .page-hero {
+                min-height: 40vh;
+                padding: 100px 0 40px;
+            }
+
+            .page-hero .page-title {
+                letter-spacing: 0;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 8px;
+            }
+
+            .timeline-item::before {
+                left: -26px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .timeline-item {
+                padding-left: 24px;
+            }
+
+            .team-avatar {
+                width: 160px;
+                height: 160px;
+            }
+
+            .value-card {
+                padding: 28px 20px;
             }
         }
     </style>
