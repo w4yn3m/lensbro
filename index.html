@@ -1504,16 +1504,16 @@
             }
 
             // ───── CTA BAND ─────
-            gsap.from('.gsap-cta', {
-                scrollTrigger: {
-                    trigger: '#ctaBand',
-                    start: 'top 95%',
-                },
-                y: 30,
-                opacity: 0,
-                stagger: 0.15,
-                duration: 0.8,
-                ease: 'power3.out'
+            ScrollTrigger.create({
+                trigger: '#ctaBand',
+                start: 'top 95%',
+                once: true,
+                onEnter: () => {
+                    gsap.fromTo('.gsap-cta',
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out' }
+                    );
+                }
             });
 
             // ───── NAV SCROLL HIDE ─────
