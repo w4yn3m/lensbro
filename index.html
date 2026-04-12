@@ -1192,10 +1192,10 @@
     <!-- ═══════ 9. CTA BAND ═══════ -->
     <section class="cta-band" id="ctaBand">
         <div class="container">
-            <h2 class="gsap-fade-up">Ready to Create?</h2>
-            <p class="gsap-fade-up" style="font-size:20px; margin-bottom:40px; color:rgba(255,255,255,0.9);">Let's build
+            <h2 class="gsap-cta">Ready to Create?</h2>
+            <p class="gsap-cta" style="font-size:20px; margin-bottom:40px; color:rgba(255,255,255,0.9);">Let's build
                 something extraordinary together.</p>
-            <a href="contact.html" class="btn btn-ghost gsap-fade-up"
+            <a href="contact.html" class="btn btn-ghost gsap-cta"
                 style="background:#fff; color:var(--accent); border:none; padding:18px 40px; font-size:16px;">Start Your
                 Project</a>
         </div>
@@ -1502,6 +1502,19 @@
                     });
                 });
             }
+
+            // ───── CTA BAND ─────
+            gsap.from('.gsap-cta', {
+                scrollTrigger: {
+                    trigger: '#ctaBand',
+                    start: 'top 95%',
+                },
+                y: 30,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
 
             // ───── NAV SCROLL HIDE ─────
             ScrollTrigger.create({
