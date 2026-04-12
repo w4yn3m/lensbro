@@ -386,7 +386,6 @@
             color: var(--muted);
         }
 
-        /* ───── Responsive ───── */
         @media (max-width: 900px) {
             .contact-layout {
                 grid-template-columns: 1fr;
@@ -409,6 +408,24 @@
         @media (max-width: 500px) {
             .contact-form {
                 padding: 24px;
+            }
+
+            .contact-header h1 {
+                letter-spacing: 1px;
+            }
+
+            .contact-header p {
+                font-size: 15px;
+            }
+
+            .form-submit {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
