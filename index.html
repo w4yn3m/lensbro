@@ -244,6 +244,18 @@
             flex-wrap: wrap;
         }
 
+        .skills-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
 
         /* ---------- DRAMATIC STORY SECTION ---------- */
         .story-section {
@@ -643,8 +655,125 @@
         }
 
         @media (max-width: 600px) {
+            .hero {
+                min-height: 100svh;
+                padding-top: 112px;
+                padding-bottom: 48px;
+            }
+
             .hero-title {
-                font-size: 52px;
+                font-size: clamp(42px, 14vw, 52px);
+                letter-spacing: -1px;
+            }
+
+            .hero-tag {
+                font-size: 11px;
+                letter-spacing: 2px;
+                gap: 8px;
+                margin-bottom: 20px;
+            }
+
+            .hero-desc {
+                font-size: 16px;
+                margin-bottom: 32px;
+            }
+
+            .hero-btns {
+                gap: 14px;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-glow {
+                display: none;
+            }
+
+            .preloader-text {
+                letter-spacing: 4px;
+                font-size: clamp(38px, 14vw, 72px);
+            }
+
+            .story-section,
+            .expertise-section,
+            .philosophy-section,
+            .testimonial-section,
+            .cta-band {
+                padding: 88px 0;
+            }
+
+            .showcase-section {
+                height: 70svh;
+                min-height: 420px;
+            }
+
+            .showcase-play {
+                width: 76px;
+                height: 76px;
+                font-size: 24px;
+            }
+
+            .story-text {
+                font-size: clamp(20px, 7vw, 30px);
+            }
+
+            .story-subtitle {
+                letter-spacing: 3px;
+                margin-bottom: 20px;
+            }
+
+            .service-item {
+                padding: 34px 22px;
+            }
+
+            .service-item h3 {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+
+            .icon-service {
+                padding: 36px 22px;
+            }
+
+            .icon-service .svc-num {
+                font-size: 72px;
+            }
+
+            .skills-layout {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-section {
+                padding: 88px 0 108px;
+            }
+
+            .work-card .card-title {
+                font-size: 24px;
+            }
+
+            .philosophy-text p {
+                font-size: 16px;
+            }
+
+            .testimonial-block .big-quote {
+                font-size: 96px;
+                margin-bottom: 18px;
+            }
+
+            .cta-band h2 {
+                letter-spacing: 1px;
+            }
+
+            .footer-socials {
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .icon-services {
@@ -878,7 +1007,7 @@
                 style="font-size:clamp(32px,6vw,64px); text-align:center; margin-bottom:80px;">Skills & Technologies
             </h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px;">
+            <div class="skills-layout">
                 <!-- Skills -->
                 <div class="gsap-fade-up">
                     <h3
@@ -917,7 +1046,7 @@
                     <h3
                         style="font-size:24px; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:16px;">
                         Software & Tools</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div class="tool-grid">
                         <div style="display: flex; align-items: center; gap: 16px; background: #08080a; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s;"
                             onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--accent)';"
                             onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)';">
@@ -960,6 +1089,7 @@
                             <img src="image.png" alt="CapCut" style="width: 24px; height: 24px;">
                             <span style="font-size:15px; font-weight:600;">CapCut</span>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1114,9 +1244,24 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const useLightAnimations = isMobile || prefersReducedMotion;
 
             // ───── CALL HERO ANIMATION ─────
             function animateHero() {
+                if (useLightAnimations) {
+                    gsap.set('.gsap-hero-title, .gsap-hero', { clearProps: 'all' });
+                    gsap.from('.hero-content > *', {
+                        opacity: 0,
+                        y: 18,
+                        duration: 0.7,
+                        stagger: 0.08,
+                        ease: 'power2.out'
+                    });
+                    return gsap.timeline();
+                }
+
                 const heroTl = gsap.timeline();
                 heroTl
                     .to('.gsap-hero-title', {
@@ -1138,8 +1283,13 @@
             // ───── PRELOADER WITH REFRESH ─────
             const preloaderTl = gsap.timeline();
             const preloaderChars = document.querySelectorAll('#preloaderText span');
+            const preloader = document.getElementById('preloader');
 
-            if (preloaderChars.length > 0) {
+            if (useLightAnimations && preloader) {
+                preloader.style.display = 'none';
+                animateHero();
+                ScrollTrigger.refresh();
+            } else if (preloaderChars.length > 0) {
                 preloaderTl
                     .from(preloaderChars, {
                         y: 80,
@@ -1177,20 +1327,22 @@
             }
 
             // Hero Parallax
-            gsap.to('.hero-bg', {
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true
-                },
-                yPercent: 30,
-                opacity: 0.2
-            });
+            if (!useLightAnimations) {
+                gsap.to('.hero-bg', {
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: true
+                    },
+                    yPercent: 30,
+                    opacity: 0.2
+                });
+            }
 
             // Mouse glow
             const heroSection = document.querySelector('.hero');
-            if (heroSection) {
+            if (heroSection && !useLightAnimations) {
                 heroSection.addEventListener('mousemove', (e) => {
                     const rect = heroSection.getBoundingClientRect();
                     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 100;
@@ -1211,16 +1363,20 @@
                     storyText.appendChild(span);
                 });
 
-                gsap.to('#storyText span', {
-                    scrollTrigger: {
-                        trigger: '#storySection',
-                        start: 'top 60%',
-                        end: 'bottom 80%',
-                        scrub: 1
-                    },
-                    color: '#ffffff',
-                    stagger: 0.1
-                });
+                if (useLightAnimations) {
+                    gsap.set('#storyText span', { color: '#ffffff' });
+                } else {
+                    gsap.to('#storyText span', {
+                        scrollTrigger: {
+                            trigger: '#storySection',
+                            start: 'top 60%',
+                            end: 'bottom 80%',
+                            scrub: 1
+                        },
+                        color: '#ffffff',
+                        stagger: 0.1
+                    });
+                }
             }
 
             // ───── SERVICES STRIP ─────
@@ -1262,18 +1418,20 @@
                 ease: 'power3.out'
             });
 
-            document.querySelectorAll('.work-img img').forEach(img => {
-                gsap.to(img, {
-                    scrollTrigger: {
-                        trigger: img.closest('.work-card'),
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: true
-                    },
-                    yPercent: 15, // Smooth parallax shift
-                    ease: 'none'
+            if (!useLightAnimations) {
+                document.querySelectorAll('.work-img img').forEach(img => {
+                    gsap.to(img, {
+                        scrollTrigger: {
+                            trigger: img.closest('.work-card'),
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true
+                        },
+                        yPercent: 15, // Smooth parallax shift
+                        ease: 'none'
+                    });
                 });
-            });
+            }
 
             // ───── STATS COUNTER ─────
             ScrollTrigger.create({
@@ -1324,29 +1482,31 @@
             });
 
             // ───── CURSOR ─────
-            const dot = document.getElementById('cursorDot');
-            const ring = document.getElementById('cursorRing');
-            let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+            if (!useLightAnimations && window.matchMedia('(pointer: fine)').matches) {
+                const dot = document.getElementById('cursorDot');
+                const ring = document.getElementById('cursorRing');
+                let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, ringX = 0, ringY = 0;
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX; mouseY = e.clientY;
-            });
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX; mouseY = e.clientY;
+                });
 
-            function animateCursor() {
-                dotX += (mouseX - dotX) * 0.2; dotY += (mouseY - dotY) * 0.2;
-                ringX += (mouseX - ringX) * 0.08; ringY += (mouseY - ringY) * 0.08;
-                if (dot && ring) {
-                    dot.style.left = dotX - 4 + 'px'; dot.style.top = dotY - 4 + 'px';
-                    ring.style.left = ringX - 20 + 'px'; ring.style.top = ringY - 20 + 'px';
+                function animateCursor() {
+                    dotX += (mouseX - dotX) * 0.2; dotY += (mouseY - dotY) * 0.2;
+                    ringX += (mouseX - ringX) * 0.08; ringY += (mouseY - ringY) * 0.08;
+                    if (dot && ring) {
+                        dot.style.left = dotX - 4 + 'px'; dot.style.top = dotY - 4 + 'px';
+                        ring.style.left = ringX - 20 + 'px'; ring.style.top = ringY - 20 + 'px';
+                    }
+                    requestAnimationFrame(animateCursor);
                 }
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
+                animateCursor();
 
-            document.querySelectorAll('a, button, .work-card, .icon-service, .service-item, .showcase-play').forEach(el => {
-                el.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
-                el.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
-            });
+                document.querySelectorAll('a, button, .work-card, .icon-service, .service-item, .showcase-play').forEach(el => {
+                    el.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
+                    el.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
+                });
+            }
 
         });
     </script>
