@@ -1488,8 +1488,13 @@
                 });
             } else {
                 document.querySelectorAll('.gsap-fade-up').forEach(el => {
+                    const triggerEl = el.closest('section, .cta-band, header, div.container') || el;
                     gsap.from(el, {
-                        scrollTrigger: { trigger: el, start: 'top 85%' },
+                        scrollTrigger: {
+                            trigger: triggerEl,
+                            start: 'top 90%',
+                            once: true
+                        },
                         y: 40,
                         opacity: 0,
                         duration: 1,
