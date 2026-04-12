@@ -318,7 +318,6 @@
             margin-top: 8px;
         }
 
-        /* ───── Responsive ───── */
         @media (max-width: 900px) {
             .reels-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -335,6 +334,36 @@
             .reel-stats-banner {
                 flex-wrap: wrap;
                 gap: 32px;
+            }
+
+            .reels-header h1 {
+                letter-spacing: 2px;
+            }
+
+            .reel-card .reel-overlay {
+                opacity: 1;
+            }
+
+            .reel-card .play-btn {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            .featured-reel .featured-overlay {
+                padding: 20px;
+            }
+
+            .featured-reel h2 {
+                font-size: 20px;
+            }
+
+            .featured-reel p {
+                font-size: 13px;
+            }
+
+            .filter-tab {
+                padding: 8px 18px;
+                font-size: 11px;
             }
         }
     </style>
