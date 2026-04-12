@@ -578,6 +578,67 @@ ol {
     text-shadow: 0 0 20px var(--accent-glow), 0 0 40px rgba(255, 43, 0, 0.1);
 }
 
+/* ---------- CTA BAND (Shared) ---------- */
+.cta-band {
+    background: var(--accent);
+    padding: 100px 20px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.cta-band h2 {
+    font-size: clamp(28px, 6vw, 56px);
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+}
+
+.cta-band p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 32px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-band .btn {
+    background: #fff;
+    color: var(--accent);
+    border: none;
+    padding: 18px 40px;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cta-band .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+    .cta-band {
+        padding: 72px 20px;
+    }
+
+    .cta-band h2 {
+        letter-spacing: 1px;
+    }
+
+    .cta-band p {
+        font-size: 15px;
+    }
+
+    .cta-band .btn {
+        padding: 16px 32px;
+        font-size: 14px;
+    }
+}
+
 /* ---------- FOOTER ---------- */
 .site-footer {
     background: var(--black);
