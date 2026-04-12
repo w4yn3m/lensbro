@@ -674,10 +674,6 @@
                 padding-bottom: 6px;
             }
 
-            .hero-title .line-inner {
-                transform: none;
-            }
-
             .hero-tag {
                 font-size: 11px;
                 letter-spacing: 2px;
@@ -1258,7 +1254,7 @@
             gsap.registerPlugin(ScrollTrigger);
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const useLightAnimations = isMobile || prefersReducedMotion;
+            const useLightAnimations = prefersReducedMotion;
 
             // ───── CALL HERO ANIMATION ─────
             function animateHero() {
