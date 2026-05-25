@@ -1,5 +1,5 @@
 /* ==========================================================
-   LensBros — Shared JavaScript
+   LensBro — Shared JavaScript
    Runs on all pages
    ========================================================== */
 
@@ -7,6 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── Year ───
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // ─── Navbar scrolled state ───
+    const siteNav = document.querySelector('.site-nav');
+    if (siteNav) {
+        let lastScroll = 0;
+        const onScroll = () => {
+            const y = window.scrollY || document.documentElement.scrollTop;
+            if (y > 60) {
+                siteNav.classList.add('scrolled');
+            } else {
+                siteNav.classList.remove('scrolled');
+            }
+            lastScroll = y;
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll(); // run once on load
+    }
 
     // ─── Mobile hamburger toggle ───
     const hamburger = document.querySelector('.hamburger');
@@ -28,13 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─── Reveal on scroll ───
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-    if (revealEls.length) {
+    const revealObserved = new WeakSet();
+    let revealObs = null;
+
+    function initScrollReveal() {
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        if (!revealEls.length) return;
+
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReduced) {
             revealEls.forEach(el => el.classList.add('visible'));
-        } else {
-            const revealObs = new IntersectionObserver((entries) => {
+            return;
+        }
+
+        if (!revealObs) {
+            revealObs = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
@@ -42,9 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-            revealEls.forEach(el => revealObs.observe(el));
         }
+
+        revealEls.forEach(el => {
+            if (!revealObserved.has(el)) {
+                revealObserved.add(el);
+                revealObs.observe(el);
+            }
+        });
     }
+
+    // Run initially
+    initScrollReveal();
+    window.initScrollReveal = initScrollReveal;
 
     // ─── Play/pause videos on visibility ───
     const videos = document.querySelectorAll('video[autoplay]');
@@ -123,4 +158,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.5 });
         counterObs.observe(el);
     });
+
+    // ─── Global Custom Cursor Animation ───
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+        let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            dotX += (mouseX - dotX) * 0.2; dotY += (mouseY - dotY) * 0.2;
+            ringX += (mouseX - ringX) * 0.08; ringY += (mouseY - ringY) * 0.08;
+            dot.style.left = dotX - 4 + 'px'; dot.style.top = dotY - 4 + 'px';
+            ring.style.left = ringX - 20 + 'px'; ring.style.top = ringY - 20 + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Listen for hover changes
+        const attachCursorHoverListeners = () => {
+            document.querySelectorAll('a, button, .project-card, .work-card, .icon-service, .service-item, .showcase-play, .tab-btn, .list-item').forEach(el => {
+                if (el.dataset.cursorBound) return;
+                el.dataset.cursorBound = "true";
+
+                el.addEventListener('mouseenter', () => {
+                    dot.classList.add('hovering');
+                    ring.classList.add('hovering');
+                });
+                el.addEventListener('mouseleave', () => {
+                    dot.classList.remove('hovering');
+                    ring.classList.remove('hovering');
+                });
+            });
+        };
+        
+        attachCursorHoverListeners();
+        // Expose globally so dynamic renderers can re-bind on update
+        window.attachCursorHoverListeners = attachCursorHoverListeners;
+    }
 });
+

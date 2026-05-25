@@ -4,12 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Videography — LensBros Photo & Video Agency</title>
-    <meta name="description" content="Cinematic brand films, commercials, music videos, and event coverage by LensBros. Hollywood-grade color grading with story-driven impact." />
+    <title>Videography — LensBro Photo & Video Agency</title>
+    <meta name="description" content="Cinematic brand films, commercials, music videos, and event coverage by LensBro. Hollywood-grade color grading with story-driven impact." />
     <meta name="theme-color" content="#020203" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="css/shared.css" />
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
     <style>
         /* ───── PAGE HERO ───── */
@@ -365,20 +368,25 @@
 
 <body>
 
+    <!-- ═══════ CUSTOM CURSOR ═══════ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <div class="page-transition" id="pageTransition"></div>
 
     <!-- ═══════ NAVIGATION ═══════ -->
     <nav class="site-nav" id="siteNav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="m.png" alt="LensBros Logo" /></a>
+            <a href="index.html" class="nav-logo"><span class="nav-logo-text">Lens<span class="accent-word">Bro</span><span class="logo-dot">.</span></span></a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="videography.html" class="active">Videography</a>
                 <a href="reels.html">Reels</a>
+                <a href="portfolio.html">Portfolio</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <a href="contact.html" class="nav-cta" title="Contact Us">✉</a>
+            <a href="contact.html" class="nav-cta" title="Contact Us"><i class="fa-regular fa-envelope"></i></a>
             <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -388,6 +396,7 @@
         <a href="about.html">About</a>
         <a href="videography.html">Videography</a>
         <a href="reels.html">Reels</a>
+        <a href="portfolio.html">Portfolio</a>
         <a href="contact.html">Contact</a>
     </div>
 
@@ -477,39 +486,8 @@
             <div class="section-subtitle reveal">Case Studies</div>
             <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);margin-bottom:48px;">Featured Projects</h2>
 
-            <div class="showcase-grid">
-                <div class="showcase-card reveal">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1600258881099-e78a5e3b77ff?q=80&w=1364&auto=format&fit=crop" alt="India Gate">
-                    <div class="card-content">
-                        <span class="loc">New Delhi</span>
-                        <h3>India Gate</h3>
-                        <p>A timeless landmark captured through a modern cinematic lens — each frame honors its grandeur while telling a contemporary visual story.</p>
-                    </div>
-                </div>
-                <div class="showcase-card reveal delay-1">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=1170&auto=format&fit=crop" alt="Hauz Khas">
-                    <div class="card-content">
-                        <span class="loc">South Delhi • 2024</span>
-                        <h3>Hauz Khas</h3>
-                        <p>Where historic ruins meet vibrant urban energy. Bold, artistic frames that feel alive and culturally rooted.</p>
-                    </div>
-                </div>
-                <div class="showcase-card reveal delay-2">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1580870858053-8d0764624f4f?q=80&w=1268" alt="Behind the Camera">
-                    <div class="card-content">
-                        <span class="loc">Production</span>
-                        <h3>Behind The Lens</h3>
-                        <p>Our production process — from scouting locations to final color grading sessions, every step is intentional and creative.</p>
-                    </div>
-                </div>
-                <div class="showcase-card reveal delay-3">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1678542561901-5d75778930ef?q=80&w=1332&auto=format&fit=crop" alt="Cinema">
-                    <div class="card-content">
-                        <span class="loc">Mumbai</span>
-                        <h3>Neon Nights</h3>
-                        <p>Late-night urban cinematography capturing the pulse of the city — neon reflections, rain-soaked streets, raw energy.</p>
-                    </div>
-                </div>
+            <div class="showcase-grid" id="showcaseGrid">
+                <!-- Dynamically loaded via Javascript from projects-data.js -->
             </div>
         </div>
     </section>
@@ -521,34 +499,8 @@
             <div class="section-subtitle reveal">Gallery</div>
             <h2 class="big-title reveal" style="font-size:clamp(28px,5vw,52px);margin-bottom:48px;">Video Edit / Color Grading</h2>
 
-            <div class="vid-grid">
-                <div class="vid-grid-item reveal">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1678542561901-5d75778930ef?q=80&w=600" alt="Work 1">
-                    <div class="play-icon"><div class="circle">▶</div></div>
-                </div>
-                <div class="vid-grid-item reveal delay-1">
-                    <video autoplay muted loop playsinline>
-                        <source src="https://cdn.pixabay.com/video/2022/10/04/133491-756991118_large.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="vid-grid-item reveal delay-2">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1633255647473-1f434bd63c70?q=80&w=600" alt="Work 2">
-                    <div class="play-icon"><div class="circle">▶</div></div>
-                </div>
-                <div class="vid-grid-item reveal delay-3">
-                    <video autoplay muted loop playsinline>
-                        <source src="https://cdn.pixabay.com/video/2024/03/12/203878-922675732_large.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="vid-grid-item reveal delay-4">
-                    <img loading="lazy" src="https://images.unsplash.com/photo-1684235425049-614ede2f533e?q=80&w=600" alt="Work 3">
-                    <div class="play-icon"><div class="circle">▶</div></div>
-                </div>
-                <div class="vid-grid-item reveal delay-5">
-                    <video autoplay muted loop playsinline>
-                        <source src="https://cdn.pixabay.com/video/2024/03/08/203449-921267347_tiny.mp4" type="video/mp4">
-                    </video>
-                </div>
+            <div class="vid-grid" id="vidGrid">
+                <!-- Dynamically loaded via Javascript from projects-data.js -->
             </div>
         </div>
     </section>
@@ -583,6 +535,19 @@
         </div>
     </section>
 
+    <!-- ═══════ WORK WITH THESE INFLUENCERS ═══════ -->
+    <section class="influencers-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <div class="section-subtitle reveal">Collaborations</div>
+                <h2 class="big-title reveal" style="font-size: clamp(28px, 5vw, 52px);">Work with these Influencers</h2>
+                <p class="body-text reveal" style="margin: 0 auto; color: var(--muted);">We have partnered with some of the biggest creators to deliver viral engagement and cinematic visual storytelling.</p>
+            </div>
+            <div class="influencers-grid" id="influencersGrid">
+                <!-- Dynamically loaded via Javascript -->
+            </div>
+        </div>
+    </section>
 
     <!-- ═══════ CTA ═══════ -->
     <section class="cta-band">
@@ -592,12 +557,47 @@
     </section>
 
 
+    <!-- ═══════ PROJECT DETAILS MODAL ═══════ -->
+    <div class="project-modal" id="projectModal">
+        <button class="modal-close-btn" id="modalClose">✕</button>
+        <div class="modal-container">
+            <div class="modal-media" id="modalMedia">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-info">
+                <span class="modal-tag" id="modalTag">Category</span>
+                <h3 class="modal-title" id="modalTitle">Project Title</h3>
+                
+                <div class="modal-meta-grid">
+                    <div class="modal-meta-item">
+                        <h5>Client</h5>
+                        <p id="modalClient">Client Name</p>
+                    </div>
+                    <div class="modal-meta-item">
+                        <h5>Location</h5>
+                        <p id="modalLocation">New Delhi</p>
+                    </div>
+                </div>
+
+                <h4 class="modal-overview-title">Overview</h4>
+                <p class="modal-overview" id="modalOverview">
+                    Detailed overview description goes here...
+                </p>
+
+                <a href="#" target="_blank" class="modal-btn" id="modalLinkBtn">
+                    View Live Project
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══════ FOOTER ═══════ -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>LENSBROS</h3>
+                    <h3>LensBro</h3>
                     <p>Two brothers. One vision. Creating bold visuals with story-driven impact.</p>
                 </div>
                 <div class="footer-col">
@@ -606,6 +606,7 @@
                     <a href="about.html">About</a>
                     <a href="videography.html">Videography</a>
                     <a href="reels.html">Reels</a>
+                    <a href="portfolio.html">Portfolio</a>
                     <a href="contact.html">Contact</a>
                 </div>
                 <div class="footer-col">
@@ -617,24 +618,189 @@
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
-                    <a href="mailto:hello@lensbros.example">hello@lensbros.example</a>
+                    <a href="mailto:hello@LensBro.example">hello@LensBro.example</a>
                     <a href="tel:+911234567890">+91 12345 67890</a>
                     <a href="https://instagram.com" target="_blank">Instagram</a>
                     <a href="https://youtube.com" target="_blank">YouTube</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© <span id="year"></span> LensBros — All rights reserved.</p>
+                <p>© <span id="year"></span> LensBro — All rights reserved.</p>
                 <div class="footer-socials">
-                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
-                    <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
-                    <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="js/projects-data.js"></script>
     <script src="js/shared.js"></script>
+
+    <!-- Dynamic Projects & Influencers Loader -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let projects = typeof LensbroDB !== 'undefined' ? LensbroDB.getAllProjects() : [];
+            
+            const modal = document.getElementById('projectModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalMedia = document.getElementById('modalMedia');
+            const modalTag = document.getElementById('modalTag');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalClient = document.getElementById('modalClient');
+            const modalLocation = document.getElementById('modalLocation');
+            const modalOverview = document.getElementById('modalOverview');
+            const modalLinkBtn = document.getElementById('modalLinkBtn');
+            
+            function openModal(proj) {
+                if (!modal) return;
+                modalMedia.innerHTML = '';
+                if (proj.videoUrl && proj.videoUrl.trim() !== '') {
+                    modalMedia.innerHTML = `
+                        <video autoplay muted loop controls playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="${proj.videoUrl}" type="video/mp4" />
+                        </video>
+                    `;
+                } else {
+                    modalMedia.innerHTML = `<img src="${proj.thumbnail}" alt="${proj.title}" / loading="lazy">`;
+                }
+                
+                modalTag.textContent = proj.category.replace('-', ' ');
+                modalTitle.textContent = proj.title;
+                modalClient.textContent = proj.client;
+                modalLocation.textContent = proj.location;
+                modalOverview.textContent = proj.overview;
+                modalLinkBtn.href = proj.link || '#';
+                
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeModal() {
+                if (!modal) return;
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+                const activeVideo = modalMedia.querySelector('video');
+                if (activeVideo) {
+                    try { activeVideo.pause(); } catch(e) {}
+                }
+            }
+            
+            if (modalClose) {
+                modalClose.addEventListener('click', closeModal);
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
+
+            // ───── DYNAMIC FEATURED PROJECTS ─────
+            const showcaseGrid = document.getElementById('showcaseGrid');
+            if (showcaseGrid) {
+                showcaseGrid.innerHTML = '';
+                let videoProjects = projects.filter(p => p.category === 'videography' && p.showOnVideography !== false);
+                
+                if (videoProjects.length === 0) {
+                    showcaseGrid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 40px 0; color: var(--muted);">
+                            <p>No featured projects found yet.</p>
+                        </div>
+                    `;
+                } else {
+                    videoProjects.forEach((proj, idx) => {
+                        const card = document.createElement('div');
+                        card.className = `showcase-card reveal ${idx > 0 ? 'delay-' + idx : ''}`;
+                        card.innerHTML = `
+                            <img loading="lazy" src="${proj.thumbnail}" alt="${proj.title || ''}">
+                            <div class="card-content">
+                                <span class="loc">${proj.location || ''}</span>
+                                <h3>${proj.title || ''}</h3>
+                                <p>${proj.overview || ''}</p>
+                            </div>
+                        `;
+                        card.addEventListener('click', () => openModal(proj));
+                        showcaseGrid.appendChild(card);
+                    });
+                }
+            }
+
+            // ───── DYNAMIC VIDEO GALLERY ─────
+            const vidGrid = document.getElementById('vidGrid');
+            if (vidGrid) {
+                vidGrid.innerHTML = '';
+                let galleryProjects = projects.filter(p => (p.category === 'video-editing' || p.category === 'color-grading') && p.showOnVideography !== false);
+                
+                if (galleryProjects.length === 0) {
+                    vidGrid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 40px 0; color: var(--muted);">
+                            <p>No gallery projects found yet.</p>
+                        </div>
+                    `;
+                } else {
+                    galleryProjects.forEach((proj, idx) => {
+                        const card = document.createElement('div');
+                        card.className = `vid-grid-item reveal ${idx > 0 ? 'delay-' + (idx % 6) : ''}`;
+                        
+                        if (proj.videoUrl && proj.videoUrl.trim() !== '') {
+                            card.innerHTML = `
+                                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                                    <source src="${proj.videoUrl}" type="video/mp4">
+                                </video>
+                            `;
+                        } else {
+                            card.innerHTML = `
+                                <img loading="lazy" src="${proj.thumbnail}" alt="${proj.title || ''}">
+                                <div class="play-icon"><div class="circle"><i class="fa-solid fa-play"></i></div></div>
+                            `;
+                        }
+                        
+                        card.addEventListener('click', () => openModal(proj));
+                        vidGrid.appendChild(card);
+                    });
+                }
+            }
+ 
+            // ───── DYNAMIC INFLUENCERS LOAD ─────
+            const influencerList = typeof LensbroDB !== 'undefined' ? LensbroDB.getAllInfluencers() : [];
+            const influencersGrid = document.getElementById('influencersGrid');
+            if (influencersGrid && influencerList.length > 0) {
+                influencersGrid.innerHTML = '';
+                influencerList.forEach(inf => {
+                    const card = document.createElement('div');
+                    card.className = 'influencer-card';
+                    card.innerHTML = `
+                        <div class="influencer-avatar">
+                            <img src="${inf.avatar}" alt="${inf.name}" loading="lazy" />
+                        </div>
+                        <div class="influencer-info">
+                            <h4 class="influencer-name">${inf.name} <span class="verified-badge"><i class="fa-solid fa-check"></i></span></h4>
+                            <p class="influencer-bio">${inf.bio || 'Cinematic content creator & storyteller.'}</p>
+                            
+                            <div class="influencer-stats-row">
+                                <div class="influencer-stat-item">
+                                    <span class="stat-icon"><i class="fa-regular fa-user"></i></span>
+                                    <span class="stat-val">${inf.followers}</span>
+                                </div>
+                                <div class="influencer-stat-item">
+                                    <span class="stat-icon"><i class="fa-solid fa-clapperboard"></i></span>
+                                    <span class="stat-val">${inf.collabs || '30'}</span>
+                                </div>
+                                <a href="${inf.instagramUrl || 'https://instagram.com'}" target="_blank" class="influencer-follow-btn">Follow +</a>
+                            </div>
+                        </div>
+                    `;
+                    influencersGrid.appendChild(card);
+                });
+ 
+                if (window.attachCursorHoverListeners) {
+                    window.attachCursorHoverListeners();
+                }
+                if (window.initScrollReveal) {
+                    window.initScrollReveal();
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -4,12 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Reels — LensBros Photo & Video Agency</title>
-    <meta name="description" content="Watch our latest reels, behind-the-scenes clips, and short-form content. LensBros — bold visuals built for engagement." />
+    <title>Reels — LensBro Photo & Video Agency</title>
+    <meta name="description" content="Watch our latest reels, behind-the-scenes clips, and short-form content. LensBro — bold visuals built for engagement." />
     <meta name="theme-color" content="#020203" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="css/shared.css" />
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
     <style>
         /* ───── PAGE HEADER ───── */
@@ -371,20 +374,25 @@
 
 <body>
 
+    <!-- ═══════ CUSTOM CURSOR ═══════ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <div class="page-transition" id="pageTransition"></div>
 
     <!-- ═══════ NAVIGATION ═══════ -->
     <nav class="site-nav" id="siteNav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="m.png" alt="LensBros Logo" /></a>
+            <a href="index.html" class="nav-logo"><span class="nav-logo-text">Lens<span class="accent-word">Bro</span><span class="logo-dot">.</span></span></a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="videography.html">Videography</a>
                 <a href="reels.html" class="active">Reels</a>
+                <a href="portfolio.html">Portfolio</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <a href="contact.html" class="nav-cta" title="Contact Us">✉</a>
+            <a href="contact.html" class="nav-cta" title="Contact Us"><i class="fa-regular fa-envelope"></i></a>
             <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -394,6 +402,7 @@
         <a href="about.html">About</a>
         <a href="videography.html">Videography</a>
         <a href="reels.html">Reels</a>
+        <a href="portfolio.html">Portfolio</a>
         <a href="contact.html">Contact</a>
     </div>
 
@@ -459,107 +468,21 @@
             </div>
 
             <div class="reels-grid" id="reelsGrid">
-                <!-- Reel 1 -->
-                <div class="reel-card reveal" data-category="commercial">
-                    <video playsinline autoplay muted loop preload="metadata">
-                        <source src="https://cdn.pixabay.com/video/2022/10/04/133491-756991118_large.mp4" type="video/mp4">
-                    </video>
-                    <div class="reel-badge">Commercial</div>
-                    <div class="reel-overlay">
-                        <span class="reel-tag">Brand Film</span>
-                        <span class="reel-title">Street Dreams</span>
-                    </div>
-                    <div class="play-btn">▶</div>
-                    <div class="reel-stats">
-                        <div class="reel-stat"><span class="icon">❤️</span> 12K</div>
-                        <div class="reel-stat"><span class="icon">💬</span> 342</div>
-                    </div>
-                </div>
+                <!-- Dynamically loaded via Javascript from projects-data.js -->
+            </div>
+        </div>
+    </section>
 
-                <!-- Reel 2 -->
-                <div class="reel-card reveal delay-1" data-category="travel">
-                    <video playsinline autoplay muted loop preload="metadata">
-                        <source src="https://cdn.pixabay.com/video/2024/03/12/203878-922675732_large.mp4" type="video/mp4">
-                    </video>
-                    <div class="reel-badge">Travel</div>
-                    <div class="reel-overlay">
-                        <span class="reel-tag">Cinematic</span>
-                        <span class="reel-title">Golden Hour</span>
-                    </div>
-                    <div class="play-btn">▶</div>
-                    <div class="reel-stats">
-                        <div class="reel-stat"><span class="icon">❤️</span> 8.5K</div>
-                        <div class="reel-stat"><span class="icon">💬</span> 198</div>
-                    </div>
-                </div>
-
-                <!-- Reel 3 -->
-                <div class="reel-card reveal delay-2" data-category="event">
-                    <video playsinline autoplay muted loop preload="metadata">
-                        <source src="https://cdn.pixabay.com/video/2024/03/08/203449-921267347_tiny.mp4" type="video/mp4">
-                    </video>
-                    <div class="reel-badge">Event</div>
-                    <div class="reel-overlay">
-                        <span class="reel-tag">Live Show</span>
-                        <span class="reel-title">Neon Nights</span>
-                    </div>
-                    <div class="play-btn">▶</div>
-                    <div class="reel-stats">
-                        <div class="reel-stat"><span class="icon">❤️</span> 15K</div>
-                        <div class="reel-stat"><span class="icon">💬</span> 456</div>
-                    </div>
-                </div>
-
-                <!-- Reel 4 -->
-                <div class="reel-card reveal delay-3" data-category="portrait">
-                    <video playsinline autoplay muted loop preload="metadata">
-                        <source src="https://cdn.pixabay.com/video/2022/10/04/133491-756991118_large.mp4" type="video/mp4">
-                    </video>
-                    <div class="reel-badge">Portrait</div>
-                    <div class="reel-overlay">
-                        <span class="reel-tag">Editorial</span>
-                        <span class="reel-title">Raw Expression</span>
-                    </div>
-                    <div class="play-btn">▶</div>
-                    <div class="reel-stats">
-                        <div class="reel-stat"><span class="icon">❤️</span> 6.2K</div>
-                        <div class="reel-stat"><span class="icon">💬</span> 127</div>
-                    </div>
-                </div>
-
-                <!-- Reel 5 -->
-                <div class="reel-card reveal delay-4" data-category="commercial">
-                    <video playsinline autoplay muted loop preload="metadata">
-                        <source src="https://cdn.pixabay.com/video/2024/03/12/203878-922675732_large.mp4" type="video/mp4">
-                    </video>
-                    <div class="reel-badge">Commercial</div>
-                    <div class="reel-overlay">
-                        <span class="reel-tag">Product</span>
-                        <span class="reel-title">Drop Day</span>
-                    </div>
-                    <div class="play-btn">▶</div>
-                    <div class="reel-stats">
-                        <div class="reel-stat"><span class="icon">❤️</span> 9.8K</div>
-                        <div class="reel-stat"><span class="icon">💬</span> 267</div>
-                    </div>
-                </div>
-
-                <!-- Reel 6 -->
-                <div class="reel-card reveal delay-5" data-category="travel">
-                    <video playsinline autoplay muted loop preload="metadata">
-                        <source src="https://cdn.pixabay.com/video/2024/03/08/203449-921267347_tiny.mp4" type="video/mp4">
-                    </video>
-                    <div class="reel-badge">Travel</div>
-                    <div class="reel-overlay">
-                        <span class="reel-tag">Documentary</span>
-                        <span class="reel-title">Monsoon Diaries</span>
-                    </div>
-                    <div class="play-btn">▶</div>
-                    <div class="reel-stats">
-                        <div class="reel-stat"><span class="icon">❤️</span> 11K</div>
-                        <div class="reel-stat"><span class="icon">💬</span> 389</div>
-                    </div>
-                </div>
+    <!-- ═══════ WORK WITH THESE INFLUENCERS ═══════ -->
+    <section class="influencers-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <div class="section-subtitle reveal">Collaborations</div>
+                <h2 class="big-title reveal" style="font-size: clamp(28px, 5vw, 52px);">Work with these Influencers</h2>
+                <p class="body-text reveal" style="margin: 0 auto; color: var(--muted);">We have partnered with some of the biggest creators to deliver viral engagement and cinematic visual storytelling.</p>
+            </div>
+            <div class="influencers-grid" id="influencersGrid">
+                <!-- Dynamically loaded via Javascript -->
             </div>
         </div>
     </section>
@@ -596,12 +519,47 @@
     </section>
 
 
+    <!-- ═══════ PROJECT DETAILS MODAL ═══════ -->
+    <div class="project-modal" id="projectModal">
+        <button class="modal-close-btn" id="modalClose">✕</button>
+        <div class="modal-container">
+            <div class="modal-media" id="modalMedia">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-info">
+                <span class="modal-tag" id="modalTag">Category</span>
+                <h3 class="modal-title" id="modalTitle">Project Title</h3>
+                
+                <div class="modal-meta-grid">
+                    <div class="modal-meta-item">
+                        <h5>Client</h5>
+                        <p id="modalClient">Client Name</p>
+                    </div>
+                    <div class="modal-meta-item">
+                        <h5>Location</h5>
+                        <p id="modalLocation">New Delhi</p>
+                    </div>
+                </div>
+
+                <h4 class="modal-overview-title">Overview</h4>
+                <p class="modal-overview" id="modalOverview">
+                    Detailed overview description goes here...
+                </p>
+
+                <a href="#" target="_blank" class="modal-btn" id="modalLinkBtn">
+                    View Live Project
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══════ FOOTER ═══════ -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>LENSBROS</h3>
+                    <h3>LensBro</h3>
                     <p>Two brothers. One vision. Creating bold visuals with story-driven impact.</p>
                 </div>
                 <div class="footer-col">
@@ -610,6 +568,7 @@
                     <a href="about.html">About</a>
                     <a href="videography.html">Videography</a>
                     <a href="reels.html">Reels</a>
+                    <a href="portfolio.html">Portfolio</a>
                     <a href="contact.html">Contact</a>
                 </div>
                 <div class="footer-col">
@@ -621,53 +580,212 @@
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
-                    <a href="mailto:hello@lensbros.example">hello@lensbros.example</a>
+                    <a href="mailto:hello@LensBro.example">hello@LensBro.example</a>
                     <a href="tel:+911234567890">+91 12345 67890</a>
                     <a href="https://instagram.com" target="_blank">Instagram</a>
                     <a href="https://youtube.com" target="_blank">YouTube</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© <span id="year"></span> LensBros — All rights reserved.</p>
+                <p>© <span id="year"></span> LensBro — All rights reserved.</p>
                 <div class="footer-socials">
-                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
-                    <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
-                    <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="js/projects-data.js"></script>
     <script src="js/shared.js"></script>
 
-    <!-- Reel Filter Logic -->
+    <!-- Dynamic Reels & Influencers Loader -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            let projects = typeof LensbroDB !== 'undefined' ? LensbroDB.getAllProjects() : [];
+            let reels = projects.filter(p => p.category === 'reels' && p.showOnReels !== false);
+            
+            const grid = document.getElementById('reelsGrid');
             const tabs = document.querySelectorAll('.filter-tab');
-            const cards = document.querySelectorAll('.reel-card');
-
+            
+            const modal = document.getElementById('projectModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalMedia = document.getElementById('modalMedia');
+            const modalTag = document.getElementById('modalTag');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalClient = document.getElementById('modalClient');
+            const modalLocation = document.getElementById('modalLocation');
+            const modalOverview = document.getElementById('modalOverview');
+            const modalLinkBtn = document.getElementById('modalLinkBtn');
+            
+            function renderReels(filter = 'all') {
+                if (!grid) return;
+                grid.innerHTML = '';
+                
+                const filteredReels = reels.filter(reel => {
+                    if (filter === 'all') return true;
+                    
+                    let tag = 'commercial';
+                    const title = (reel.title || '').toLowerCase();
+                    const loc = (reel.location || '').toLowerCase();
+                    if (title.includes('escape') || loc.includes('goa') || title.includes('hour')) tag = 'travel';
+                    else if (title.includes('pulse') || title.includes('night') || loc.includes('cp') || title.includes('red fort')) tag = 'event';
+                    else if (title.includes('expression') || title.includes('portrait') || loc.includes('black')) tag = 'portrait';
+                    
+                    return tag === filter;
+                });
+                
+                if (filteredReels.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 80px 0; color: var(--muted);">
+                            <p style="font-size: 18px; font-weight: 500;">No reels found in this category yet.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                filteredReels.forEach((proj, idx) => {
+                    let tag = 'commercial';
+                    const title = (proj.title || '').toLowerCase();
+                    const loc = (proj.location || '').toLowerCase();
+                    if (title.includes('escape') || loc.includes('goa') || title.includes('hour')) tag = 'travel';
+                    else if (title.includes('pulse') || title.includes('night') || loc.includes('cp') || title.includes('red fort')) tag = 'event';
+                    else if (title.includes('expression') || title.includes('portrait') || loc.includes('black')) tag = 'portrait';
+                    
+                    const card = document.createElement('div');
+                    card.className = 'reel-card';
+                    card.setAttribute('data-category', tag);
+                    
+                    card.innerHTML = `
+                        ${proj.videoUrl ? `
+                            <video playsinline autoplay muted loop preload="metadata">
+                                <source src="${proj.videoUrl}" type="video/mp4">
+                            </video>
+                        ` : `
+                            <img src="${proj.thumbnail}" alt="${proj.title || ''}" style="width:100%; height:100%; object-fit:cover;" / loading="lazy">
+                        `}
+                        <div class="reel-badge" style="text-transform: uppercase;">${tag}</div>
+                        <div class="reel-overlay">
+                            <span class="reel-tag">${proj.client || ''}</span>
+                            <span class="reel-title">${proj.title || ''}</span>
+                        </div>
+                        <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                        <div class="reel-stats">
+                            <div class="reel-stat"><span class="icon"><i class="fa-solid fa-heart" style="color: var(--accent);"></i></span> ${proj.likes || '12K'}</div>
+                            <div class="reel-stat"><span class="icon"><i class="fa-regular fa-comment"></i></span> ${proj.comments || '300'}</div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => openModal(proj));
+                    grid.appendChild(card);
+                });
+                
+                if (window.attachCursorHoverListeners) {
+                    window.attachCursorHoverListeners();
+                }
+                if (window.initScrollReveal) {
+                    window.initScrollReveal();
+                }
+                
+                gsap.from('.reel-card', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.5,
+                    stagger: 0.08,
+                    ease: 'power2.out'
+                });
+            }
+            
+            function openModal(proj) {
+                if (!modal) return;
+                modalMedia.innerHTML = '';
+                if (proj.videoUrl && proj.videoUrl.trim() !== '') {
+                    modalMedia.innerHTML = `
+                        <video autoplay muted loop controls playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="${proj.videoUrl}" type="video/mp4" />
+                        </video>
+                    `;
+                } else {
+                    modalMedia.innerHTML = `<img src="${proj.thumbnail}" alt="${proj.title}" / loading="lazy">`;
+                }
+                
+                modalTag.textContent = proj.category.replace('-', ' ');
+                modalTitle.textContent = proj.title;
+                modalClient.textContent = proj.client;
+                modalLocation.textContent = proj.location;
+                modalOverview.textContent = proj.overview;
+                modalLinkBtn.href = proj.link || '#';
+                
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeModal() {
+                if (!modal) return;
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+                const activeVideo = modalMedia.querySelector('video');
+                if (activeVideo) {
+                    try { activeVideo.pause(); } catch(e) {}
+                }
+            }
+            
+            if (modalClose) {
+                modalClose.addEventListener('click', closeModal);
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
+            
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     tabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-
+                    
                     const filter = tab.dataset.filter;
-                    cards.forEach(card => {
-                        if (filter === 'all' || card.dataset.category === filter) {
-                            card.style.display = '';
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.9)';
-                            requestAnimationFrame(() => {
-                                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            });
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
+                    renderReels(filter);
                 });
             });
+            
+            renderReels('all');
+            
+            // ───── DYNAMIC INFLUENCERS LOAD ─────
+            const influencerList = typeof LensbroDB !== 'undefined' ? LensbroDB.getAllInfluencers() : [];
+            const influencersGrid = document.getElementById('influencersGrid');
+            if (influencersGrid && influencerList.length > 0) {
+                influencersGrid.innerHTML = '';
+                influencerList.forEach(inf => {
+                    const card = document.createElement('div');
+                    card.className = 'influencer-card';
+                    card.innerHTML = `
+                        <div class="influencer-avatar">
+                            <img src="${inf.avatar}" alt="${inf.name}" loading="lazy" />
+                        </div>
+                        <div class="influencer-info">
+                            <h4 class="influencer-name">${inf.name} <span class="verified-badge"><i class="fa-solid fa-check"></i></span></h4>
+                            <p class="influencer-bio">${inf.bio || 'Cinematic content creator & storyteller.'}</p>
+                            
+                            <div class="influencer-stats-row">
+                                <div class="influencer-stat-item">
+                                    <span class="stat-icon"><i class="fa-regular fa-user"></i></span>
+                                    <span class="stat-val">${inf.followers}</span>
+                                </div>
+                                <div class="influencer-stat-item">
+                                    <span class="stat-icon"><i class="fa-solid fa-clapperboard"></i></span>
+                                    <span class="stat-val">${inf.collabs || '30'}</span>
+                                </div>
+                                <a href="${inf.instagramUrl || 'https://instagram.com'}" target="_blank" class="influencer-follow-btn">Follow +</a>
+                            </div>
+                        </div>
+                    `;
+                    influencersGrid.appendChild(card);
+                });
+                
+                if (window.attachCursorHoverListeners) {
+                    window.attachCursorHoverListeners();
+                }
+            }
         });
     </script>
 </body>

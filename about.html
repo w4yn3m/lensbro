@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About — LensBros Photo & Video Agency</title>
+    <title>About — LensBro Photo & Video Agency</title>
     <meta name="description"
-        content="Meet the brothers behind LensBros. Learn about our story, our approach to cinematic photography & videography, and what drives our creative vision." />
+        content="Meet the brothers behind LensBro. Learn about our story, our approach to cinematic photography & videography, and what drives our creative vision." />
     <meta name="theme-color" content="#020203" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="css/shared.css" />
 
     <style>
@@ -332,20 +333,25 @@
 
 <body>
 
+    <!-- ═══════ CUSTOM CURSOR ═══════ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <div class="page-transition" id="pageTransition"></div>
 
     <!-- ═══════ NAVIGATION ═══════ -->
     <nav class="site-nav" id="siteNav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo"><img src="m.png" alt="LensBros Logo" /></a>
+            <a href="index.html" class="nav-logo"><span class="nav-logo-text">Lens<span class="accent-word">Bro</span><span class="logo-dot">.</span></span></a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html" class="active">About</a>
                 <a href="videography.html">Videography</a>
                 <a href="reels.html">Reels</a>
+                <a href="portfolio.html">Portfolio</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <a href="contact.html" class="nav-cta" title="Contact Us">✉</a>
+            <a href="contact.html" class="nav-cta" title="Contact Us"><i class="fa-regular fa-envelope"></i></a>
             <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -355,6 +361,7 @@
         <a href="about.html">About</a>
         <a href="videography.html">Videography</a>
         <a href="reels.html">Reels</a>
+        <a href="portfolio.html">Portfolio</a>
         <a href="contact.html">Contact</a>
     </div>
 
@@ -395,12 +402,12 @@
     <header class="page-hero">
         <div class="page-hero-bg">
             <img src="https://images.unsplash.com/photo-1773332585815-f106a5d6ed6c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="About LensBros">
+                alt="About LensBro" loading="lazy">
         </div>
         <div class="blob blob-accent" style="width:500px;height:500px;bottom:-200px;right:-100px;"></div>
         <div class="container">
             <div class="page-tag">Our Story</div>
-            <h1 class="page-title">About <span style="color:var(--accent)">LensBros</span></h1>
+            <h1 class="page-title">About <span style="color:var(--accent)">LensBro</span></h1>
         </div>
     </header>
 
@@ -412,12 +419,12 @@
                 <div class="story-img reveal-left">
                     <img loading="lazy"
                         src="https://plus.unsplash.com/premium_photo-1723741320347-bf8a65518f8e?q=80&w=687&auto=format&fit=crop"
-                        alt="LensBros Founders">
+                        alt="LensBro Founders">
                 </div>
                 <div class="story-text reveal-right">
                     <h2>Two Brothers,<br>One Vision</h2>
                     <p>
-                        We are <span class="highlight">two brothers</span> — founders of LensBros. What started as a
+                        We are <span class="highlight">two brothers</span> — founders of LensBro. What started as a
                         shared obsession with capturing light and motion has evolved into a full-scale visual production
                         agency.
                     </p>
@@ -582,7 +589,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3>LENSBROS</h3>
+                    <h3>LensBro</h3>
                     <p>Two brothers. One vision. Creating bold visuals with story-driven impact.</p>
                 </div>
                 <div class="footer-col">
@@ -591,6 +598,7 @@
                     <a href="about.html">About</a>
                     <a href="videography.html">Videography</a>
                     <a href="reels.html">Reels</a>
+                    <a href="portfolio.html">Portfolio</a>
                     <a href="contact.html">Contact</a>
                 </div>
                 <div class="footer-col">
@@ -602,18 +610,18 @@
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
-                    <a href="mailto:hello@lensbros.example">hello@lensbros.example</a>
+                    <a href="mailto:hello@LensBro.example">hello@LensBro.example</a>
                     <a href="tel:+911234567890">+91 12345 67890</a>
                     <a href="https://instagram.com" target="_blank">Instagram</a>
                     <a href="https://youtube.com" target="_blank">YouTube</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© <span id="year"></span> LensBros — All rights reserved.</p>
+                <p>© <span id="year"></span> LensBro — All rights reserved.</p>
                 <div class="footer-socials">
-                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
-                    <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
-                    <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
         </div>
