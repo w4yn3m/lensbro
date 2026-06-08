@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── Active nav link highlight ───
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.site-nav .nav-links a, .bottom-nav a, .mobile-menu a').forEach(link => {
+    document.querySelectorAll('.site-nav .nav-links a, .site-nav .nav-cta, .bottom-nav a, .mobile-menu a').forEach(link => {
         const href = link.getAttribute('href');
         if (href === currentPage || (currentPage === '' && href === 'index.html') ||
             (currentPage === 'index.html' && href === 'index.html')) {
