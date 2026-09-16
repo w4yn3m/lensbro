@@ -642,74 +642,32 @@
         }
 
 
-        /* ---------- FEATURED CLIENTS / WORK SHOWCASE ---------- */
+        /* ---------- BIG TESTIMONIAL ---------- */
         .testimonial-section {
-            padding: 140px 0;
+            padding: 180px 0;
             text-align: center;
             overflow: hidden;
-            background: var(--dark);
-        }
-
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .client-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, background 0.3s, box-shadow 0.3s;
-        }
-
-        .client-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.04);
-            border-color: var(--accent);
-            box-shadow: 0 12px 30px -10px rgba(255, 43, 0, 0.25);
-        }
-
-        .client-card .client-name {
-            font-size: 17px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.3px;
-        }
-
-        .client-card .client-brand {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        @media (max-width: 900px) {
-            .clients-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .clients-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .testimonial-block {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .testimonial-block .big-quote {
+            font-size: 160px;
+            font-family: 'Playfair Display', serif;
+            color: rgba(255, 43, 0, 0.2);
+            line-height: 0.2;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-block .quote-text {
+            font-size: clamp(24px, 4vw, 42px);
+            line-height: 1.4;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 40px;
         }
 
 
@@ -1434,67 +1392,16 @@
     </section>
 
 
-    <!-- ═══════ 8. TESTIMONIALS ═══════ -->
+    <!-- ═══════ 8. TESTIMONIAL ═══════ -->
     <section class="testimonial-section dark" id="testimonialSection">
         <div class="container">
-            <div class="story-subtitle gsap-fade-up" style="text-align: center; margin-bottom: 20px;">Client Words</div>
-            <h2 class="big-title gsap-fade-up"
-                style="font-size: clamp(28px, 4.5vw, 48px); text-align: center; margin-bottom: 50px;">
-                What People Say
-            </h2>
-
-            <div class="testimonial-slider-wrap gsap-fade-up" id="testimonialSlider">
-                <div class="testimonial-block">
-                    <div class="big-quote">"</div>
-
-                    <!-- Slide 1: Sahil Bhola -->
-                    <div class="testimonial-slide active">
-                        <div class="quote-text">
-                            LensBro completely transformed how we present our brand to the world. Their cinematic eye, visual pacing, and story-driven impact are unmatched.
-                        </div>
-                        <div class="testimonial-author">
-                            <span class="author-name">Sahil Bhola</span>
-                            <span class="author-brand">Allstag</span>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2: Devansh & Vedansh Kaushik -->
-                    <div class="testimonial-slide">
-                        <div class="quote-text">
-                            Working with LensBro was an exceptional experience. They brought our brand vision to life with raw emotion, razor-sharp detail, and unmistakable style.
-                        </div>
-                        <div class="testimonial-author">
-                            <span class="author-name">Devansh &amp; Vedansh Kaushik</span>
-                            <span class="author-brand">Bogsila</span>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3: Varun Yadav -->
-                    <div class="testimonial-slide">
-                        <div class="quote-text">
-                            The visual storytelling and color grading exceeded every expectation. They don't just shoot footage—they craft cinematic worlds that leave a lasting mark.
-                        </div>
-                        <div class="testimonial-author">
-                            <span class="author-name">Varun Yadav</span>
-                            <span class="author-brand">Lalila</span>
-                        </div>
-                    </div>
+            <div class="testimonial-block gsap-fade-up">
+                <div class="big-quote">"</div>
+                <div class="quote-text">
+                    LensBro completely transformed how we present our brand to the world. Their cinematic eye is
+                    unmatched.
                 </div>
-
-                <!-- Slider Controls -->
-                <div class="testimonial-controls">
-                    <button class="testimonial-nav-btn" id="testimPrev" aria-label="Previous testimonial">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <div class="testimonial-dots">
-                        <button class="testimonial-dot active" data-slide="0" aria-label="Go to testimonial 1"></button>
-                        <button class="testimonial-dot" data-slide="1" aria-label="Go to testimonial 2"></button>
-                        <button class="testimonial-dot" data-slide="2" aria-label="Go to testimonial 3"></button>
-                    </div>
-                    <button class="testimonial-nav-btn" id="testimNext" aria-label="Next testimonial">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+                <div class="story-subtitle">— Rohan Mehra, VoxMedia</div>
             </div>
         </div>
     </section>
@@ -1841,74 +1748,6 @@
                 }
             });
 
-            // ───── TESTIMONIAL CAROUSEL ─────
-            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-            const testimonialDots = document.querySelectorAll('.testimonial-dot');
-            const prevBtn = document.getElementById('testimPrev');
-            const nextBtn = document.getElementById('testimNext');
-            let currentTestimonial = 0;
-            let testimonialInterval = null;
-
-            function showTestimonial(index) {
-                if (!testimonialSlides.length) return;
-                currentTestimonial = (index + testimonialSlides.length) % testimonialSlides.length;
-                
-                testimonialSlides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === currentTestimonial);
-                });
-                testimonialDots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentTestimonial);
-                });
-            }
-
-            function nextTestimonial() {
-                showTestimonial(currentTestimonial + 1);
-            }
-
-            function prevTestimonial() {
-                showTestimonial(currentTestimonial - 1);
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    nextTestimonial();
-                    resetTestimonialTimer();
-                });
-            }
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    prevTestimonial();
-                    resetTestimonialTimer();
-                });
-            }
-
-            testimonialDots.forEach((dot, i) => {
-                dot.addEventListener('click', () => {
-                    showTestimonial(i);
-                    resetTestimonialTimer();
-                });
-            });
-
-            function startTestimonialTimer() {
-                if (testimonialSlides.length > 1) {
-                    testimonialInterval = setInterval(nextTestimonial, 7000);
-                }
-            }
-
-            function resetTestimonialTimer() {
-                if (testimonialInterval) clearInterval(testimonialInterval);
-                startTestimonialTimer();
-            }
-
-            const sliderContainer = document.getElementById('testimonialSlider');
-            if (sliderContainer) {
-                sliderContainer.addEventListener('mouseenter', () => {
-                    if (testimonialInterval) clearInterval(testimonialInterval);
-                });
-                sliderContainer.addEventListener('mouseleave', startTestimonialTimer);
-                startTestimonialTimer();
-            }
-
             // ───── CURSOR ─────
             if (!useLightAnimations && window.matchMedia('(pointer: fine)').matches) {
                 const dot = document.getElementById('cursorDot');
@@ -1930,7 +1769,7 @@
                 }
                 animateCursor();
 
-                document.querySelectorAll('a, button, .work-card, .testimonial-nav-btn, .testimonial-dot, .icon-service, .service-item, .showcase-play').forEach(el => {
+                document.querySelectorAll('a, button, .work-card, .icon-service, .service-item, .showcase-play').forEach(el => {
                     el.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
                     el.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
                 });
