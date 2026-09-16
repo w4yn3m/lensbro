@@ -9,7 +9,7 @@ const LENSBRO_DEFAULT_PROJECTS = [
     id: "proj-color-1",
     title: "Neon Nights Delhi",
     category: "color-grading",
-    client: "VoxMedia Group",
+    client: "Allstag",
     location: "New Delhi",
     thumbnail: "https://images.unsplash.com/photo-1678542561901-5d75778930ef?q=80&w=800",
     videoUrl: "https://cdn.pixabay.com/video/2024/03/08/203449-921267347_tiny.mp4",
