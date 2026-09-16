@@ -647,11 +647,13 @@
             padding: 180px 0;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         .testimonial-block {
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
 
         .testimonial-block .big-quote {
@@ -660,6 +662,32 @@
             color: rgba(255, 43, 0, 0.2);
             line-height: 0.2;
             margin-bottom: 40px;
+            user-select: none;
+        }
+
+        .testimonial-content-track {
+            position: relative;
+            min-height: 220px;
+        }
+
+        .testimonial-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+            pointer-events: none;
+        }
+
+        .testimonial-item.active {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .testimonial-block .quote-text {
@@ -668,6 +696,59 @@
             font-style: italic;
             font-family: 'Playfair Display', serif;
             margin-bottom: 40px;
+        }
+
+        .testimonial-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .testim-arrow {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .testim-arrow:hover {
+            border-color: var(--accent);
+            color: #fff;
+            background: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 43, 0, 0.4);
+        }
+
+        .testim-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .testim-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testim-dot.active {
+            background: var(--accent);
+            width: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(255, 43, 0, 0.5);
         }
 
 
@@ -1395,13 +1476,84 @@
     <!-- ═══════ 8. TESTIMONIAL ═══════ -->
     <section class="testimonial-section dark" id="testimonialSection">
         <div class="container">
-            <div class="testimonial-block gsap-fade-up">
+            <div class="testimonial-block gsap-fade-up" id="testimonialBlock">
                 <div class="big-quote">"</div>
-                <div class="quote-text">
-                    LensBro completely transformed how we present our brand to the world. Their cinematic eye is
-                    unmatched.
+
+                <div class="testimonial-content-track">
+                    <!-- 1. Sahil Bhola — Allstag -->
+                    <div class="testimonial-item active">
+                        <div class="quote-text">
+                            LensBro completely transformed how we present our brand to the world. Their cinematic eye is unmatched.
+                        </div>
+                        <div class="story-subtitle">— Sahil Bhola, Allstag</div>
+                    </div>
+
+                    <!-- 2. Devansh & Vedansh Kaushik — Bogsila -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            Working with LensBro was effortless. They brought our brand vision to life with raw energy and razor-sharp precision.
+                        </div>
+                        <div class="story-subtitle">— Devansh &amp; Vedansh Kaushik, Bogsila</div>
+                    </div>
+
+                    <!-- 3. Varun Yadav — Lalila -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            The visual aesthetics and color grading exceeded every expectation. Every frame they deliver feels like pure cinema.
+                        </div>
+                        <div class="story-subtitle">— Varun Yadav, Lalila</div>
+                    </div>
+
+                    <!-- 4. Aarush Bhola — Influencer -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            The pace, rhythm, and camera movements cut through the feed instantly. Nobody shoots and edits content like LensBro.
+                        </div>
+                        <div class="story-subtitle">— Aarush Bhola, Influencer</div>
+                    </div>
+
+                    <!-- 5. Devansh Kaushik — Influencer -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            From initial concept to the final grade, they elevate every single idea into a masterpiece. Incredible visual storytelling.
+                        </div>
+                        <div class="story-subtitle">— Devansh Kaushik, Influencer</div>
+                    </div>
+
+                    <!-- 6. Aditya Lahari (HiVirtus) — Influencer -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            High-energy, Hollywood-level production value, and absolute dedication to the vision. Truly the best team to create with.
+                        </div>
+                        <div class="story-subtitle">— Aditya Lahari (HiVirtus), Influencer</div>
+                    </div>
+
+                    <!-- 7. Manav Sukhija (Maggie) — Influencer -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            They have an instinctive understanding of modern aesthetics and lighting that makes every single video hit hard.
+                        </div>
+                        <div class="story-subtitle">— Manav Sukhija (Maggie), Influencer</div>
+                    </div>
+
+                    <!-- 8. Sumit & Shrishka — Couple Influencer -->
+                    <div class="testimonial-item">
+                        <div class="quote-text">
+                            Capturing genuine chemistry and emotion on camera is an art, and LensBro executes it flawlessly every single time.
+                        </div>
+                        <div class="story-subtitle">— Sumit &amp; Shrishka, Couple Influencer</div>
+                    </div>
                 </div>
-                <div class="story-subtitle">— Rohan Mehra, VoxMedia</div>
+
+                <div class="testimonial-nav">
+                    <button class="testim-arrow prev" id="testimPrev" aria-label="Previous Testimonial">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div class="testim-dots" id="testimDots"></div>
+                    <button class="testim-arrow next" id="testimNext" aria-label="Next Testimonial">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -1748,6 +1900,84 @@
                 }
             });
 
+            // ───── TESTIMONIALS TRANSITION ─────
+            const testimItems = document.querySelectorAll('.testimonial-item');
+            const testimDotsContainer = document.getElementById('testimDots');
+            const prevTestimBtn = document.getElementById('testimPrev');
+            const nextTestimBtn = document.getElementById('testimNext');
+            const testimBlock = document.getElementById('testimonialBlock');
+            let currentTestimIdx = 0;
+            let testimTimer = null;
+
+            if (testimItems.length > 0) {
+                if (testimDotsContainer) {
+                    testimDotsContainer.innerHTML = '';
+                    testimItems.forEach((_, idx) => {
+                        const dot = document.createElement('button');
+                        dot.className = 'testim-dot' + (idx === 0 ? ' active' : '');
+                        dot.setAttribute('aria-label', `Testimonial ${idx + 1}`);
+                        dot.addEventListener('click', () => {
+                            goToTestimonial(idx);
+                            resetTestimTimer();
+                        });
+                        testimDotsContainer.appendChild(dot);
+                    });
+                }
+
+                function goToTestimonial(idx) {
+                    currentTestimIdx = (idx + testimItems.length) % testimItems.length;
+                    testimItems.forEach((item, i) => {
+                        item.classList.toggle('active', i === currentTestimIdx);
+                    });
+                    const dots = testimDotsContainer?.querySelectorAll('.testim-dot');
+                    if (dots) {
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === currentTestimIdx);
+                        });
+                    }
+                }
+
+                function nextTestim() {
+                    goToTestimonial(currentTestimIdx + 1);
+                }
+
+                function prevTestim() {
+                    goToTestimonial(currentTestimIdx - 1);
+                }
+
+                if (nextTestimBtn) {
+                    nextTestimBtn.addEventListener('click', () => {
+                        nextTestim();
+                        resetTestimTimer();
+                    });
+                }
+
+                if (prevTestimBtn) {
+                    prevTestimBtn.addEventListener('click', () => {
+                        prevTestim();
+                        resetTestimTimer();
+                    });
+                }
+
+                function startTestimTimer() {
+                    testimTimer = setInterval(nextTestim, 6000);
+                }
+
+                function resetTestimTimer() {
+                    if (testimTimer) clearInterval(testimTimer);
+                    startTestimTimer();
+                }
+
+                if (testimBlock) {
+                    testimBlock.addEventListener('mouseenter', () => {
+                        if (testimTimer) clearInterval(testimTimer);
+                    });
+                    testimBlock.addEventListener('mouseleave', startTestimTimer);
+                }
+
+                startTestimTimer();
+            }
+
             // ───── CURSOR ─────
             if (!useLightAnimations && window.matchMedia('(pointer: fine)').matches) {
                 const dot = document.getElementById('cursorDot');
@@ -1769,7 +1999,7 @@
                 }
                 animateCursor();
 
-                document.querySelectorAll('a, button, .work-card, .icon-service, .service-item, .showcase-play').forEach(el => {
+                document.querySelectorAll('a, button, .work-card, .testim-arrow, .testim-dot, .icon-service, .service-item, .showcase-play').forEach(el => {
                     el.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
                     el.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
                 });
