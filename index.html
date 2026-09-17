@@ -474,664 +474,453 @@
         }
 
 
-        /* ---------- FEATURED WORK — CINEMATIC HORIZONTAL SHOWCASE ---------- */
-        .work-section-cinema {
+        /* ---------- FEATURED WORK — 3D CINEMA COVERFLOW (NETFLIX / LAZAREV STYLE) ---------- */
+        /* ---------- FEATURED WORK — 3D CINEMA COVERFLOW (NETFLIX / LAZAREV STYLE) ---------- */
+        .work-section-coverflow {
             position: relative;
-            background: #030305;
-            padding: 80px 0 100px;
+            background: #020204;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0;
             overflow: hidden;
+            user-select: none;
+            box-sizing: border-box;
         }
 
-        .work-section-cinema::before {
-            content: '';
+        .coverflow-ambient-glow {
             position: absolute;
-            top: 20%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 900px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 43, 0, 0.08) 0%, transparent 70%);
+            width: 750px;
+            height: 480px;
+            background: radial-gradient(ellipse at center, rgba(255, 43, 0, 0.2) 0%, rgba(180, 20, 0, 0.1) 40%, transparent 70%);
             filter: blur(80px);
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
 
-        .work-sticky-header {
+        .coverflow-header {
             position: relative;
             z-index: 5;
-            margin-bottom: 24px;
-        }
-
-        .work-header-inner {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .work-header-left {
-            max-width: 620px;
-        }
-
-        .cinema-status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 43, 0, 0.1);
-            border: 1px solid rgba(255, 43, 0, 0.25);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--accent);
-            text-transform: uppercase;
+            text-align: center;
             margin-bottom: 14px;
         }
 
-        .cinema-rec-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px var(--accent);
-            animation: cinemaPulse 1.5s infinite ease-in-out;
+        .coverflow-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            background: rgba(255, 43, 0, 0.1);
+            border: 1px solid rgba(255, 43, 0, 0.25);
+            padding: 4px 14px;
+            border-radius: 999px;
+            margin-bottom: 8px;
         }
 
-        @keyframes cinemaPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.75); }
-        }
-
-        .work-cinema-title {
-            font-size: clamp(38px, 5.5vw, 68px);
+        .coverflow-title {
+            font-size: clamp(28px, 3.8vw, 46px);
             font-family: "Playfair Display", serif;
             font-weight: 900;
             letter-spacing: -0.5px;
-            line-height: 1.05;
-            margin-bottom: 12px;
+            color: #ffffff;
+            margin-bottom: 6px;
             text-transform: uppercase;
-            background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.65) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
-        .work-cinema-sub {
-            font-size: 15px;
+        .coverflow-title span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .coverflow-sub {
+            font-size: 13px;
             color: var(--muted);
-            line-height: 1.6;
-            max-width: 520px;
-            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto 14px;
+            line-height: 1.5;
         }
 
-        .work-header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 16px;
-        }
-
-        .work-filter-pills {
-            display: flex;
+        /* Category Filter Tabs */
+        .coverflow-filter-tabs {
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 6px;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px;
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px);
+            margin-top: 6px;
         }
 
-        .filter-pill {
+        .coverflow-filter-btn {
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.6);
-            padding: 8px 16px;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 6px 14px;
             border-radius: 999px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: 1.5px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
             font-family: inherit;
         }
 
-        .filter-pill .count {
-            font-size: 9px;
-            opacity: 0.6;
-            font-weight: 800;
-        }
-
-        .filter-pill:hover {
+        .coverflow-filter-btn:hover {
             color: #ffffff;
             background: rgba(255, 255, 255, 0.08);
         }
 
-        .filter-pill.active {
+        .coverflow-filter-btn.active {
             background: var(--accent);
             color: #ffffff;
-            box-shadow: 0 4px 20px rgba(255, 43, 0, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 43, 0, 0.45);
         }
 
-        .filter-pill.active .count {
-            opacity: 0.9;
-        }
-
-        .work-nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .cinema-nav-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+        /* 3D Stage & Container — Ample Vertical Breathing Room */
+        .coverflow-viewport {
+            position: relative;
+            z-index: 4;
+            width: 100%;
+            height: 410px;
+            perspective: 1100px;
+            perspective-origin: 50% 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
+            margin: 32px 0 38px;
         }
 
-        .cinema-nav-btn:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            transform: scale(1.08);
-            box-shadow: 0 0 20px rgba(255, 43, 0, 0.4);
-        }
-
-        .cinema-counter {
-            font-family: "Montserrat", sans-serif;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffffff;
-            min-width: 65px;
-            text-align: center;
-        }
-
-        .counter-curr {
-            color: var(--accent);
-        }
-
-        .counter-slash {
-            color: rgba(255, 255, 255, 0.25);
-            margin: 0 2px;
-        }
-
-        .counter-total {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .work-progress-line-track {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.06);
-            margin-top: 30px;
+        .coverflow-stage {
             position: relative;
-            overflow: hidden;
-        }
-
-        .work-progress-line-fill {
+            width: 100%;
             height: 100%;
-            width: 10%;
-            background: linear-gradient(90deg, var(--accent), #ff7744);
-            box-shadow: 0 0 10px var(--accent);
-            transition: width 0.15s ease-out;
-        }
-
-        /* Viewport & Horizontal Track */
-        .work-horizontal-viewport {
-            width: 100%;
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .work-horizontal-track {
             display: flex;
-            gap: 28px;
-            padding: 24px 5vw 40px 5vw;
-            width: max-content;
-            will-change: transform;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
         }
 
-        /* Slide Base */
-        .work-cinema-slide {
-            flex: 0 0 420px;
-            width: 420px;
-            border-radius: 20px;
-            background: linear-gradient(165deg, rgba(22, 22, 28, 0.8), rgba(9, 9, 13, 0.95));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 24px;
-            position: relative;
+        /* Individual 3D Card (Netflix Style) */
+        .coverflow-card {
+            position: absolute;
+            width: 235px;
+            height: 330px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            cursor: pointer;
             box-sizing: border-box;
+            background: #0d0d12;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform, opacity;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transform: translate3d(0, 0, 0);
+            contain: layout paint;
         }
 
-        .work-cinema-slide:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 43, 0, 0.5);
-            box-shadow: 0 24px 60px -15px rgba(255, 43, 0, 0.35);
+        .coverflow-card.is-center {
+            cursor: default;
+            border-color: rgba(255, 43, 0, 0.55);
+            box-shadow: 0 25px 70px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 43, 0, 0.28);
         }
 
-        .work-cinema-slide.dimmed {
-            opacity: 0.18;
-            transform: scale(0.95);
+        /* 100% GPU Composited Shade Layer (Replaces filter: brightness to eliminate GPU flickering) */
+        .card-shade {
+            position: absolute;
+            inset: 0;
+            background: #000000;
             pointer-events: none;
+            z-index: 2;
+            border-radius: inherit;
+            opacity: 0;
+            will-change: opacity;
         }
 
-        /* Card Top */
-        .card-cinema-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-
-        .card-scene-tag {
-            color: rgba(255, 255, 255, 0.5);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .card-scene-tag i {
-            color: var(--accent);
-            font-size: 10px;
-        }
-
-        .card-category-badge {
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .badge-brand {
-            background: rgba(255, 43, 0, 0.15);
-            color: #ff5733;
-            border: 1px solid rgba(255, 43, 0, 0.3);
-        }
-
-        .badge-creator {
-            background: rgba(234, 119, 255, 0.15);
-            color: #ea77ff;
-            border: 1px solid rgba(234, 119, 255, 0.3);
-        }
-
-        .badge-comm {
-            background: rgba(0, 196, 204, 0.15);
-            color: #00e5ff;
-            border: 1px solid rgba(0, 196, 204, 0.3);
-        }
-
-        .card-fps-meta {
-            color: rgba(255, 255, 255, 0.35);
-            font-size: 10px;
-            font-weight: 800;
-        }
-
-        /* Card Media Wrap */
-        .card-media-wrap {
-            position: relative;
-            width: 100%;
-            height: 310px;
-            border-radius: 14px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .card-media-wrap img {
+        .card-poster-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
-        .work-cinema-slide:hover .card-media-wrap img {
-            transform: scale(1.08);
+        .coverflow-card.is-center:hover .card-poster-img {
+            transform: scale(1.05);
         }
 
-        .card-media-overlay {
+        /* Top Bar Badges */
+        .card-top-bar {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+            top: 14px;
+            left: 14px;
+            right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 4;
+        }
+
+        .card-brand-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #1c274c;
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+        }
+
+        .card-brand-badge.red { background: #b00710; }
+        .card-brand-badge.blue { background: #0070d2; }
+        .card-brand-badge.orange { background: #e04403; }
+        .card-brand-badge.purple { background: #6b21a8; }
+
+        .card-rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(12, 12, 18, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            padding: 3px 8px;
+            border-radius: 999px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .card-rating-badge i {
+            color: #ffb800;
+            font-size: 9px;
+        }
+
+        /* Bottom Details */
+        .card-bottom-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 14px 14px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 30%, rgba(0, 0, 0, 0.95) 85%, #000 100%);
+            z-index: 4;
+            display: flex;
             flex-direction: column;
-            gap: 12px;
-            opacity: 0;
-            transition: opacity 0.35s ease;
+            gap: 3px;
         }
 
-        .work-cinema-slide:hover .card-media-overlay {
-            opacity: 1;
+        .card-main-title {
+            font-size: 16px;
+            font-family: "Playfair Display", serif;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
         }
 
-        .card-hover-play {
-            width: 58px;
-            height: 58px;
+        .card-sub-meta {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.3px;
+        }
+
+        .card-client-tag {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Center Play Button on Hover */
+        .card-center-play {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: rgba(255, 43, 0, 0.85);
+            background: var(--accent);
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            box-shadow: 0 0 30px rgba(255, 43, 0, 0.7);
-            transform: scale(0.8);
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 30px var(--accent);
+            z-index: 4;
+            pointer-events: none;
         }
 
-        .card-hover-play i {
+        .card-center-play i {
             margin-left: 3px;
         }
 
-        .work-cinema-slide:hover .card-hover-play {
-            transform: scale(1);
+        .coverflow-card.is-center:hover .card-center-play {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
 
-        .card-hover-label {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-
-        /* Card Bottom */
-        .card-cinema-bottom {
-            margin-top: 18px;
+        /* Controls: Arrows, Progress & Dots */
+        .coverflow-controls {
             position: relative;
-            z-index: 2;
-        }
-
-        .card-meta-tags {
+            z-index: 5;
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .card-meta-tags span {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: var(--accent);
-            text-transform: uppercase;
-            background: rgba(255, 43, 0, 0.08);
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-
-        .card-cinema-title {
-            font-size: 24px;
-            font-family: "Playfair Display", serif;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: #ffffff;
-            line-height: 1.25;
-            transition: color 0.3s ease;
-        }
-
-        .work-cinema-slide:hover .card-cinema-title {
-            color: #ffffff;
-        }
-
-        .card-cinema-client {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.65);
-        }
-
-        .card-cinema-client .client-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .card-cinema-client .client-name {
-            font-weight: 600;
-            color: #fff;
-        }
-
-        /* Ghost Number */
-        .card-ghost-num {
-            position: absolute;
-            right: 12px;
-            bottom: -15px;
-            font-size: 120px;
-            font-weight: 900;
-            font-family: "Montserrat", sans-serif;
-            color: rgba(255, 255, 255, 0.03);
-            line-height: 1;
-            user-select: none;
-            pointer-events: none;
-            z-index: 1;
-            transition: color 0.4s ease;
-        }
-
-        .work-cinema-slide:hover .card-ghost-num {
-            color: rgba(255, 43, 0, 0.08);
-        }
-
-        /* INTRO & OUTRO SLIDES */
-        .intro-slide {
-            flex: 0 0 380px;
-            width: 380px;
-            background: linear-gradient(145deg, rgba(255, 43, 0, 0.12), rgba(12, 12, 16, 0.95));
-            border-color: rgba(255, 43, 0, 0.3);
-            display: flex;
-            align-items: center;
-        }
-
-        .intro-slide-inner {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .intro-cinema-tag {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--accent);
-        }
-
-        .intro-headline {
-            font-size: 34px;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 900;
-            line-height: 1.15;
-            letter-spacing: -0.5px;
-        }
-
-        .intro-headline .text-accent {
-            color: var(--accent);
-            text-shadow: 0 0 25px rgba(255, 43, 0, 0.5);
-        }
-
-        .intro-desc {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.65);
-            line-height: 1.6;
-        }
-
-        .intro-prompt {
-            margin-top: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .intro-arrow {
-            color: var(--accent);
-            font-size: 14px;
-            animation: bounceArrow 1.5s infinite;
-        }
-
-        @keyframes bounceArrow {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(6px); }
-        }
-
-        /* Outro Slide */
-        .outro-slide {
-            flex: 0 0 380px;
-            width: 380px;
-            background: linear-gradient(145deg, rgba(20, 20, 26, 0.95), rgba(255, 43, 0, 0.15));
-            border-color: rgba(255, 43, 0, 0.35);
-            display: flex;
-            align-items: center;
-        }
-
-        .outro-slide-inner {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .outro-cinema-badge {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--accent);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .outro-headline {
-            font-size: 32px;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 900;
-            line-height: 1.15;
-            letter-spacing: -0.5px;
-        }
-
-        .outro-headline .text-accent {
-            color: var(--accent);
-        }
-
-        .outro-desc {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.65);
-            line-height: 1.6;
-        }
-
-        .cinema-cta-btn {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 20px;
             margin-top: 10px;
-            padding: 14px 24px;
+            flex-wrap: wrap;
+        }
+
+        .coverflow-scroll-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 8px 18px;
             border-radius: 999px;
+        }
+
+        .coverflow-counter {
             font-size: 12px;
-            font-weight: 800;
+            font-weight: 700;
             letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: monospace;
+        }
+
+        .coverflow-counter #coverflowCurrentNum {
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .coverflow-progress-bar {
+            width: 110px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .coverflow-progress-fill {
+            height: 100%;
+            width: 11%;
+            background: var(--accent);
+            border-radius: 999px;
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.1s ease-out;
+        }
+
+        .coverflow-scroll-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
         }
 
-        /* Mobile / Touch Responsive */
-        @media (max-width: 991px) {
-            .work-section-cinema {
-                padding: 60px 0 80px;
+        .coverflow-scroll-badge i {
+            color: var(--accent);
+            animation: bounceUpDown 1.6s infinite ease-in-out;
+        }
+
+        @keyframes bounceUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .coverflow-nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .coverflow-nav-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 43, 0, 0.5);
+        }
+
+        .coverflow-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coverflow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .coverflow-dot.active {
+            width: 28px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .coverflow-viewport {
+                height: 460px;
             }
 
-            .work-header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
+            .coverflow-card {
+                width: 270px;
+                height: 390px;
             }
 
-            .work-header-right {
-                width: 100%;
-                align-items: flex-start;
-            }
-
-            .work-filter-pills {
-                overflow-x: auto;
-                max-width: 100%;
-                white-space: nowrap;
-                padding: 4px;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .filter-pill {
-                padding: 6px 12px;
-                font-size: 10px;
-            }
-
-            .work-nav-controls {
-                display: none; /* Mobile uses touch swipe */
-            }
-
-            .work-horizontal-viewport {
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 20px;
-            }
-
-            .work-horizontal-track {
-                padding: 16px 20px 20px 20px;
-                gap: 20px;
-            }
-
-            .work-cinema-slide {
-                flex: 0 0 84vw;
-                width: 84vw;
-                max-width: 360px;
-                scroll-snap-align: center;
-                padding: 18px;
-            }
-
-            .card-media-wrap {
-                height: 260px;
-            }
-
-            .card-cinema-title {
-                font-size: 20px;
-            }
-
-            .intro-slide, .outro-slide {
-                flex: 0 0 84vw;
-                width: 84vw;
-                max-width: 360px;
-                scroll-snap-align: center;
+            .card-main-title {
+                font-size: 18px;
             }
         }
 
@@ -1864,357 +1653,195 @@
     </section>
 
 
-    <!-- ═══════ 6. FEATURED WORK — CINEMATIC HORIZONTAL SHOWCASE ═══════ -->
-    <section class="work-section work-section-cinema" id="workSection">
-        <div class="work-sticky-header">
-            <div class="container work-header-inner">
-                <div class="work-header-left">
-                    <div class="cinema-status-badge">
-                        <span class="cinema-rec-dot"></span>
-                        <span>SELECTED REEL // 2024–2026</span>
-                    </div>
-                    <h2 class="work-cinema-title">Featured Work</h2>
-                    <p class="work-cinema-sub">High-impact brand films, creator visual series &amp; commercial productions engineered to stop the scroll.</p>
+    <!-- ═══════ 6. FEATURED WORK — 3D CINEMA COVERFLOW (NETFLIX / APPLE TV STYLE) ═══════ -->
+    <section class="work-section work-section-coverflow" id="workSection">
+        <div class="coverflow-ambient-glow"></div>
+
+        <div class="container" style="position: relative; z-index: 5;">
+            <!-- Header -->
+            <div class="coverflow-header">
+                <div class="coverflow-tag">
+                    <i class="fa-solid fa-film"></i>
+                    <span>CURATED ARCHIVE // 2024–2026</span>
                 </div>
-                <div class="work-header-right">
-                    <!-- Filter Pills -->
-                    <div class="work-filter-pills" id="workFilterPills">
-                        <button class="filter-pill active" data-filter="all">ALL <span class="count">09</span></button>
-                        <button class="filter-pill" data-filter="brands">BRANDS <span class="count">03</span></button>
-                        <button class="filter-pill" data-filter="influencers">CREATORS <span class="count">03</span></button>
-                        <button class="filter-pill" data-filter="commercials">COMMERCIALS <span class="count">03</span></button>
-                    </div>
-                    <!-- Navigation & Counter Controls -->
-                    <div class="work-nav-controls">
-                        <button class="cinema-nav-btn prev" id="workPrevBtn" aria-label="Previous Slide">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <div class="cinema-counter">
-                            <span class="counter-curr" id="cinemaCounterCurr">01</span>
-                            <span class="counter-slash">/</span>
-                            <span class="counter-total">09</span>
-                        </div>
-                        <button class="cinema-nav-btn next" id="workNextBtn" aria-label="Next Slide">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
+                <h2 class="coverflow-title">Selected <span class="italic-accent">Works</span></h2>
+                <p class="coverflow-sub">A 3D cinematic showcase of bold commercials, high-retention creator visuals, and bespoke brand films.</p>
+                
+                <!-- Category Filter Tabs -->
+                <div class="coverflow-filter-tabs" id="coverflowFilterTabs">
+                    <button class="coverflow-filter-btn active" data-filter="all">ALL (09)</button>
+                    <button class="coverflow-filter-btn" data-filter="brands">BRANDS (03)</button>
+                    <button class="coverflow-filter-btn" data-filter="creators">CREATORS (03)</button>
+                    <button class="coverflow-filter-btn" data-filter="commercials">COMMERCIALS (03)</button>
                 </div>
             </div>
-            <!-- Realtime scrub line -->
-            <div class="work-progress-line-track">
-                <div class="work-progress-line-fill" id="workProgressFill"></div>
+
+            <!-- 3D Coverflow Viewport Stage -->
+            <div class="coverflow-viewport" id="coverflowViewport">
+                <div class="coverflow-stage" id="coverflowStage">
+
+                    <!-- CARD 01: Allstag -->
+                    <div class="coverflow-card" data-index="0" data-category="brands" data-title="Allstag Brand Film">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge blue">AS</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.8</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1200" alt="Allstag Brand Film">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Sahil Bhola • Allstag</span>
+                            <h3 class="card-main-title">Allstag Brand Film</h3>
+                            <span class="card-sub-meta">Direction • Cinematography • 4K Raw • 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 02: Bogsila -->
+                    <div class="coverflow-card" data-index="1" data-category="brands" data-title="Bogsila Campaign">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge red">BG</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.9</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1200" alt="Bogsila Campaign">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Devansh &amp; Vedansh Kaushik • Bogsila</span>
+                            <h3 class="card-main-title">Bogsila Campaign</h3>
+                            <span class="card-sub-meta">Brand Campaign • Sound Design • 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 03: Lalila -->
+                    <div class="coverflow-card" data-index="2" data-category="brands" data-title="Lalila Visual Identity">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge orange">LL</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.5</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200" alt="Lalila Visual Identity">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Varun Yadav (Laila)</span>
+                            <h3 class="card-main-title">Lalila Visual Identity</h3>
+                            <span class="card-sub-meta">Brand Identity • Visual World • 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 04: Aarush Bhola -->
+                    <div class="coverflow-card" data-index="3" data-category="creators" data-title="Aarush Bhola Visual Series">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge purple">AB</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.7</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200" alt="Aarush Bhola Visual Series">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Aarush Bhola • Influencer</span>
+                            <h3 class="card-main-title">Aarush Bhola Visual Series</h3>
+                            <span class="card-sub-meta">Creator Series • Viral Pacing • 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 05: Devansh Kaushik -->
+                    <div class="coverflow-card" data-index="4" data-category="creators" data-title="Devansh Kaushik Stories">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge blue">DK</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.6</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200" alt="Devansh Kaushik Stories">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Devansh Kaushik • Influencer</span>
+                            <h3 class="card-main-title">Devansh Kaushik Stories</h3>
+                            <span class="card-sub-meta">Story Arc • Motion FX • Retention • 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 06: Sumit & Shrishka -->
+                    <div class="coverflow-card" data-index="5" data-category="creators" data-title="Sumit & Shrishka Highlights">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge red">SS</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.8</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" alt="Sumit &amp; Shrishka Highlights">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Sumit &amp; Shrishka • Couple Influencer</span>
+                            <h3 class="card-main-title">Sumit &amp; Shrishka Highlights</h3>
+                            <span class="card-sub-meta">Lifestyle Cinema • Emotional Arc • 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 07: HiVirtus -->
+                    <div class="coverflow-card" data-index="6" data-category="commercials" data-title="HiVirtus Commercial">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge orange">HV</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.9</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=1200" alt="HiVirtus Commercial">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Aditya Lahari • HiVirtus</span>
+                            <h3 class="card-main-title">HiVirtus Commercial</h3>
+                            <span class="card-sub-meta">Product Commercial • High Impact Sound • 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 08: Maggie -->
+                    <div class="coverflow-card" data-index="7" data-category="commercials" data-title="Maggie Commercial">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge red">MG</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.7</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1200" alt="Maggie Commercial">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Manav Sukhija • Maggie</span>
+                            <h3 class="card-main-title">Maggie Commercial</h3>
+                            <span class="card-sub-meta">Food Commercial • 120fps Dynamic Motion • 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 09: Studio Commercial -->
+                    <div class="coverflow-card" data-index="8" data-category="commercials" data-title="Studio Commercial Campaign">
+                        <div class="card-shade"></div>
+                        <div class="card-top-bar">
+                            <span class="card-brand-badge blue">LB</span>
+                            <span class="card-rating-badge"><i class="fa-solid fa-star"></i> 9.8</span>
+                        </div>
+                        <img class="card-poster-img" loading="eager" decoding="async" src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1200" alt="Studio Commercial Campaign">
+                        <div class="card-center-play"><i class="fa-solid fa-play"></i></div>
+                        <div class="card-bottom-info">
+                            <span class="card-client-tag">Commercial Production</span>
+                            <h3 class="card-main-title">Studio Commercial Campaign</h3>
+                            <span class="card-sub-meta">Studio Lighting • VFX Compositing • 2024</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <!-- Horizontal Scroll Viewport -->
-        <div class="work-horizontal-viewport" id="workViewport">
-            <div class="work-horizontal-track" id="workTrack">
-
-                <!-- INTRO MANIFESTO SLIDE -->
-                <div class="work-cinema-slide intro-slide" data-category="intro">
-                    <div class="intro-slide-inner">
-                        <div class="intro-cinema-tag">[ DIRECTOR'S CUT ]</div>
-                        <h3 class="intro-headline">EVERY FRAME<br><span class="text-accent">IS CRAFTED</span><br>FOR RETENTION.</h3>
-                        <p class="intro-desc">We don't shoot generic video. We compose visual experiences that anchor your brand in your audience's memory.</p>
-                        <div class="intro-prompt">
-                            <span class="intro-arrow">➔</span>
-                            <span>SCROLL OR DRAG TO EXPLORE</span>
-                        </div>
+            <!-- Controls: Arrows, Progress & Scroll Indicator -->
+            <div class="coverflow-controls">
+                <button class="coverflow-nav-btn" id="coverflowPrev" aria-label="Previous Project"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="coverflow-scroll-status">
+                    <span class="coverflow-counter"><span id="coverflowCurrentNum">01</span> / <span id="coverflowTotalNum">09</span></span>
+                    <div class="coverflow-progress-bar">
+                        <div class="coverflow-progress-fill" id="coverflowProgressFill"></div>
                     </div>
+                    <span class="coverflow-scroll-badge"><i class="fa-solid fa-arrows-up-down"></i> SCROLL TO EXPLORE</span>
                 </div>
 
-                <!-- CARD 1: Allstag Brand Film (Brands) -->
-                <div class="work-cinema-slide work-card" data-category="brands" data-index="1">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 01</span>
-                            <span class="card-category-badge badge-brand">BRAND FILM</span>
-                            <span class="card-fps-meta">4K PRORES</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000" alt="Allstag Brand Film">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>DIRECTION</span>
-                                <span>CINEMATOGRAPHY</span>
-                                <span>COLOR GRADE</span>
-                            </div>
-                            <h3 class="card-cinema-title">Allstag Brand Film</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Client</span>
-                                <span class="client-name">Sahil Bhola • Allstag</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">01</div>
-                    </div>
-                </div>
-
-                <!-- CARD 2: Bogsila Campaign (Brands) -->
-                <div class="work-cinema-slide work-card" data-category="brands" data-index="2">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 02</span>
-                            <span class="card-category-badge badge-brand">BRAND CAMPAIGN</span>
-                            <span class="card-fps-meta">CINEMA RAW</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1000" alt="Bogsila Campaign">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>CAMPAIGN</span>
-                                <span>SOUND DESIGN</span>
-                                <span>POST FX</span>
-                            </div>
-                            <h3 class="card-cinema-title">Bogsila Campaign</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Client</span>
-                                <span class="client-name">Devansh &amp; Vedansh Kaushik • Bogsila</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">02</div>
-                    </div>
-                </div>
-
-                <!-- CARD 3: Lalila Visual Identity (Brands) -->
-                <div class="work-cinema-slide work-card" data-category="brands" data-index="3">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 03</span>
-                            <span class="card-category-badge badge-brand">VISUAL IDENTITY</span>
-                            <span class="card-fps-meta">4K MASTER</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000" alt="Lalila Visual Identity">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>AESTHETICS</span>
-                                <span>BRAND IDENTITY</span>
-                                <span>EDITING</span>
-                            </div>
-                            <h3 class="card-cinema-title">Lalila Visual Identity</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Client</span>
-                                <span class="client-name">Varun Yadav (Laila) • Influencer</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">03</div>
-                    </div>
-                </div>
-
-                <!-- CARD 4: Aarush Bhola Visual Series (Influencers) -->
-                <div class="work-cinema-slide work-card" data-category="influencers" data-index="4">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 04</span>
-                            <span class="card-category-badge badge-creator">CREATOR SERIES</span>
-                            <span class="card-fps-meta">VERTICAL 4K</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800" alt="Aarush Bhola Visual Series">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>VIRAL REELS</span>
-                                <span>COLOR GRADING</span>
-                                <span>PACING</span>
-                            </div>
-                            <h3 class="card-cinema-title">Aarush Bhola Visual Series</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Creator</span>
-                                <span class="client-name">Aarush Bhola • Influencer</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">04</div>
-                    </div>
-                </div>
-
-                <!-- CARD 5: Devansh Kaushik Stories (Influencers) -->
-                <div class="work-cinema-slide work-card" data-category="influencers" data-index="5">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 05</span>
-                            <span class="card-category-badge badge-creator">STORY EDITING</span>
-                            <span class="card-fps-meta">HIGH RETENTION</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Devansh Kaushik Stories">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>STORYTELLING</span>
-                                <span>SOUND SCAPING</span>
-                                <span>GRAPHICS</span>
-                            </div>
-                            <h3 class="card-cinema-title">Devansh Kaushik Stories</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Creator</span>
-                                <span class="client-name">Devansh Kaushik • Influencer</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">05</div>
-                    </div>
-                </div>
-
-                <!-- CARD 6: Sumit & Shrishka Highlights (Influencers) -->
-                <div class="work-cinema-slide work-card" data-category="influencers" data-index="6">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 06</span>
-                            <span class="card-category-badge badge-creator">COUPLE HIGHLIGHTS</span>
-                            <span class="card-fps-meta">EMOTION / 4K</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800" alt="Sumit &amp; Shrishka Highlights">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>LIFESTYLE</span>
-                                <span>CINEMATOGRAPHY</span>
-                                <span>RHYTHM</span>
-                            </div>
-                            <h3 class="card-cinema-title">Sumit &amp; Shrishka Highlights</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Creator</span>
-                                <span class="client-name">Sumit &amp; Shrishka • Couple Influencer</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">06</div>
-                    </div>
-                </div>
-
-                <!-- CARD 7: HiVirtus Commercial (Commercials) -->
-                <div class="work-cinema-slide work-card" data-category="commercials" data-index="7">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 07</span>
-                            <span class="card-category-badge badge-comm">COMMERCIAL FILM</span>
-                            <span class="card-fps-meta">CINEMA GLASS</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=1000" alt="HiVirtus Commercial">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>COMMERCIAL</span>
-                                <span>PRODUCT LIGHTING</span>
-                                <span>GRADE</span>
-                            </div>
-                            <h3 class="card-cinema-title">HiVirtus Commercial</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Client</span>
-                                <span class="client-name">Aditya Lahari • HiVirtus</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">07</div>
-                    </div>
-                </div>
-
-                <!-- CARD 8: Maggie Commercial (Commercials) -->
-                <div class="work-cinema-slide work-card" data-category="commercials" data-index="8">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 08</span>
-                            <span class="card-category-badge badge-comm">COMMERCIAL AD</span>
-                            <span class="card-fps-meta">HIGH SPEED</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000" alt="Maggie Commercial">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>FOOD &amp; BEV</span>
-                                <span>DYNAMIC MOTION</span>
-                                <span>AUDIO FX</span>
-                            </div>
-                            <h3 class="card-cinema-title">Maggie Commercial</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Client</span>
-                                <span class="client-name">Manav Sukhija • Maggie</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">08</div>
-                    </div>
-                </div>
-
-                <!-- CARD 9: Studio Commercial Campaign (Commercials) -->
-                <div class="work-cinema-slide work-card" data-category="commercials" data-index="9">
-                    <div class="slide-card-inner">
-                        <div class="card-cinema-top">
-                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 09</span>
-                            <span class="card-category-badge badge-comm">STUDIO CAMPAIGN</span>
-                            <span class="card-fps-meta">FULL PRODUCTION</span>
-                        </div>
-                        <div class="card-media-wrap">
-                            <img loading="lazy" src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000" alt="Studio Commercial Campaign">
-                            <div class="card-media-overlay">
-                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
-                                <span class="card-hover-label">VIEW PROJECT</span>
-                            </div>
-                        </div>
-                        <div class="card-cinema-bottom">
-                            <div class="card-meta-tags">
-                                <span>STUDIO LIGHTING</span>
-                                <span>VFX COMPOSITING</span>
-                                <span>MASTER</span>
-                            </div>
-                            <h3 class="card-cinema-title">Studio Commercial Campaign</h3>
-                            <div class="card-cinema-client">
-                                <span class="client-label">Production</span>
-                                <span class="client-name">Commercial Production</span>
-                            </div>
-                        </div>
-                        <div class="card-ghost-num">09</div>
-                    </div>
-                </div>
-
-                <!-- OUTRO CTA SLIDE -->
-                <div class="work-cinema-slide outro-slide" data-category="outro">
-                    <div class="outro-slide-inner">
-                        <div class="outro-cinema-badge"><i class="fa-solid fa-bolt"></i> READY FOR NEXT LEVEL?</div>
-                        <h3 class="outro-headline">YOUR PROJECT<br>DESERVES<br><span class="text-accent">THIS IMPACT.</span></h3>
-                        <p class="outro-desc">Let’s collaborate to produce visual assets that dominate feeds, build brand authority, and convert viewers.</p>
-                        <a href="#contactSection" class="btn btn-primary cinema-cta-btn">
-                            <span>START YOUR PROJECT</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
+                <div class="coverflow-dots" id="coverflowDots"></div>
+                
+                <button class="coverflow-nav-btn" id="coverflowNext" aria-label="Next Project"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -2581,141 +2208,440 @@
                 });
             }
 
-            // ───── WORK CARDS (CINEMATIC HORIZONTAL SHOWCASE) ─────
+            // ───── WORK SECTION: 1-SCROLL SNAP 3D CINEMA COVERFLOW (NETFLIX / APPLE TV STYLE) ─────
             const workSection = document.getElementById('workSection');
-            const workTrack = document.getElementById('workTrack');
-            const workViewport = document.getElementById('workViewport');
-            const workProgressFill = document.getElementById('workProgressFill');
-            const counterCurr = document.getElementById('cinemaCounterCurr');
-            const prevBtn = document.getElementById('workPrevBtn');
-            const nextBtn = document.getElementById('workNextBtn');
-            const filterPills = document.querySelectorAll('.filter-pill');
-            const slides = document.querySelectorAll('.work-cinema-slide');
+            const coverflowStage = document.getElementById('coverflowStage');
+            const allCoverflowCards = Array.from(document.querySelectorAll('.coverflow-card'));
+            const prevBtn = document.getElementById('coverflowPrev');
+            const nextBtn = document.getElementById('coverflowNext');
+            const dotsContainer = document.getElementById('coverflowDots');
+            const filterBtns = document.querySelectorAll('.coverflow-filter-btn');
+            const currentNumEl = document.getElementById('coverflowCurrentNum');
+            const totalNumEl = document.getElementById('coverflowTotalNum');
+            const progressFillEl = document.getElementById('coverflowProgressFill');
 
-            if (workSection && workTrack) {
-                let horizontalScrollTrigger = null;
+            if (workSection && allCoverflowCards.length > 0) {
+                let filteredCards = [...allCoverflowCards];
+                let activeIndex = 0;
+                let virtualIndex = 0;
+                let cardTween = null;
+                let isTransitioning = false;
+                let wheelCooldown = false;
+                let wheelUnlockTimer = null;
+                let coverflowTrigger = null;
 
-                const setupHorizontalScroll = () => {
-                    if (horizontalScrollTrigger) {
-                        horizontalScrollTrigger.kill();
-                        horizontalScrollTrigger = null;
-                        gsap.set(workTrack, { clearProps: 'all' });
+                // Ensure all cards have .card-shade element
+                allCoverflowCards.forEach(card => {
+                    if (!card.querySelector('.card-shade')) {
+                        const shade = document.createElement('div');
+                        shade.className = 'card-shade';
+                        card.insertBefore(shade, card.firstChild);
                     }
-
-                    const isDesktop = window.innerWidth >= 992 && !useLightAnimations;
-
-                    if (isDesktop) {
-                        const getScrollDistance = () => workTrack.scrollWidth - window.innerWidth + (window.innerWidth * 0.08);
-
-                        const tween = gsap.to(workTrack, {
-                            x: () => -getScrollDistance(),
-                            ease: 'none',
-                            scrollTrigger: {
-                                trigger: workSection,
-                                start: 'top top',
-                                end: () => `+=${getScrollDistance() + 600}`,
-                                pin: true,
-                                scrub: 1,
-                                invalidateOnRefresh: true,
-                                onUpdate: (self) => {
-                                    const progress = self.progress;
-                                    if (workProgressFill) {
-                                        workProgressFill.style.width = Math.min(100, Math.max(10, progress * 100)) + '%';
-                                    }
-                                    const workCards = Array.from(document.querySelectorAll('.work-cinema-slide[data-index]'));
-                                    if (workCards.length > 0) {
-                                        const idx = Math.min(workCards.length, Math.max(1, Math.ceil(progress * workCards.length)));
-                                        if (counterCurr) {
-                                            counterCurr.textContent = idx.toString().padStart(2, '0');
-                                        }
-                                    }
-                                }
-                            }
-                        });
-
-                        horizontalScrollTrigger = tween.scrollTrigger;
-
-                        if (prevBtn && nextBtn) {
-                            prevBtn.onclick = () => {
-                                if (!horizontalScrollTrigger) return;
-                                const progress = Math.max(0, horizontalScrollTrigger.progress - 0.16);
-                                const scrollPos = horizontalScrollTrigger.start + progress * (horizontalScrollTrigger.end - horizontalScrollTrigger.start);
-                                window.scrollTo({ top: scrollPos, behavior: 'smooth' });
-                            };
-
-                            nextBtn.onclick = () => {
-                                if (!horizontalScrollTrigger) return;
-                                const progress = Math.min(1, horizontalScrollTrigger.progress + 0.16);
-                                const scrollPos = horizontalScrollTrigger.start + progress * (horizontalScrollTrigger.end - horizontalScrollTrigger.start);
-                                window.scrollTo({ top: scrollPos, behavior: 'smooth' });
-                            };
-                        }
-                    } else {
-                        // Mobile / Touch Scroll Tracking
-                        if (workViewport) {
-                            workViewport.onscroll = () => {
-                                const maxScroll = workViewport.scrollWidth - workViewport.clientWidth;
-                                if (maxScroll > 0) {
-                                    const progress = workViewport.scrollLeft / maxScroll;
-                                    if (workProgressFill) {
-                                        workProgressFill.style.width = Math.min(100, Math.max(10, progress * 100)) + '%';
-                                    }
-                                    const workCards = Array.from(document.querySelectorAll('.work-cinema-slide[data-index]'));
-                                    if (workCards.length > 0) {
-                                        const idx = Math.min(workCards.length, Math.max(1, Math.ceil(progress * workCards.length)));
-                                        if (counterCurr) {
-                                            counterCurr.textContent = idx.toString().padStart(2, '0');
-                                        }
-                                    }
-                                }
-                            };
-                        }
-                    }
-                };
-
-                setupHorizontalScroll();
-                window.addEventListener('resize', () => {
-                    setupHorizontalScroll();
-                    ScrollTrigger.refresh();
                 });
 
-                // Filter Pill Handlers
-                filterPills.forEach(pill => {
-                    pill.addEventListener('click', () => {
-                        filterPills.forEach(p => p.classList.remove('active'));
-                        pill.classList.add('active');
-                        const filter = pill.dataset.filter;
+                // Build Dots Navigation
+                function buildDots() {
+                    if (!dotsContainer) return;
+                    dotsContainer.innerHTML = '';
+                    filteredCards.forEach((_, idx) => {
+                        const dot = document.createElement('div');
+                        dot.className = `coverflow-dot ${idx === activeIndex ? 'active' : ''}`;
+                        dot.setAttribute('aria-label', `Go to project ${idx + 1}`);
+                        dot.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            stepToCard(idx);
+                        });
+                        dotsContainer.appendChild(dot);
+                    });
 
-                        slides.forEach(slide => {
-                            const cat = slide.dataset.category;
-                            if (cat === 'intro' || cat === 'outro') {
-                                slide.classList.remove('dimmed');
-                                return;
-                            }
-                            if (filter === 'all' || cat === filter) {
-                                slide.classList.remove('dimmed');
+                    if (totalNumEl) {
+                        totalNumEl.textContent = String(filteredCards.length).padStart(2, '0');
+                    }
+                }
+
+                // Smooth Continuous 3D Projection onto Perspective Arc
+                // Uses 100% GPU Composited translate3d, rotateY, scale, opacity, and shade opacity (0 filter: brightness!)
+                function updateCoverflowFloat(vIdx) {
+                    const total = filteredCards.length;
+                    if (total === 0) return;
+
+                    vIdx = Math.max(0, Math.min(total - 1, vIdx));
+                    virtualIndex = vIdx;
+
+                    const isMobile = window.innerWidth < 768;
+
+                    // Hide cards from other categories
+                    allCoverflowCards.forEach(card => {
+                        if (!filteredCards.includes(card)) {
+                            card.style.opacity = '0';
+                            card.style.pointerEvents = 'none';
+                            card.style.transform = 'translate3d(0,0,-400px) scale(0.1)';
+                            card.classList.remove('is-center');
+                        }
+                    });
+
+                    filteredCards.forEach((card, idx) => {
+                        const offset = idx - vIdx;
+                        const absOffset = Math.abs(offset);
+                        const sign = Math.sign(offset);
+
+                        let x = 0;
+                        let z = 0;
+                        let rotY = 0;
+                        let scale = 1;
+                        let opacity = 1;
+                        let dim = 0;
+                        let zIndex = 10;
+                        let pointer = 'none';
+
+                        if (isMobile) {
+                            if (absOffset <= 1) {
+                                x = offset * 165;
+                                z = 40 - absOffset * 40;
+                                rotY = -offset * 20;
+                                scale = 1.05 - absOffset * 0.2;
+                                opacity = 1 - absOffset * 0.35;
+                                dim = absOffset * 0.45;
+                                zIndex = Math.round(30 - absOffset * 10);
+                                pointer = absOffset < 0.6 ? 'auto' : 'none';
                             } else {
-                                slide.classList.add('dimmed');
+                                x = sign * (165 + (absOffset - 1) * 75);
+                                z = -Math.min(100, (absOffset - 1) * 60);
+                                rotY = -sign * 24;
+                                scale = Math.max(0.45, 0.85 - (absOffset - 1) * 0.2);
+                                opacity = Math.max(0, 0.65 - (absOffset - 1) * 0.7);
+                                dim = 0.65;
+                                zIndex = 5;
+                                pointer = 'none';
+                            }
+                        } else {
+                            // Desktop / Laptop Proportions
+                            if (absOffset <= 1) {
+                                x = offset * 255;
+                                z = 120 - absOffset * 115;
+                                rotY = -offset * 25;
+                                scale = 1.09 - absOffset * 0.19;
+                                opacity = 1 - absOffset * 0.2;
+                                dim = absOffset * 0.32;
+                                zIndex = Math.round(40 - absOffset * 10);
+                                pointer = absOffset < 0.7 ? 'auto' : 'none';
+                            } else if (absOffset <= 2) {
+                                const t = absOffset - 1;
+                                x = sign * (255 + t * 205);
+                                z = 5 - t * 85;
+                                rotY = -sign * (25 + t * 12);
+                                scale = 0.90 - t * 0.16;
+                                opacity = 0.8 - t * 0.38;
+                                dim = 0.32 + t * 0.30;
+                                zIndex = Math.round(30 - t * 15);
+                                pointer = 'auto';
+                            } else if (absOffset <= 3) {
+                                const t = absOffset - 2;
+                                x = sign * (460 + t * 170);
+                                z = -80 - t * 70;
+                                rotY = -sign * (37 + t * 6);
+                                scale = 0.74 - t * 0.14;
+                                opacity = Math.max(0, 0.42 - t * 0.35);
+                                dim = Math.min(0.85, 0.62 + t * 0.18);
+                                zIndex = 8;
+                                pointer = 'none';
+                            } else {
+                                const t = absOffset - 3;
+                                x = sign * (630 + t * 90);
+                                z = -150 - t * 70;
+                                rotY = -sign * 43;
+                                scale = Math.max(0.4, 0.60 - t * 0.12);
+                                opacity = 0;
+                                dim = 0.85;
+                                zIndex = 2;
+                                pointer = 'none';
+                            }
+                        }
+
+                        card.style.transform = `translate3d(${x.toFixed(1)}px, 0px, ${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+                        card.style.opacity = opacity.toFixed(3);
+                        card.style.zIndex = zIndex;
+                        card.style.pointerEvents = pointer;
+
+                        // Pure GPU shade overlay (replaces filter: brightness to prevent GPU redraw flickers)
+                        const shade = card.querySelector('.card-shade');
+                        if (shade) {
+                            shade.style.opacity = dim.toFixed(3);
+                        }
+
+                        if (absOffset < 0.5) {
+                            card.classList.add('is-center');
+                        } else {
+                            card.classList.remove('is-center');
+                        }
+
+                        card.onclick = () => {
+                            if (absOffset >= 0.5) {
+                                stepToCard(idx);
+                            }
+                        };
+                    });
+
+                    // Update UI Counters and Progress
+                    const rounded = Math.round(vIdx);
+                    if (currentNumEl) {
+                        currentNumEl.textContent = String(Math.min(total, rounded + 1)).padStart(2, '0');
+                    }
+                    if (progressFillEl && total > 1) {
+                        const pct = (vIdx / (total - 1)) * 100;
+                        progressFillEl.style.width = Math.max(10, Math.min(100, pct)) + '%';
+                    }
+
+                    // Update Dots
+                    const dots = dotsContainer?.querySelectorAll('.coverflow-dot');
+                    dots?.forEach((d, i) => {
+                        d.classList.toggle('active', i === rounded);
+                    });
+                }
+
+                // Step to specific card cleanly without jitter, jumps, or window scrollTo glitches
+                function stepToCard(targetIdx, smooth = true) {
+                    targetIdx = Math.max(0, Math.min(filteredCards.length - 1, targetIdx));
+                    if (targetIdx === activeIndex && Math.abs(virtualIndex - targetIdx) < 0.005) {
+                        isTransitioning = false;
+                        return;
+                    }
+
+                    activeIndex = targetIdx;
+
+                    if (cardTween) {
+                        cardTween.kill();
+                    }
+
+                    if (smooth) {
+                        const startVal = virtualIndex;
+                        const dist = Math.abs(targetIdx - startVal);
+                        const duration = Math.min(0.48, Math.max(0.36, dist * 0.38));
+
+                        cardTween = gsap.to({ val: startVal }, {
+                            val: targetIdx,
+                            duration: duration,
+                            ease: 'power2.out',
+                            onUpdate: function() {
+                                updateCoverflowFloat(this.targets()[0].val);
+                            },
+                            onComplete: () => {
+                                virtualIndex = targetIdx;
+                                updateCoverflowFloat(targetIdx);
+                                cardTween = null;
+                                isTransitioning = false;
                             }
                         });
+                    } else {
+                        virtualIndex = targetIdx;
+                        updateCoverflowFloat(targetIdx);
+                        isTransitioning = false;
+                    }
+                }
 
-                        // Scroll into view of the first item of that category
-                        if (filter !== 'all') {
-                            const firstMatch = document.querySelector(`.work-cinema-slide[data-category="${filter}"]`);
-                            if (firstMatch) {
-                                if (window.innerWidth < 992 && workViewport) {
-                                    workViewport.scrollTo({ left: firstMatch.offsetLeft - 24, behavior: 'smooth' });
-                                } else if (horizontalScrollTrigger) {
-                                    const trackLeft = firstMatch.offsetLeft;
-                                    const totalDist = workTrack.scrollWidth - window.innerWidth;
-                                    const ratio = Math.min(1, Math.max(0, trackLeft / totalDist));
-                                    const scrollPos = horizontalScrollTrigger.start + ratio * (horizontalScrollTrigger.end - horizontalScrollTrigger.start);
-                                    window.scrollTo({ top: scrollPos, behavior: 'smooth' });
-                                }
+                let isExiting = false;
+
+                // Initialize ScrollTrigger Pin with clean bounds and state restoration
+                function initScrollTrigger() {
+                    if (coverflowTrigger) {
+                        coverflowTrigger.kill();
+                    }
+
+                    if (typeof ScrollTrigger !== 'undefined') {
+                        const pinDistance = 700;
+
+                        coverflowTrigger = ScrollTrigger.create({
+                            trigger: '#workSection',
+                            start: 'top top',
+                            end: () => `+=${pinDistance}px`,
+                            pin: true,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true,
+                            onEnter: () => {
+                                isExiting = false;
+                                activeIndex = 0;
+                                virtualIndex = 0;
+                                updateCoverflowFloat(0);
+                            },
+                            onEnterBack: () => {
+                                isExiting = false;
+                                activeIndex = filteredCards.length - 1;
+                                virtualIndex = activeIndex;
+                                updateCoverflowFloat(activeIndex);
+                            },
+                            onLeaveBack: () => {
+                                isExiting = false;
+                                activeIndex = 0;
+                                virtualIndex = 0;
+                                updateCoverflowFloat(0);
+                            },
+                            onLeave: () => {
+                                isExiting = false;
+                                activeIndex = filteredCards.length - 1;
+                                virtualIndex = filteredCards.length - 1;
+                                updateCoverflowFloat(activeIndex);
+                            }
+                        });
+                    }
+                }
+
+                // 1-Wheel-Scroll = 1-Card Snap Listener with Precision Inertia Isolation & Fluid Exit
+                window.addEventListener('wheel', (e) => {
+                    if (!coverflowTrigger) return;
+
+                    // If currently smoothly scrolling out of the section, allow browser to complete scroll freely
+                    if (isExiting) return;
+
+                    const scrollY = window.scrollY;
+                    const inPinnedZone = scrollY >= coverflowTrigger.start - 10 && scrollY <= coverflowTrigger.end + 10;
+
+                    if (!inPinnedZone) return;
+
+                    // Boundary Exit 1: At LAST card and user scrolls DOWN -> smooth scroll to #philosophySection
+                    if (activeIndex === filteredCards.length - 1 && e.deltaY > 10) {
+                        isExiting = true;
+                        const nextSec = document.getElementById('philosophySection');
+                        if (nextSec) {
+                            nextSec.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        setTimeout(() => { isExiting = false; }, 1000);
+                        return; // Allow natural scroll without preventDefault
+                    }
+
+                    // Boundary Exit 2: At FIRST card and user scrolls UP -> smooth scroll to previous section
+                    if (activeIndex === 0 && e.deltaY < -10) {
+                        isExiting = true;
+                        const prevSec = document.getElementById('servicesSection') || document.getElementById('reelSection');
+                        if (prevSec) {
+                            prevSec.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        setTimeout(() => { isExiting = false; }, 1000);
+                        return; // Allow natural scroll without preventDefault
+                    }
+
+                    // Inside coverflow stepping cards: prevent default window scroll so viewport stays rock-solid
+                    e.preventDefault();
+
+                    if (isTransitioning || wheelCooldown) return;
+
+                    // Filter out resting-finger micro vibrations
+                    if (Math.abs(e.deltaY) < 16) return;
+
+                    if (e.deltaY > 0) {
+                        // Scroll DOWN: Advance to next card
+                        if (activeIndex < filteredCards.length - 1) {
+                            isTransitioning = true;
+                            wheelCooldown = true;
+                            stepToCard(activeIndex + 1);
+                            clearTimeout(wheelUnlockTimer);
+                            wheelUnlockTimer = setTimeout(() => {
+                                isTransitioning = false;
+                                wheelCooldown = false;
+                            }, 420);
+                        }
+                    } else if (e.deltaY < 0) {
+                        // Scroll UP: Advance to previous card
+                        if (activeIndex > 0) {
+                            isTransitioning = true;
+                            wheelCooldown = true;
+                            stepToCard(activeIndex - 1);
+                            clearTimeout(wheelUnlockTimer);
+                            wheelUnlockTimer = setTimeout(() => {
+                                isTransitioning = false;
+                                wheelCooldown = false;
+                            }, 420);
+                        }
+                    }
+                }, { passive: false });
+
+                // Arrow Buttons
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        stepToCard(activeIndex - 1);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        stepToCard(activeIndex + 1);
+                    });
+                }
+
+                // Category Filter Handling
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const filter = btn.dataset.filter;
+
+                        if (filter === 'all') {
+                            filteredCards = [...allCoverflowCards];
+                        } else {
+                            filteredCards = allCoverflowCards.filter(c => c.dataset.category === filter);
+                        }
+
+                        activeIndex = 0;
+                        virtualIndex = 0;
+                        buildDots();
+                        updateCoverflowFloat(0);
+                        initScrollTrigger();
+                        ScrollTrigger.refresh();
+                    });
+                });
+
+                // Touch Swipe Support (Mobile)
+                const stage = document.getElementById('coverflowViewport') || coverflowStage;
+                if (stage) {
+                    let startX = 0;
+                    let startY = 0;
+
+                    stage.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    }, { passive: true });
+
+                    stage.addEventListener('touchend', (e) => {
+                        const deltaX = e.changedTouches[0].clientX - startX;
+                        const deltaY = e.changedTouches[0].clientY - startY;
+
+                        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+                            if (deltaX < 0) {
+                                stepToCard(activeIndex + 1);
+                            } else {
+                                stepToCard(activeIndex - 1);
                             }
                         }
                     });
+                }
+
+                // Keyboard Left / Right Support
+                window.addEventListener('keydown', (e) => {
+                    const rect = workSection.getBoundingClientRect();
+                    const inView = Math.abs(rect.top) <= 100;
+                    if (!inView) return;
+
+                    if (e.key === 'ArrowLeft') {
+                        stepToCard(activeIndex - 1);
+                    } else if (e.key === 'ArrowRight') {
+                        stepToCard(activeIndex + 1);
+                    }
                 });
+
+                // Window Resize
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        initScrollTrigger();
+                        updateCoverflowFloat(activeIndex);
+                        ScrollTrigger.refresh();
+                    }, 100);
+                });
+
+                // Initialize
+                buildDots();
+                updateCoverflowFloat(0);
+                initScrollTrigger();
             }
 
             // ───── STATS COUNTER ─────
@@ -2894,7 +2820,7 @@
                 }
                 animateCursor();
 
-                document.querySelectorAll('a, button, .work-card, .testim-arrow, .testim-dot, .icon-service, .service-item, .showcase-play').forEach(el => {
+                document.querySelectorAll('a, button, .work-card, .coverflow-card, .coverflow-nav-btn, .coverflow-dot, .coverflow-filter-btn, .testim-arrow, .testim-dot, .icon-service, .service-item, .showcase-play').forEach(el => {
                     el.addEventListener('mouseenter', () => { dot?.classList.add('hovering'); ring?.classList.add('hovering'); });
                     el.addEventListener('mouseleave', () => { dot?.classList.remove('hovering'); ring?.classList.remove('hovering'); });
                 });
