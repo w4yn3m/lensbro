@@ -474,112 +474,664 @@
         }
 
 
-        /* ---------- FEATURED WORK ---------- */
-        .work-section {
-            padding: 120px 0 160px;
-            background: var(--black);
+        /* ---------- FEATURED WORK — CINEMATIC HORIZONTAL SHOWCASE ---------- */
+        .work-section-cinema {
+            position: relative;
+            background: #030305;
+            padding: 80px 0 100px;
+            overflow: hidden;
         }
 
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        .work-section-cinema::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 43, 0, 0.08) 0%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        @media (min-width: 992px) {
-            .work-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .work-sticky-header {
+            position: relative;
+            z-index: 5;
+            margin-bottom: 24px;
         }
 
-        .work-category-row {
-            margin-top: 70px;
-        }
-
-        .work-category-row:first-of-type {
-            margin-top: 50px;
-        }
-
-        .work-category-header {
+        .work-header-inner {
             display: flex;
-            align-items: baseline;
+            align-items: flex-end;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 16px;
-            margin-bottom: 32px;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
-        .work-category-title-wrap {
+        .work-header-left {
+            max-width: 620px;
+        }
+
+        .cinema-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 43, 0, 0.1);
+            border: 1px solid rgba(255, 43, 0, 0.25);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .cinema-rec-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
+            animation: cinemaPulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes cinemaPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.75); }
+        }
+
+        .work-cinema-title {
+            font-size: clamp(38px, 5.5vw, 68px);
+            font-family: "Playfair Display", serif;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.65) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .work-cinema-sub {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 520px;
+            font-weight: 400;
+        }
+
+        .work-header-right {
             display: flex;
-            align-items: baseline;
+            flex-direction: column;
+            align-items: flex-end;
             gap: 16px;
         }
 
-        .work-category-num {
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
+        .work-filter-pills {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
         }
 
-        .work-category-title {
-            font-size: clamp(24px, 3.5vw, 36px);
-            font-family: "Playfair Display", serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .work-category-count {
-            font-size: 12px;
-            color: var(--muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .work-card {
+        .filter-pill {
             background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             cursor: pointer;
-            position: relative;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
         }
 
-        .work-card .work-img {
+        .filter-pill .count {
+            font-size: 9px;
+            opacity: 0.6;
+            font-weight: 800;
+        }
+
+        .filter-pill:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .filter-pill.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(255, 43, 0, 0.4);
+        }
+
+        .filter-pill.active .count {
+            opacity: 0.9;
+        }
+
+        .work-nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cinema-nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .cinema-nav-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(255, 43, 0, 0.4);
+        }
+
+        .cinema-counter {
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .counter-curr {
+            color: var(--accent);
+        }
+
+        .counter-slash {
+            color: rgba(255, 255, 255, 0.25);
+            margin: 0 2px;
+        }
+
+        .counter-total {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .work-progress-line-track {
             width: 100%;
-            aspect-ratio: 4/5;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 24px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.06);
+            margin-top: 30px;
             position: relative;
+            overflow: hidden;
         }
 
-        .work-card .work-img img {
+        .work-progress-line-fill {
+            height: 100%;
+            width: 10%;
+            background: linear-gradient(90deg, var(--accent), #ff7744);
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.15s ease-out;
+        }
+
+        /* Viewport & Horizontal Track */
+        .work-horizontal-viewport {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .work-horizontal-track {
+            display: flex;
+            gap: 28px;
+            padding: 24px 5vw 40px 5vw;
+            width: max-content;
+            will-change: transform;
+        }
+
+        /* Slide Base */
+        .work-cinema-slide {
+            flex: 0 0 420px;
+            width: 420px;
+            border-radius: 20px;
+            background: linear-gradient(165deg, rgba(22, 22, 28, 0.8), rgba(9, 9, 13, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            box-sizing: border-box;
+        }
+
+        .work-cinema-slide:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 43, 0, 0.5);
+            box-shadow: 0 24px 60px -15px rgba(255, 43, 0, 0.35);
+        }
+
+        .work-cinema-slide.dimmed {
+            opacity: 0.18;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        /* Card Top */
+        .card-cinema-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .card-scene-tag {
+            color: rgba(255, 255, 255, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-scene-tag i {
+            color: var(--accent);
+            font-size: 10px;
+        }
+
+        .card-category-badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-brand {
+            background: rgba(255, 43, 0, 0.15);
+            color: #ff5733;
+            border: 1px solid rgba(255, 43, 0, 0.3);
+        }
+
+        .badge-creator {
+            background: rgba(234, 119, 255, 0.15);
+            color: #ea77ff;
+            border: 1px solid rgba(234, 119, 255, 0.3);
+        }
+
+        .badge-comm {
+            background: rgba(0, 196, 204, 0.15);
+            color: #00e5ff;
+            border: 1px solid rgba(0, 196, 204, 0.3);
+        }
+
+        .card-fps-meta {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        /* Card Media Wrap */
+        .card-media-wrap {
+            position: relative;
+            width: 100%;
+            height: 310px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .card-media-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .work-card:hover .work-img img {
-            transform: scale(1.05);
+        .work-cinema-slide:hover .card-media-wrap img {
+            transform: scale(1.08);
         }
 
-        .work-card .card-tag {
-            font-size: 12px;
-            font-weight: 700;
+        .card-media-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .work-cinema-slide:hover .card-media-overlay {
+            opacity: 1;
+        }
+
+        .card-hover-play {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(255, 43, 0, 0.85);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 0 30px rgba(255, 43, 0, 0.7);
+            transform: scale(0.8);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-hover-play i {
+            margin-left: 3px;
+        }
+
+        .work-cinema-slide:hover .card-hover-play {
+            transform: scale(1);
+        }
+
+        .card-hover-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        /* Card Bottom */
+        .card-cinema-bottom {
+            margin-top: 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-meta-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .card-meta-tags span {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            background: rgba(255, 43, 0, 0.08);
+            padding: 3px 8px;
+            border-radius: 4px;
         }
 
-        .work-card .card-title {
-            display: block;
-            font-size: 28px;
-            font-weight: 900;
-            margin-top: 8px;
+        .card-cinema-title {
+            font-size: 24px;
             font-family: "Playfair Display", serif;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #ffffff;
+            line-height: 1.25;
+            transition: color 0.3s ease;
+        }
+
+        .work-cinema-slide:hover .card-cinema-title {
+            color: #ffffff;
+        }
+
+        .card-cinema-client {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .card-cinema-client .client-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .card-cinema-client .client-name {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* Ghost Number */
+        .card-ghost-num {
+            position: absolute;
+            right: 12px;
+            bottom: -15px;
+            font-size: 120px;
+            font-weight: 900;
+            font-family: "Montserrat", sans-serif;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            transition: color 0.4s ease;
+        }
+
+        .work-cinema-slide:hover .card-ghost-num {
+            color: rgba(255, 43, 0, 0.08);
+        }
+
+        /* INTRO & OUTRO SLIDES */
+        .intro-slide {
+            flex: 0 0 380px;
+            width: 380px;
+            background: linear-gradient(145deg, rgba(255, 43, 0, 0.12), rgba(12, 12, 16, 0.95));
+            border-color: rgba(255, 43, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-slide-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .intro-cinema-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        .intro-headline {
+            font-size: 34px;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-headline .text-accent {
+            color: var(--accent);
+            text-shadow: 0 0 25px rgba(255, 43, 0, 0.5);
+        }
+
+        .intro-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+        }
+
+        .intro-prompt {
+            margin-top: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .intro-arrow {
+            color: var(--accent);
+            font-size: 14px;
+            animation: bounceArrow 1.5s infinite;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(6px); }
+        }
+
+        /* Outro Slide */
+        .outro-slide {
+            flex: 0 0 380px;
+            width: 380px;
+            background: linear-gradient(145deg, rgba(20, 20, 26, 0.95), rgba(255, 43, 0, 0.15));
+            border-color: rgba(255, 43, 0, 0.35);
+            display: flex;
+            align-items: center;
+        }
+
+        .outro-slide-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .outro-cinema-badge {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .outro-headline {
+            font-size: 32px;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .outro-headline .text-accent {
+            color: var(--accent);
+        }
+
+        .outro-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+        }
+
+        .cinema-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Mobile / Touch Responsive */
+        @media (max-width: 991px) {
+            .work-section-cinema {
+                padding: 60px 0 80px;
+            }
+
+            .work-header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .work-header-right {
+                width: 100%;
+                align-items: flex-start;
+            }
+
+            .work-filter-pills {
+                overflow-x: auto;
+                max-width: 100%;
+                white-space: nowrap;
+                padding: 4px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-pill {
+                padding: 6px 12px;
+                font-size: 10px;
+            }
+
+            .work-nav-controls {
+                display: none; /* Mobile uses touch swipe */
+            }
+
+            .work-horizontal-viewport {
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 20px;
+            }
+
+            .work-horizontal-track {
+                padding: 16px 20px 20px 20px;
+                gap: 20px;
+            }
+
+            .work-cinema-slide {
+                flex: 0 0 84vw;
+                width: 84vw;
+                max-width: 360px;
+                scroll-snap-align: center;
+                padding: 18px;
+            }
+
+            .card-media-wrap {
+                height: 260px;
+            }
+
+            .card-cinema-title {
+                font-size: 20px;
+            }
+
+            .intro-slide, .outro-slide {
+                flex: 0 0 84vw;
+                width: 84vw;
+                max-width: 360px;
+                scroll-snap-align: center;
+            }
         }
 
 
@@ -1311,130 +1863,357 @@
     </section>
 
 
-    <!-- ═══════ 6. FEATURED WORK ═══════ -->
-    <section class="work-section" id="workSection">
-        <div class="container">
-            <div class="story-subtitle gsap-fade-up">Selected Projects</div>
-            <h2 class="big-title gsap-fade-up">Featured Work</h2>
-
-            <!-- ROW 1 — BRANDS (3 projects) -->
-            <div class="work-category-row gsap-fade-up">
-                <div class="work-category-header">
-                    <div class="work-category-title-wrap">
-                        <span class="work-category-num">01</span>
-                        <h3 class="work-category-title">Brands</h3>
+    <!-- ═══════ 6. FEATURED WORK — CINEMATIC HORIZONTAL SHOWCASE ═══════ -->
+    <section class="work-section work-section-cinema" id="workSection">
+        <div class="work-sticky-header">
+            <div class="container work-header-inner">
+                <div class="work-header-left">
+                    <div class="cinema-status-badge">
+                        <span class="cinema-rec-dot"></span>
+                        <span>SELECTED REEL // 2024–2026</span>
                     </div>
-                    <span class="work-category-count">3 Projects</span>
+                    <h2 class="work-cinema-title">Featured Work</h2>
+                    <p class="work-cinema-sub">High-impact brand films, creator visual series &amp; commercial productions engineered to stop the scroll.</p>
                 </div>
-                <div class="work-grid">
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800"
-                                alt="Allstag Brand Film">
-                        </div>
-                        <span class="card-tag">Sahil Bhola • Allstag</span>
-                        <span class="card-title">Allstag Brand Film</span>
+                <div class="work-header-right">
+                    <!-- Filter Pills -->
+                    <div class="work-filter-pills" id="workFilterPills">
+                        <button class="filter-pill active" data-filter="all">ALL <span class="count">09</span></button>
+                        <button class="filter-pill" data-filter="brands">BRANDS <span class="count">03</span></button>
+                        <button class="filter-pill" data-filter="influencers">CREATORS <span class="count">03</span></button>
+                        <button class="filter-pill" data-filter="commercials">COMMERCIALS <span class="count">03</span></button>
                     </div>
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=800"
-                                alt="Bogsila Campaign">
+                    <!-- Navigation & Counter Controls -->
+                    <div class="work-nav-controls">
+                        <button class="cinema-nav-btn prev" id="workPrevBtn" aria-label="Previous Slide">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <div class="cinema-counter">
+                            <span class="counter-curr" id="cinemaCounterCurr">01</span>
+                            <span class="counter-slash">/</span>
+                            <span class="counter-total">09</span>
                         </div>
-                        <span class="card-tag">Devansh &amp; Vedansh Kaushik • Bogsila</span>
-                        <span class="card-title">Bogsila Campaign</span>
-                    </div>
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800"
-                                alt="Lalila Visual Identity">
-                        </div>
-                        <span class="card-tag">Varun Yadav (Laila) • Influencer</span>
-                        <span class="card-title">Lalila Visual Identity</span>
+                        <button class="cinema-nav-btn next" id="workNextBtn" aria-label="Next Slide">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <!-- ROW 2 — INFLUENCERS (3 projects) -->
-            <div class="work-category-row gsap-fade-up">
-                <div class="work-category-header">
-                    <div class="work-category-title-wrap">
-                        <span class="work-category-num">02</span>
-                        <h3 class="work-category-title">Influencers</h3>
-                    </div>
-                    <span class="work-category-count">3 Projects</span>
-                </div>
-                <div class="work-grid">
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600"
-                                alt="Aarush Bhola Series">
-                        </div>
-                        <span class="card-tag">Aarush Bhola • Influencer</span>
-                        <span class="card-title">Aarush Bhola Visual Series</span>
-                    </div>
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600"
-                                alt="Devansh Kaushik Stories">
-                        </div>
-                        <span class="card-tag">Devansh Kaushik • Influencer</span>
-                        <span class="card-title">Devansh Kaushik Stories</span>
-                    </div>
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600"
-                                alt="Sumit & Shrishka Highlights">
-                        </div>
-                        <span class="card-tag">Sumit &amp; Shrishka • Couple Influencer</span>
-                        <span class="card-title">Sumit &amp; Shrishka Highlights</span>
-                    </div>
-                </div>
+            <!-- Realtime scrub line -->
+            <div class="work-progress-line-track">
+                <div class="work-progress-line-fill" id="workProgressFill"></div>
             </div>
+        </div>
 
-            <!-- ROW 3 — COMMERCIALS (3 projects) -->
-            <div class="work-category-row gsap-fade-up">
-                <div class="work-category-header">
-                    <div class="work-category-title-wrap">
-                        <span class="work-category-num">03</span>
-                        <h3 class="work-category-title">Commercials</h3>
-                    </div>
-                    <span class="work-category-count">3 Projects</span>
-                </div>
-                <div class="work-grid">
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=800"
-                                alt="HiVirtus Commercial">
+        <!-- Horizontal Scroll Viewport -->
+        <div class="work-horizontal-viewport" id="workViewport">
+            <div class="work-horizontal-track" id="workTrack">
+
+                <!-- INTRO MANIFESTO SLIDE -->
+                <div class="work-cinema-slide intro-slide" data-category="intro">
+                    <div class="intro-slide-inner">
+                        <div class="intro-cinema-tag">[ DIRECTOR'S CUT ]</div>
+                        <h3 class="intro-headline">EVERY FRAME<br><span class="text-accent">IS CRAFTED</span><br>FOR RETENTION.</h3>
+                        <p class="intro-desc">We don't shoot generic video. We compose visual experiences that anchor your brand in your audience's memory.</p>
+                        <div class="intro-prompt">
+                            <span class="intro-arrow">➔</span>
+                            <span>SCROLL OR DRAG TO EXPLORE</span>
                         </div>
-                        <span class="card-tag">Aditya Lahari • HiVirtus</span>
-                        <span class="card-title">HiVirtus Commercial</span>
-                    </div>
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800"
-                                alt="Maggie Commercial">
-                        </div>
-                        <span class="card-tag">Manav Sukhija • Maggie</span>
-                        <span class="card-title">Maggie Commercial</span>
-                    </div>
-                    <div class="work-card gsap-work">
-                        <div class="work-img">
-                            <img loading="lazy"
-                                src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800"
-                                alt="Studio Commercial Campaign">
-                        </div>
-                        <span class="card-tag">Commercial Production</span>
-                        <span class="card-title">Studio Commercial Campaign</span>
                     </div>
                 </div>
+
+                <!-- CARD 1: Allstag Brand Film (Brands) -->
+                <div class="work-cinema-slide work-card" data-category="brands" data-index="1">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 01</span>
+                            <span class="card-category-badge badge-brand">BRAND FILM</span>
+                            <span class="card-fps-meta">4K PRORES</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000" alt="Allstag Brand Film">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>DIRECTION</span>
+                                <span>CINEMATOGRAPHY</span>
+                                <span>COLOR GRADE</span>
+                            </div>
+                            <h3 class="card-cinema-title">Allstag Brand Film</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Client</span>
+                                <span class="client-name">Sahil Bhola • Allstag</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">01</div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Bogsila Campaign (Brands) -->
+                <div class="work-cinema-slide work-card" data-category="brands" data-index="2">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 02</span>
+                            <span class="card-category-badge badge-brand">BRAND CAMPAIGN</span>
+                            <span class="card-fps-meta">CINEMA RAW</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1000" alt="Bogsila Campaign">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>CAMPAIGN</span>
+                                <span>SOUND DESIGN</span>
+                                <span>POST FX</span>
+                            </div>
+                            <h3 class="card-cinema-title">Bogsila Campaign</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Client</span>
+                                <span class="client-name">Devansh &amp; Vedansh Kaushik • Bogsila</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">02</div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Lalila Visual Identity (Brands) -->
+                <div class="work-cinema-slide work-card" data-category="brands" data-index="3">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 03</span>
+                            <span class="card-category-badge badge-brand">VISUAL IDENTITY</span>
+                            <span class="card-fps-meta">4K MASTER</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000" alt="Lalila Visual Identity">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>AESTHETICS</span>
+                                <span>BRAND IDENTITY</span>
+                                <span>EDITING</span>
+                            </div>
+                            <h3 class="card-cinema-title">Lalila Visual Identity</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Client</span>
+                                <span class="client-name">Varun Yadav (Laila) • Influencer</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">03</div>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Aarush Bhola Visual Series (Influencers) -->
+                <div class="work-cinema-slide work-card" data-category="influencers" data-index="4">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 04</span>
+                            <span class="card-category-badge badge-creator">CREATOR SERIES</span>
+                            <span class="card-fps-meta">VERTICAL 4K</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800" alt="Aarush Bhola Visual Series">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>VIRAL REELS</span>
+                                <span>COLOR GRADING</span>
+                                <span>PACING</span>
+                            </div>
+                            <h3 class="card-cinema-title">Aarush Bhola Visual Series</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Creator</span>
+                                <span class="client-name">Aarush Bhola • Influencer</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">04</div>
+                    </div>
+                </div>
+
+                <!-- CARD 5: Devansh Kaushik Stories (Influencers) -->
+                <div class="work-cinema-slide work-card" data-category="influencers" data-index="5">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 05</span>
+                            <span class="card-category-badge badge-creator">STORY EDITING</span>
+                            <span class="card-fps-meta">HIGH RETENTION</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Devansh Kaushik Stories">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>STORYTELLING</span>
+                                <span>SOUND SCAPING</span>
+                                <span>GRAPHICS</span>
+                            </div>
+                            <h3 class="card-cinema-title">Devansh Kaushik Stories</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Creator</span>
+                                <span class="client-name">Devansh Kaushik • Influencer</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">05</div>
+                    </div>
+                </div>
+
+                <!-- CARD 6: Sumit & Shrishka Highlights (Influencers) -->
+                <div class="work-cinema-slide work-card" data-category="influencers" data-index="6">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 06</span>
+                            <span class="card-category-badge badge-creator">COUPLE HIGHLIGHTS</span>
+                            <span class="card-fps-meta">EMOTION / 4K</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800" alt="Sumit &amp; Shrishka Highlights">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>LIFESTYLE</span>
+                                <span>CINEMATOGRAPHY</span>
+                                <span>RHYTHM</span>
+                            </div>
+                            <h3 class="card-cinema-title">Sumit &amp; Shrishka Highlights</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Creator</span>
+                                <span class="client-name">Sumit &amp; Shrishka • Couple Influencer</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">06</div>
+                    </div>
+                </div>
+
+                <!-- CARD 7: HiVirtus Commercial (Commercials) -->
+                <div class="work-cinema-slide work-card" data-category="commercials" data-index="7">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 07</span>
+                            <span class="card-category-badge badge-comm">COMMERCIAL FILM</span>
+                            <span class="card-fps-meta">CINEMA GLASS</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=1000" alt="HiVirtus Commercial">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>COMMERCIAL</span>
+                                <span>PRODUCT LIGHTING</span>
+                                <span>GRADE</span>
+                            </div>
+                            <h3 class="card-cinema-title">HiVirtus Commercial</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Client</span>
+                                <span class="client-name">Aditya Lahari • HiVirtus</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">07</div>
+                    </div>
+                </div>
+
+                <!-- CARD 8: Maggie Commercial (Commercials) -->
+                <div class="work-cinema-slide work-card" data-category="commercials" data-index="8">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 08</span>
+                            <span class="card-category-badge badge-comm">COMMERCIAL AD</span>
+                            <span class="card-fps-meta">HIGH SPEED</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000" alt="Maggie Commercial">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>FOOD &amp; BEV</span>
+                                <span>DYNAMIC MOTION</span>
+                                <span>AUDIO FX</span>
+                            </div>
+                            <h3 class="card-cinema-title">Maggie Commercial</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Client</span>
+                                <span class="client-name">Manav Sukhija • Maggie</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">08</div>
+                    </div>
+                </div>
+
+                <!-- CARD 9: Studio Commercial Campaign (Commercials) -->
+                <div class="work-cinema-slide work-card" data-category="commercials" data-index="9">
+                    <div class="slide-card-inner">
+                        <div class="card-cinema-top">
+                            <span class="card-scene-tag"><i class="fa-solid fa-film"></i> SCENE 09</span>
+                            <span class="card-category-badge badge-comm">STUDIO CAMPAIGN</span>
+                            <span class="card-fps-meta">FULL PRODUCTION</span>
+                        </div>
+                        <div class="card-media-wrap">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000" alt="Studio Commercial Campaign">
+                            <div class="card-media-overlay">
+                                <span class="card-hover-play"><i class="fa-solid fa-play"></i></span>
+                                <span class="card-hover-label">VIEW PROJECT</span>
+                            </div>
+                        </div>
+                        <div class="card-cinema-bottom">
+                            <div class="card-meta-tags">
+                                <span>STUDIO LIGHTING</span>
+                                <span>VFX COMPOSITING</span>
+                                <span>MASTER</span>
+                            </div>
+                            <h3 class="card-cinema-title">Studio Commercial Campaign</h3>
+                            <div class="card-cinema-client">
+                                <span class="client-label">Production</span>
+                                <span class="client-name">Commercial Production</span>
+                            </div>
+                        </div>
+                        <div class="card-ghost-num">09</div>
+                    </div>
+                </div>
+
+                <!-- OUTRO CTA SLIDE -->
+                <div class="work-cinema-slide outro-slide" data-category="outro">
+                    <div class="outro-slide-inner">
+                        <div class="outro-cinema-badge"><i class="fa-solid fa-bolt"></i> READY FOR NEXT LEVEL?</div>
+                        <h3 class="outro-headline">YOUR PROJECT<br>DESERVES<br><span class="text-accent">THIS IMPACT.</span></h3>
+                        <p class="outro-desc">Let’s collaborate to produce visual assets that dominate feeds, build brand authority, and convert viewers.</p>
+                        <a href="#contactSection" class="btn btn-primary cinema-cta-btn">
+                            <span>START YOUR PROJECT</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1801,32 +2580,139 @@
                 });
             }
 
-            // ───── WORK CARDS (IMAGE PARALLAX) ─────
-            if (useLightAnimations) {
-                gsap.set('.gsap-work', { clearProps: 'all' });
-            } else {
-                gsap.from('.gsap-work', {
-                    scrollTrigger: {
-                        trigger: '#workSection',
-                        start: 'top 80%'
-                    },
-                    y: 80,
-                    opacity: 0,
-                    stagger: 0.2,
-                    duration: 1.2,
-                    ease: 'power3.out'
+            // ───── WORK CARDS (CINEMATIC HORIZONTAL SHOWCASE) ─────
+            const workSection = document.getElementById('workSection');
+            const workTrack = document.getElementById('workTrack');
+            const workViewport = document.getElementById('workViewport');
+            const workProgressFill = document.getElementById('workProgressFill');
+            const counterCurr = document.getElementById('cinemaCounterCurr');
+            const prevBtn = document.getElementById('workPrevBtn');
+            const nextBtn = document.getElementById('workNextBtn');
+            const filterPills = document.querySelectorAll('.filter-pill');
+            const slides = document.querySelectorAll('.work-cinema-slide');
+
+            if (workSection && workTrack) {
+                let horizontalScrollTrigger = null;
+
+                const setupHorizontalScroll = () => {
+                    if (horizontalScrollTrigger) {
+                        horizontalScrollTrigger.kill();
+                        horizontalScrollTrigger = null;
+                        gsap.set(workTrack, { clearProps: 'all' });
+                    }
+
+                    const isDesktop = window.innerWidth >= 992 && !useLightAnimations;
+
+                    if (isDesktop) {
+                        const getScrollDistance = () => workTrack.scrollWidth - window.innerWidth + (window.innerWidth * 0.08);
+
+                        const tween = gsap.to(workTrack, {
+                            x: () => -getScrollDistance(),
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: workSection,
+                                start: 'top top',
+                                end: () => `+=${getScrollDistance() + 600}`,
+                                pin: true,
+                                scrub: 1,
+                                invalidateOnRefresh: true,
+                                onUpdate: (self) => {
+                                    const progress = self.progress;
+                                    if (workProgressFill) {
+                                        workProgressFill.style.width = Math.min(100, Math.max(10, progress * 100)) + '%';
+                                    }
+                                    const workCards = Array.from(document.querySelectorAll('.work-cinema-slide[data-index]'));
+                                    if (workCards.length > 0) {
+                                        const idx = Math.min(workCards.length, Math.max(1, Math.ceil(progress * workCards.length)));
+                                        if (counterCurr) {
+                                            counterCurr.textContent = idx.toString().padStart(2, '0');
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                        horizontalScrollTrigger = tween.scrollTrigger;
+
+                        if (prevBtn && nextBtn) {
+                            prevBtn.onclick = () => {
+                                if (!horizontalScrollTrigger) return;
+                                const progress = Math.max(0, horizontalScrollTrigger.progress - 0.16);
+                                const scrollPos = horizontalScrollTrigger.start + progress * (horizontalScrollTrigger.end - horizontalScrollTrigger.start);
+                                window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+                            };
+
+                            nextBtn.onclick = () => {
+                                if (!horizontalScrollTrigger) return;
+                                const progress = Math.min(1, horizontalScrollTrigger.progress + 0.16);
+                                const scrollPos = horizontalScrollTrigger.start + progress * (horizontalScrollTrigger.end - horizontalScrollTrigger.start);
+                                window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+                            };
+                        }
+                    } else {
+                        // Mobile / Touch Scroll Tracking
+                        if (workViewport) {
+                            workViewport.onscroll = () => {
+                                const maxScroll = workViewport.scrollWidth - workViewport.clientWidth;
+                                if (maxScroll > 0) {
+                                    const progress = workViewport.scrollLeft / maxScroll;
+                                    if (workProgressFill) {
+                                        workProgressFill.style.width = Math.min(100, Math.max(10, progress * 100)) + '%';
+                                    }
+                                    const workCards = Array.from(document.querySelectorAll('.work-cinema-slide[data-index]'));
+                                    if (workCards.length > 0) {
+                                        const idx = Math.min(workCards.length, Math.max(1, Math.ceil(progress * workCards.length)));
+                                        if (counterCurr) {
+                                            counterCurr.textContent = idx.toString().padStart(2, '0');
+                                        }
+                                    }
+                                }
+                            };
+                        }
+                    }
+                };
+
+                setupHorizontalScroll();
+                window.addEventListener('resize', () => {
+                    setupHorizontalScroll();
+                    ScrollTrigger.refresh();
                 });
 
-                document.querySelectorAll('.work-img img').forEach(img => {
-                    gsap.to(img, {
-                        scrollTrigger: {
-                            trigger: img.closest('.work-card'),
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: true
-                        },
-                        yPercent: 15,
-                        ease: 'none'
+                // Filter Pill Handlers
+                filterPills.forEach(pill => {
+                    pill.addEventListener('click', () => {
+                        filterPills.forEach(p => p.classList.remove('active'));
+                        pill.classList.add('active');
+                        const filter = pill.dataset.filter;
+
+                        slides.forEach(slide => {
+                            const cat = slide.dataset.category;
+                            if (cat === 'intro' || cat === 'outro') {
+                                slide.classList.remove('dimmed');
+                                return;
+                            }
+                            if (filter === 'all' || cat === filter) {
+                                slide.classList.remove('dimmed');
+                            } else {
+                                slide.classList.add('dimmed');
+                            }
+                        });
+
+                        // Scroll into view of the first item of that category
+                        if (filter !== 'all') {
+                            const firstMatch = document.querySelector(`.work-cinema-slide[data-category="${filter}"]`);
+                            if (firstMatch) {
+                                if (window.innerWidth < 992 && workViewport) {
+                                    workViewport.scrollTo({ left: firstMatch.offsetLeft - 24, behavior: 'smooth' });
+                                } else if (horizontalScrollTrigger) {
+                                    const trackLeft = firstMatch.offsetLeft;
+                                    const totalDist = workTrack.scrollWidth - window.innerWidth;
+                                    const ratio = Math.min(1, Math.max(0, trackLeft / totalDist));
+                                    const scrollPos = horizontalScrollTrigger.start + ratio * (horizontalScrollTrigger.end - horizontalScrollTrigger.start);
+                                    window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+                                }
+                            }
+                        }
                     });
                 });
             }
