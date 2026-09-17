@@ -474,7 +474,10 @@
         }
 
 
-        /* ---------- FEATURED WORK — 3D CINEMA COVERFLOW (NETFLIX / LAZAREV STYLE) ---------- */
+        html {
+            scroll-behavior: auto !important;
+        }
+
         /* ---------- FEATURED WORK — 3D CINEMA COVERFLOW (NETFLIX / LAZAREV STYLE) ---------- */
         .work-section-coverflow {
             position: relative;
@@ -908,19 +911,154 @@
             box-shadow: 0 0 12px var(--accent);
         }
 
-        /* Mobile adjustments */
+        /* Mobile & Responsive Adjustments for Coverflow */
         @media (max-width: 768px) {
+            .work-section-coverflow {
+                min-height: 100vh;
+                min-height: 100dvh;
+                height: 100vh;
+                height: 100dvh;
+                padding: 20px 0 calc(70px + env(safe-area-inset-bottom, 0px));
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+            }
+
+            .coverflow-header {
+                margin-bottom: 6px;
+            }
+
+            .coverflow-tag {
+                font-size: 8.5px;
+                padding: 3px 10px;
+                margin-bottom: 4px;
+                letter-spacing: 1.8px;
+            }
+
+            .coverflow-title {
+                font-size: 24px;
+                margin-bottom: 3px;
+            }
+
+            .coverflow-sub {
+                font-size: 11px;
+                line-height: 1.35;
+                max-width: 310px;
+                margin: 0 auto 8px;
+            }
+
             .coverflow-viewport {
-                height: 460px;
+                height: 295px;
+                margin: 8px 0 14px;
+                perspective: 750px;
+                touch-action: pan-y;
             }
 
             .coverflow-card {
-                width: 270px;
-                height: 390px;
+                width: 185px;
+                height: 265px;
+                border-radius: 14px;
+            }
+
+            .card-top-bar {
+                top: 8px;
+                left: 8px;
+                right: 8px;
+            }
+
+            .card-brand-badge {
+                width: 24px;
+                height: 24px;
+                font-size: 8.5px;
+            }
+
+            .card-rating-badge {
+                padding: 2px 6px;
+                font-size: 9.5px;
+            }
+
+            .card-bottom-info {
+                padding: 16px 10px 8px;
             }
 
             .card-main-title {
-                font-size: 18px;
+                font-size: 12.5px;
+                line-height: 1.2;
+            }
+
+            .card-sub-meta {
+                font-size: 8px;
+            }
+
+            .card-client-tag {
+                font-size: 7.5px;
+            }
+
+            .coverflow-controls {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: nowrap;
+                gap: 8px;
+                margin-top: 4px;
+                max-width: 95vw;
+            }
+
+            .coverflow-scroll-status {
+                padding: 4px 10px;
+                gap: 7px;
+            }
+
+            .coverflow-counter {
+                font-size: 9.5px;
+            }
+
+            .coverflow-counter #coverflowCurrentNum {
+                font-size: 11.5px;
+            }
+
+            .coverflow-progress-bar {
+                width: 48px;
+                height: 2.5px;
+            }
+
+            .coverflow-scroll-badge {
+                display: none;
+            }
+
+            .coverflow-dots {
+                gap: 5px;
+            }
+
+            .coverflow-dot {
+                width: 5px;
+                height: 5px;
+            }
+
+            .coverflow-dot.active {
+                width: 18px;
+            }
+
+            .coverflow-nav-btn {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                font-size: 11px;
+            }
+
+            .coverflow-filter-tabs {
+                gap: 4px;
+                padding: 3px;
+                max-width: 95vw;
+                overflow-x: auto;
+            }
+
+            .coverflow-filter-btn {
+                padding: 4px 10px;
+                font-size: 9px;
+                letter-spacing: 1px;
             }
         }
 
@@ -2225,8 +2363,8 @@
                 let activeIndex = 0;
                 let virtualIndex = 0;
                 let cardTween = null;
-                let isTransitioning = false;
-                let wheelCooldown = false;
+                let isStepping = false;
+                let isExiting = false;
                 let wheelUnlockTimer = null;
                 let coverflowTrigger = null;
 
@@ -2296,20 +2434,20 @@
 
                         if (isMobile) {
                             if (absOffset <= 1) {
-                                x = offset * 165;
-                                z = 40 - absOffset * 40;
-                                rotY = -offset * 20;
-                                scale = 1.05 - absOffset * 0.2;
+                                x = offset * 135;
+                                z = 30 - absOffset * 35;
+                                rotY = -offset * 18;
+                                scale = 1.0 - absOffset * 0.16;
                                 opacity = 1 - absOffset * 0.35;
-                                dim = absOffset * 0.45;
+                                dim = absOffset * 0.40;
                                 zIndex = Math.round(30 - absOffset * 10);
                                 pointer = absOffset < 0.6 ? 'auto' : 'none';
                             } else {
-                                x = sign * (165 + (absOffset - 1) * 75);
-                                z = -Math.min(100, (absOffset - 1) * 60);
-                                rotY = -sign * 24;
-                                scale = Math.max(0.45, 0.85 - (absOffset - 1) * 0.2);
-                                opacity = Math.max(0, 0.65 - (absOffset - 1) * 0.7);
+                                x = sign * (135 + (absOffset - 1) * 60);
+                                z = -Math.min(80, (absOffset - 1) * 50);
+                                rotY = -sign * 22;
+                                scale = Math.max(0.4, 0.84 - (absOffset - 1) * 0.2);
+                                opacity = Math.max(0, 0.45 - (absOffset - 1) * 0.45);
                                 dim = 0.65;
                                 zIndex = 5;
                                 pointer = 'none';
@@ -2399,160 +2537,85 @@
                     });
                 }
 
-                // Step to specific card cleanly without jitter, jumps, or window scrollTo glitches
-                function stepToCard(targetIdx, smooth = true) {
+                // Step to specific card cleanly with butter-smooth GSAP animation
+                function stepToCard(targetIdx, animate = true) {
                     targetIdx = Math.max(0, Math.min(filteredCards.length - 1, targetIdx));
                     if (targetIdx === activeIndex && Math.abs(virtualIndex - targetIdx) < 0.005) {
-                        isTransitioning = false;
+                        isStepping = false;
                         return;
                     }
 
                     activeIndex = targetIdx;
+                    isStepping = true;
 
                     if (cardTween) {
                         cardTween.kill();
+                        cardTween = null;
                     }
 
-                    if (smooth) {
-                        const startVal = virtualIndex;
-                        const dist = Math.abs(targetIdx - startVal);
-                        const duration = Math.min(0.48, Math.max(0.36, dist * 0.38));
-
-                        cardTween = gsap.to({ val: startVal }, {
-                            val: targetIdx,
-                            duration: duration,
-                            ease: 'power2.out',
-                            onUpdate: function() {
-                                updateCoverflowFloat(this.targets()[0].val);
-                            },
-                            onComplete: () => {
-                                virtualIndex = targetIdx;
-                                updateCoverflowFloat(targetIdx);
-                                cardTween = null;
-                                isTransitioning = false;
-                            }
-                        });
-                    } else {
+                    if (!animate) {
                         virtualIndex = targetIdx;
                         updateCoverflowFloat(targetIdx);
-                        isTransitioning = false;
+                        isStepping = false;
+                        return;
                     }
+
+                    const startVirtual = virtualIndex;
+                    const dist = Math.abs(targetIdx - startVirtual);
+                    const duration = Math.min(0.34, Math.max(0.24, dist * 0.28));
+
+                    cardTween = gsap.to({ v: startVirtual }, {
+                        v: targetIdx,
+                        duration: duration,
+                        ease: 'power2.out',
+                        onUpdate: function() {
+                            updateCoverflowFloat(this.targets()[0].v);
+                        },
+                        onComplete: () => {
+                            virtualIndex = targetIdx;
+                            updateCoverflowFloat(targetIdx);
+                            cardTween = null;
+                            clearTimeout(wheelUnlockTimer);
+                            wheelUnlockTimer = setTimeout(() => {
+                                isStepping = false;
+                            }, 60);
+                        }
+                    });
                 }
 
-                let isExiting = false;
-
-                // Initialize ScrollTrigger Pin with clean bounds and state restoration
+                // Initialize ScrollTrigger Pinning for #workSection
                 function initScrollTrigger() {
                     if (coverflowTrigger) {
                         coverflowTrigger.kill();
+                        coverflowTrigger = null;
                     }
 
-                    if (typeof ScrollTrigger !== 'undefined') {
-                        const pinDistance = 700;
+                    if (typeof ScrollTrigger !== 'undefined' && filteredCards.length > 1) {
+                        const isMobile = window.innerWidth < 768;
+                        const cardStepDist = isMobile ? 140 : 200;
+                        const totalDistance = (filteredCards.length - 1) * cardStepDist;
 
                         coverflowTrigger = ScrollTrigger.create({
                             trigger: '#workSection',
                             start: 'top top',
-                            end: () => `+=${pinDistance}px`,
+                            end: () => `+=${totalDistance}px`,
                             pin: true,
                             anticipatePin: 1,
-                            invalidateOnRefresh: true,
                             onEnter: () => {
-                                isExiting = false;
-                                activeIndex = 0;
-                                virtualIndex = 0;
-                                updateCoverflowFloat(0);
+                                if (isExiting) return;
+                                if (activeIndex !== 0 && !isStepping) {
+                                    stepToCard(0, false);
+                                }
                             },
                             onEnterBack: () => {
-                                isExiting = false;
-                                activeIndex = filteredCards.length - 1;
-                                virtualIndex = activeIndex;
-                                updateCoverflowFloat(activeIndex);
-                            },
-                            onLeaveBack: () => {
-                                isExiting = false;
-                                activeIndex = 0;
-                                virtualIndex = 0;
-                                updateCoverflowFloat(0);
-                            },
-                            onLeave: () => {
-                                isExiting = false;
-                                activeIndex = filteredCards.length - 1;
-                                virtualIndex = filteredCards.length - 1;
-                                updateCoverflowFloat(activeIndex);
+                                if (isExiting) return;
+                                if (activeIndex !== filteredCards.length - 1 && !isStepping) {
+                                    stepToCard(filteredCards.length - 1, false);
+                                }
                             }
                         });
                     }
                 }
-
-                // 1-Wheel-Scroll = 1-Card Snap Listener with Precision Inertia Isolation & Fluid Exit
-                window.addEventListener('wheel', (e) => {
-                    if (!coverflowTrigger) return;
-
-                    // If currently smoothly scrolling out of the section, allow browser to complete scroll freely
-                    if (isExiting) return;
-
-                    const scrollY = window.scrollY;
-                    const inPinnedZone = scrollY >= coverflowTrigger.start - 10 && scrollY <= coverflowTrigger.end + 10;
-
-                    if (!inPinnedZone) return;
-
-                    // Boundary Exit 1: At LAST card and user scrolls DOWN -> smooth scroll to #philosophySection
-                    if (activeIndex === filteredCards.length - 1 && e.deltaY > 10) {
-                        isExiting = true;
-                        const nextSec = document.getElementById('philosophySection');
-                        if (nextSec) {
-                            nextSec.scrollIntoView({ behavior: 'smooth' });
-                        }
-                        setTimeout(() => { isExiting = false; }, 1000);
-                        return; // Allow natural scroll without preventDefault
-                    }
-
-                    // Boundary Exit 2: At FIRST card and user scrolls UP -> smooth scroll to previous section
-                    if (activeIndex === 0 && e.deltaY < -10) {
-                        isExiting = true;
-                        const prevSec = document.getElementById('servicesSection') || document.getElementById('reelSection');
-                        if (prevSec) {
-                            prevSec.scrollIntoView({ behavior: 'smooth' });
-                        }
-                        setTimeout(() => { isExiting = false; }, 1000);
-                        return; // Allow natural scroll without preventDefault
-                    }
-
-                    // Inside coverflow stepping cards: prevent default window scroll so viewport stays rock-solid
-                    e.preventDefault();
-
-                    if (isTransitioning || wheelCooldown) return;
-
-                    // Filter out resting-finger micro vibrations
-                    if (Math.abs(e.deltaY) < 16) return;
-
-                    if (e.deltaY > 0) {
-                        // Scroll DOWN: Advance to next card
-                        if (activeIndex < filteredCards.length - 1) {
-                            isTransitioning = true;
-                            wheelCooldown = true;
-                            stepToCard(activeIndex + 1);
-                            clearTimeout(wheelUnlockTimer);
-                            wheelUnlockTimer = setTimeout(() => {
-                                isTransitioning = false;
-                                wheelCooldown = false;
-                            }, 420);
-                        }
-                    } else if (e.deltaY < 0) {
-                        // Scroll UP: Advance to previous card
-                        if (activeIndex > 0) {
-                            isTransitioning = true;
-                            wheelCooldown = true;
-                            stepToCard(activeIndex - 1);
-                            clearTimeout(wheelUnlockTimer);
-                            wheelUnlockTimer = setTimeout(() => {
-                                isTransitioning = false;
-                                wheelCooldown = false;
-                            }, 420);
-                        }
-                    }
-                }, { passive: false });
 
                 // Arrow Buttons
                 if (prevBtn) {
@@ -2589,35 +2652,132 @@
                     });
                 });
 
-                // Touch Swipe Support (Mobile)
+                // ───── 1-SCROLL = 1-CARD SNAP CONTROLLER (DESKTOP) ─────
+                window.addEventListener('wheel', (e) => {
+                    if (!coverflowTrigger) return;
+                    if (isExiting) return;
+
+                    const scrollY = window.scrollY;
+                    const rect = workSection ? workSection.getBoundingClientRect() : null;
+                    const inPinnedZone = rect ? ((scrollY >= coverflowTrigger.start - 20 && scrollY <= coverflowTrigger.end + 20) || 
+                                                 (rect.top <= 20 && rect.bottom >= window.innerHeight - 20)) : false;
+                    if (!inPinnedZone) return;
+
+                    // Filter out resting-finger micro-vibrations
+                    if (Math.abs(e.deltaY) < 14) return;
+
+                    // Boundary 1: At LAST card and scrolling DOWN -> smooth natural exit to next section
+                    if (activeIndex >= filteredCards.length - 1 && e.deltaY > 0) {
+                        isExiting = true;
+                        const nextSec = document.getElementById('philosophySection');
+                        if (nextSec) {
+                            nextSec.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            window.scrollTo({ top: coverflowTrigger.end + 50, behavior: 'smooth' });
+                        }
+                        setTimeout(() => { isExiting = false; }, 800);
+                        return; // Let browser scroll past #workSection into #philosophySection
+                    }
+
+                    // Boundary 2: At FIRST card and scrolling UP -> smooth natural exit to previous section
+                    if (activeIndex <= 0 && e.deltaY < 0) {
+                        isExiting = true;
+                        const prevSec = document.getElementById('expertiseSection') || document.getElementById('servicesStrip');
+                        if (prevSec) {
+                            prevSec.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            window.scrollTo({ top: Math.max(0, coverflowTrigger.start - 50), behavior: 'smooth' });
+                        }
+                        setTimeout(() => { isExiting = false; }, 800);
+                        return; // Let browser scroll past #workSection up to Hero section
+                    }
+
+                    // Inside coverflow cards: PREVENT fractional native scroll so viewport stays rock-solid
+                    e.preventDefault();
+
+                    // If currently animating, ignore extra wheel ticks from inertial wheel spin
+                    if (isStepping) return;
+
+                    if (e.deltaY > 0) {
+                        // 1 Scroll Down = Next Card!
+                        stepToCard(activeIndex + 1);
+                    } else if (e.deltaY < 0) {
+                        // 1 Scroll Up = Previous Card!
+                        stepToCard(activeIndex - 1);
+                    }
+                }, { passive: false });
+
+                // ───── TOUCH DRAG & FLICK (MOBILE & TABLET) ─────
+                // 1 flick / swipe = 1 card!
                 const stage = document.getElementById('coverflowViewport') || coverflowStage;
                 if (stage) {
-                    let startX = 0;
-                    let startY = 0;
+                    let touchStartX = 0;
+                    let touchStartY = 0;
+                    let isTouching = false;
+                    let isHorizontalSwipe = false;
 
                     stage.addEventListener('touchstart', (e) => {
-                        startX = e.touches[0].clientX;
-                        startY = e.touches[0].clientY;
+                        if (e.touches.length !== 1) return;
+                        touchStartX = e.touches[0].clientX;
+                        touchStartY = e.touches[0].clientY;
+                        isTouching = true;
+                        isHorizontalSwipe = false;
                     }, { passive: true });
 
-                    stage.addEventListener('touchend', (e) => {
-                        const deltaX = e.changedTouches[0].clientX - startX;
-                        const deltaY = e.changedTouches[0].clientY - startY;
+                    stage.addEventListener('touchmove', (e) => {
+                        if (!isTouching || e.touches.length !== 1) return;
+                        const deltaX = e.touches[0].clientX - touchStartX;
+                        const deltaY = e.touches[0].clientY - touchStartY;
 
-                        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+                        if (!isHorizontalSwipe) {
+                            if (Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY) * 1.15) {
+                                isHorizontalSwipe = true;
+                            }
+                        }
+
+                        // Prevent default horizontal page panning while swiping cards
+                        if (isHorizontalSwipe) {
+                            if (e.cancelable) e.preventDefault();
+                        }
+                    }, { passive: false });
+
+                    stage.addEventListener('touchend', (e) => {
+                        if (!isTouching) return;
+                        isTouching = false;
+                        const deltaX = e.changedTouches[0].clientX - touchStartX;
+                        const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+                        // Check horizontal swipe
+                        if (Math.abs(deltaX) > 30 && Math.abs(deltaX) > Math.abs(deltaY)) {
                             if (deltaX < 0) {
                                 stepToCard(activeIndex + 1);
                             } else {
                                 stepToCard(activeIndex - 1);
                             }
+                            return;
                         }
-                    });
+
+                        // Check vertical flick inside pinned workSection on mobile
+                        if (Math.abs(deltaY) > 35) {
+                            if (deltaY < 0 && activeIndex < filteredCards.length - 1) {
+                                // Flicked up (scroll down) -> Next card
+                                stepToCard(activeIndex + 1);
+                            } else if (deltaY > 0 && activeIndex > 0) {
+                                // Flicked down (scroll up) -> Prev card
+                                stepToCard(activeIndex - 1);
+                            }
+                        }
+                    }, { passive: true });
+
+                    stage.addEventListener('touchcancel', () => {
+                        isTouching = false;
+                    }, { passive: true });
                 }
 
                 // Keyboard Left / Right Support
                 window.addEventListener('keydown', (e) => {
                     const rect = workSection.getBoundingClientRect();
-                    const inView = Math.abs(rect.top) <= 100;
+                    const inView = Math.abs(rect.top) <= 120;
                     if (!inView) return;
 
                     if (e.key === 'ArrowLeft') {
