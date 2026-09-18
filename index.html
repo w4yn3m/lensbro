@@ -504,6 +504,15 @@
             z-index: 1;
             pointer-events: none;
             transform: scale(1.15);
+            overflow: hidden;
+        }
+
+        .cf-backdrop-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            filter: blur(25px);
         }
 
         /* Ambient Warm Golden/Amber Glow Overlays */
@@ -701,6 +710,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            pointer-events: none;
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -1757,7 +1767,9 @@
     <!-- ═══════ 6. FEATURED WORK — 3D HORIZONTAL COVERFLOW STAGE (IMAGE 1 STYLE) ═══════ -->
     <section class="work-section work-section-coverflow" id="workSection">
         <!-- Dynamic Blurred Artwork Backdrop (Matches Spotify blurred background in Image 1) -->
-        <div class="cf-backdrop-blur" id="cfBackdropBlur" style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800');"></div>
+        <div class="cf-backdrop-blur" id="cfBackdropBlur">
+            <video class="cf-backdrop-video" id="cfBackdropVideo" muted playsinline loop preload="metadata" src="assets/Featured Work/Brands/AllStag.mp4"></video>
+        </div>
         <div class="cf-ambient-amber" id="cfAmbientGlow"></div>
 
         <div class="cf-stage-container">
@@ -1785,11 +1797,11 @@
                         data-title="Allstag Brand Film"
                         data-client="Sahil Bhola • Allstag"
                         data-specs="Direction • Cinematography • 4K Raw • 2025"
-                        data-img="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800"
+                        data-video="assets/Featured Work/Brands/AllStag.mp4"
                         data-accent="rgba(255, 140, 0, 0.25)">
                         <div class="cf-watermark">01 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="eager" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800" alt="Allstag Brand Film">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Brands/AllStag.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
@@ -1803,11 +1815,11 @@
                         data-title="Bogsila Campaign"
                         data-client="Devansh &amp; Vedansh Kaushik • Bogsila"
                         data-specs="Brand Campaign • Sound Design • 2025"
-                        data-img="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=800"
+                        data-video="assets/Featured Work/Brands/Bogsila.mp4"
                         data-accent="rgba(255, 107, 53, 0.25)">
                         <div class="cf-watermark">02 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="eager" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=800" alt="Bogsila Campaign">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Brands/Bogsila.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
@@ -1818,37 +1830,37 @@
 
                     <!-- CARD 03 (BRANDS) -->
                     <div class="cf-card" data-index="2" data-category="brands"
-                        data-title="Lalila Visual Identity"
-                        data-client="Varun Yadav • Lalila"
-                        data-specs="Brand Identity • Visual World • 2024"
-                        data-img="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800"
-                        data-accent="rgba(255, 60, 0, 0.25)">
+                        data-title="Pintola Commercial"
+                        data-client="Pintola • Brand Film"
+                        data-specs="Commercial • High Energy • 2025"
+                        data-video="assets/Featured Work/Brands/Pintola.mp4"
+                        data-accent="rgba(255, 165, 0, 0.25)">
                         <div class="cf-watermark">03 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="eager" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800" alt="Lalila Visual Identity">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Brands/Pintola.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
-                            <h4 class="cf-card-title">Lalila Visual Identity</h4>
-                            <p class="cf-card-sub">Varun Yadav • Lalila</p>
+                            <h4 class="cf-card-title">Pintola Commercial</h4>
+                            <p class="cf-card-sub">Pintola • Brand Film</p>
                         </div>
                     </div>
 
                     <!-- CARD 04 (INFLUENCERS) -->
                     <div class="cf-card" data-index="3" data-category="influencers"
-                        data-title="Aarush Bhola Series"
-                        data-client="Aarush Bhola • Influencer"
-                        data-specs="Creator Series • Viral Pacing • 2025"
-                        data-img="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800"
-                        data-accent="rgba(255, 140, 40, 0.25)">
+                        data-title="Aditya Lahari (HiVirtus)"
+                        data-client="Aditya Lahari • HiVirtus"
+                        data-specs="Creator Series • High Impact • 2025"
+                        data-video="assets/Featured Work/Influencers/Aditya Lahari (HiVirtus).mp4"
+                        data-accent="rgba(255, 90, 30, 0.25)">
                         <div class="cf-watermark">04 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="lazy" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800" alt="Aarush Bhola Series">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Influencers/Aditya Lahari (HiVirtus).mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
-                            <h4 class="cf-card-title">Aarush Bhola Series</h4>
-                            <p class="cf-card-sub">Aarush Bhola • Influencer</p>
+                            <h4 class="cf-card-title">Aditya Lahari (HiVirtus)</h4>
+                            <p class="cf-card-sub">Aditya Lahari • Creator Series</p>
                         </div>
                     </div>
 
@@ -1857,11 +1869,11 @@
                         data-title="Devansh Kaushik Stories"
                         data-client="Devansh Kaushik • Influencer"
                         data-specs="Story Arc • Motion FX • Retention • 2025"
-                        data-img="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800"
-                        data-accent="rgba(255, 100, 30, 0.25)">
+                        data-video="assets/Featured Work/Influencers/Devansh Kaushik.mp4"
+                        data-accent="rgba(255, 120, 40, 0.25)">
                         <div class="cf-watermark">05 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="lazy" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800" alt="Devansh Kaushik Stories">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Influencers/Devansh Kaushik.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
@@ -1872,73 +1884,73 @@
 
                     <!-- CARD 06 (INFLUENCERS) -->
                     <div class="cf-card" data-index="5" data-category="influencers"
-                        data-title="Sumit &amp; Shrishka Cinema"
-                        data-client="Sumit &amp; Shrishka • Couple Influencer"
-                        data-specs="Lifestyle Cinema • Emotional Arc • 2024"
-                        data-img="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800"
-                        data-accent="rgba(255, 70, 20, 0.25)">
+                        data-title="Varun Yadav (Laila)"
+                        data-client="Varun Yadav • Laila"
+                        data-specs="Creator Campaign • Visual Identity • 2025"
+                        data-video="assets/Featured Work/Influencers/Varun Yadav (Laila).mp4"
+                        data-accent="rgba(255, 60, 20, 0.25)">
                         <div class="cf-watermark">06 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="lazy" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800" alt="Sumit &amp; Shrishka Cinema">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Influencers/Varun Yadav (Laila).mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
-                            <h4 class="cf-card-title">Sumit &amp; Shrishka Cinema</h4>
-                            <p class="cf-card-sub">Lifestyle Cinema • Emotional Arc</p>
+                            <h4 class="cf-card-title">Varun Yadav (Laila)</h4>
+                            <p class="cf-card-sub">Varun Yadav • Laila</p>
                         </div>
                     </div>
 
                     <!-- CARD 07 (COMMERCIALS) -->
                     <div class="cf-card" data-index="6" data-category="commercials"
-                        data-title="HiVirtus Commercial"
-                        data-client="Aditya Lahari • HiVirtus"
-                        data-specs="Product Commercial • High Impact Sound • 2025"
-                        data-img="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=800"
+                        data-title="AS-IT-IS Nutrition"
+                        data-client="AS-IT-IS Nutrition • Fitness"
+                        data-specs="Product Commercial • Dynamic Motion • 2025"
+                        data-video="assets/Featured Work/Commercials/Asitis Nutrition.mp4"
                         data-accent="rgba(255, 140, 0, 0.25)">
                         <div class="cf-watermark">07 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="lazy" src="https://images.unsplash.com/photo-1745826092440-0d6542010bcc?q=80&w=800" alt="HiVirtus Commercial">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Commercials/Asitis Nutrition.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
-                            <h4 class="cf-card-title">HiVirtus Commercial</h4>
-                            <p class="cf-card-sub">Aditya Lahari • HiVirtus</p>
+                            <h4 class="cf-card-title">AS-IT-IS Nutrition</h4>
+                            <p class="cf-card-sub">Fitness Commercial • Product</p>
                         </div>
                     </div>
 
                     <!-- CARD 08 (COMMERCIALS) -->
                     <div class="cf-card" data-index="7" data-category="commercials"
-                        data-title="Maggie Commercial"
-                        data-client="Manav Sukhija • Maggie"
-                        data-specs="Food Commercial • 120fps Dynamic Motion • 2025"
-                        data-img="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800"
-                        data-accent="rgba(255, 110, 30, 0.25)">
+                        data-title="Fevikwik Commercial"
+                        data-client="Fevikwik • Quick Bond"
+                        data-specs="High-Paced Commercial • Visual FX • 2025"
+                        data-video="assets/Featured Work/Commercials/Fevikwik.mp4"
+                        data-accent="rgba(255, 100, 30, 0.25)">
                         <div class="cf-watermark">08 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="lazy" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800" alt="Maggie Commercial">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Commercials/Fevikwik.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
-                            <h4 class="cf-card-title">Maggie Commercial</h4>
-                            <p class="cf-card-sub">Manav Sukhija • Maggie</p>
+                            <h4 class="cf-card-title">Fevikwik Commercial</h4>
+                            <p class="cf-card-sub">Brand Commercial • VFX</p>
                         </div>
                     </div>
 
                     <!-- CARD 09 (COMMERCIALS) -->
                     <div class="cf-card" data-index="8" data-category="commercials"
-                        data-title="Studio Production Campaign"
-                        data-client="Commercial Production"
-                        data-specs="Studio Lighting • VFX Compositing • 2024"
-                        data-img="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800"
-                        data-accent="rgba(255, 60, 10, 0.25)">
+                        data-title="Plix Life Commercial"
+                        data-client="Plix Life • Wellness Campaign"
+                        data-specs="Commercial Campaign • 4K Cinematography • 2025"
+                        data-video="assets/Featured Work/Commercials/Plix.mp4"
+                        data-accent="rgba(255, 70, 10, 0.25)">
                         <div class="cf-watermark">09 / 09</div>
                         <div class="cf-media-wrap">
-                            <img class="cf-media" loading="lazy" src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800" alt="Studio Production Campaign">
+                            <video class="cf-media" playsinline muted loop preload="metadata" src="assets/Featured Work/Commercials/Plix.mp4"></video>
                             <div class="cf-card-gradient"></div>
                         </div>
                         <div class="cf-card-footer">
-                            <h4 class="cf-card-title">Studio Production Campaign</h4>
-                            <p class="cf-card-sub">Studio Lighting • VFX Compositing</p>
+                            <h4 class="cf-card-title">Plix Life Commercial</h4>
+                            <p class="cf-card-sub">Wellness Campaign • 4K Film</p>
                         </div>
                     </div>
 
@@ -1956,7 +1968,7 @@
 
                 <!-- Active Track Info + Soundwave -->
                 <div class="cf-dock-center">
-                    <img class="cf-dock-thumb" id="cfDockThumb" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800" alt="Active artwork">
+                    <video class="cf-dock-thumb" id="cfDockThumb" muted playsinline loop preload="metadata" src="assets/Featured Work/Brands/AllStag.mp4"></video>
                     <div class="cf-dock-info">
                         <span class="cf-dock-title" id="cfDockTitle">Allstag Brand Film</span>
                         <span class="cf-dock-artist" id="cfDockArtist">Sahil Bhola • Allstag</span>
@@ -1971,6 +1983,7 @@
 
                 <!-- Aux Controls -->
                 <div class="cf-dock-right">
+                    <button class="cf-dock-icon-btn" id="cfMuteBtn" title="Toggle Sound" aria-label="Toggle Sound"><i class="fa-solid fa-volume-xmark"></i></button>
                     <button class="cf-dock-icon-btn" id="cfShuffleBtn" title="Shuffle Projects" aria-label="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
                     <button class="cf-dock-icon-btn" id="cfRepeatBtn" title="Loop Projects" aria-label="Repeat"><i class="fa-solid fa-repeat"></i></button>
                     <a href="contact.html" class="cf-dock-icon-btn" title="Explore Case Study" aria-label="Explore Project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -2359,6 +2372,7 @@
             const cfDeck = document.getElementById('cfDeck');
             const cfCards = Array.from(document.querySelectorAll('.cf-card'));
             const cfBackdropBlur = document.getElementById('cfBackdropBlur');
+            const cfBackdropVideo = document.getElementById('cfBackdropVideo');
             const cfAmbientGlow = document.getElementById('cfAmbientGlow');
             const cfDockThumb = document.getElementById('cfDockThumb');
             const cfDockTitle = document.getElementById('cfDockTitle');
@@ -2366,6 +2380,7 @@
             const cfPrevBtn = document.getElementById('cfPrevBtn');
             const cfNextBtn = document.getElementById('cfNextBtn');
             const cfPlayBtn = document.getElementById('cfPlayBtn');
+            const cfMuteBtn = document.getElementById('cfMuteBtn');
             const cfCatBtns = document.querySelectorAll('.cf-cat-btn');
             const cfShuffleBtn = document.getElementById('cfShuffleBtn');
             const cfRepeatBtn = document.getElementById('cfRepeatBtn');
@@ -2376,6 +2391,7 @@
                 let activeCfIndex = 0;
                 let isProgrammaticScroll = false;
                 let isPlaying = true;
+                let isMuted = true;
 
                 // Category start indexes
                 const categoryIndexMap = {
@@ -2483,24 +2499,55 @@
 
                     const title = card.dataset.title || '';
                     const client = card.dataset.client || '';
-                    const img = card.dataset.img || '';
+                    const videoSrc = card.dataset.video || '';
                     const cat = card.dataset.category || '';
                     const accent = card.dataset.accent || 'rgba(255, 140, 0, 0.25)';
-
-                    // Dynamic blurred artwork background
-                    if (cfBackdropBlur) {
-                        cfBackdropBlur.style.backgroundImage = `url('${img}')`;
-                    }
 
                     // Ambient glow color
                     if (cfAmbientGlow) {
                         cfAmbientGlow.style.background = `radial-gradient(ellipse at center, ${accent} 0%, rgba(255, 43, 0, 0.08) 45%, transparent 70%)`;
                     }
 
+                    // Background blurred video update
+                    if (cfBackdropVideo && videoSrc) {
+                        const currentSrc = cfBackdropVideo.getAttribute('src');
+                        if (currentSrc !== videoSrc) {
+                            cfBackdropVideo.src = videoSrc;
+                            cfBackdropVideo.load();
+                            if (isPlaying) cfBackdropVideo.play().catch(() => {});
+                        }
+                    }
+
                     // Dock thumb & texts
-                    if (cfDockThumb) cfDockThumb.src = img;
+                    if (cfDockThumb && videoSrc) {
+                        if (cfDockThumb.tagName === 'VIDEO') {
+                            const currentSrc = cfDockThumb.getAttribute('src');
+                            if (currentSrc !== videoSrc) {
+                                cfDockThumb.src = videoSrc;
+                                cfDockThumb.load();
+                                if (isPlaying) cfDockThumb.play().catch(() => {});
+                            }
+                        }
+                    }
                     if (cfDockTitle) cfDockTitle.textContent = title;
                     if (cfDockArtist) cfDockArtist.textContent = client;
+
+                    // Play active card video, pause others
+                    cfCards.forEach((c, idx) => {
+                        const vid = c.querySelector('video');
+                        if (vid) {
+                            if (idx === targetIdx) {
+                                vid.muted = isMuted;
+                                if (isPlaying) {
+                                    vid.play().catch(() => {});
+                                } else {
+                                    vid.pause();
+                                }
+                            } else {
+                                vid.pause();
+                            }
+                        }
+                    });
 
                     // Micro-animation on text switch
                     if (typeof gsap !== 'undefined') {
@@ -2544,13 +2591,31 @@
                     }
                 }
 
-                // Direct click on any card slides it to center
+                // Direct click on any card slides it to center or toggles play/pause on active
                 cfCards.forEach(card => {
                     card.addEventListener('click', (e) => {
                         const clickedIdx = parseInt(card.dataset.index, 10);
                         if (!isNaN(clickedIdx) && clickedIdx !== activeCfIndex) {
                             e.preventDefault();
                             goToCoverflow(clickedIdx, true);
+                        } else if (clickedIdx === activeCfIndex) {
+                            const vid = card.querySelector('video');
+                            if (vid) {
+                                if (vid.paused) {
+                                    vid.play().catch(() => {});
+                                    isPlaying = true;
+                                } else {
+                                    vid.pause();
+                                    isPlaying = false;
+                                }
+                                if (cfPlayBtn) {
+                                    cfPlayBtn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+                                }
+                                const waveBars = document.querySelectorAll('.cf-dock-wave-bar');
+                                waveBars.forEach(bar => {
+                                    bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+                                });
+                            }
                         }
                     });
                 });
@@ -2588,6 +2653,43 @@
                         waveBars.forEach(bar => {
                             bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
                         });
+                        const activeCard = cfCards[activeCfIndex];
+                        const activeVid = activeCard ? activeCard.querySelector('video') : null;
+                        if (activeVid) {
+                            if (isPlaying) {
+                                activeVid.play().catch(() => {});
+                            } else {
+                                activeVid.pause();
+                            }
+                        }
+                        if (cfBackdropVideo) {
+                            if (isPlaying) {
+                                cfBackdropVideo.play().catch(() => {});
+                            } else {
+                                cfBackdropVideo.pause();
+                            }
+                        }
+                        if (cfDockThumb && cfDockThumb.tagName === 'VIDEO') {
+                            if (isPlaying) {
+                                cfDockThumb.play().catch(() => {});
+                            } else {
+                                cfDockThumb.pause();
+                            }
+                        }
+                    });
+                }
+
+                // Audio Mute/Unmute in Dock
+                if (cfMuteBtn) {
+                    cfMuteBtn.addEventListener('click', () => {
+                        isMuted = !isMuted;
+                        cfMuteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
+                        cfMuteBtn.title = isMuted ? 'Unmute Audio' : 'Mute Audio';
+                        const activeCard = cfCards[activeCfIndex];
+                        const activeVid = activeCard ? activeCard.querySelector('video') : null;
+                        if (activeVid) {
+                            activeVid.muted = isMuted;
+                        }
                     });
                 }
 
